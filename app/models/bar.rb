@@ -1,0 +1,3 @@
+class Bar < ApplicationRecord
+
+end
