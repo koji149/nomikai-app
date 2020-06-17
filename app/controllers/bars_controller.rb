@@ -46,7 +46,7 @@ class BarsController < ApplicationController
       wifi: @wifi,
       non_smoking: @non_smoking,
       format: "json",
-      count: 35
+      count: 50
     }
 
     client = HTTPClient.new
