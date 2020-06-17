@@ -4,13 +4,10 @@ class BarsController < ApplicationController
 
   before_action :params_exist?, only: [:index]
 
-
   def top
-
   end
-  def index
 
-    p params
+  def index
     uri = ENV['uri']
     key = ENV['key']
 
@@ -35,7 +32,6 @@ class BarsController < ApplicationController
       @explain = params[:explain]
       @free_drink = 1
     end
-    
 
     data = {
       key: key,
@@ -46,7 +42,7 @@ class BarsController < ApplicationController
       wifi: @wifi,
       non_smoking: @non_smoking,
       format: "json",
-      count: 50
+      count: 100
     }
 
     client = HTTPClient.new

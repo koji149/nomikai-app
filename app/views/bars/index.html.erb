@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
-    <title>Mini Blog</title>
+    <title>アフターキャンパス～「どこ行く？」を解決する飲み会サイト～</title>
+    <meta name="description" content="「飲みに行こう！」と駅に集まり、「どこ行く？」「いつものとこで良くない？」「お金ないから安いところで」結局いつもと同じ居酒屋...そんな悩みを解決する予算3000円で楽しめる大学生専用飲み会サイト！" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
-
   </head>
   <body>
-  
   <div class="site-wrap">
-
-
-    
     <header class="site-navbar" >
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -21,7 +18,6 @@
             <div class="site-logo">
               <%= link_to image_tag('top2.png'), root_path %>
             </div>
-
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
                 <li><%= link_to "全部", bars_index_path(m_area: @m_area, area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり・禁煙・wifiあり】") %><li>
                 <li><%= link_to '居酒屋', bars_index_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円・禁煙】の店舗") %><li>
@@ -32,8 +28,6 @@
         </div>
       </div>
     </header>
-    
-    
     <div class="py-5 bg-light">
       <div class="container">
         <div class="row">
@@ -47,14 +41,10 @@
         </div>
       </div>
     </div>
-
     <div class="site-section bg-white">
       <div class="container">
         <div class="row">
         <%items = @response["results"]["shop"]%>
-
-
-        
           <%@items.each do |item|%>
             <div class="col-lg-4 mb-4">
               <div class="entry2">
@@ -90,15 +80,17 @@
         </div>
     </div>
   </div>
-    
-    
-    
     <div class="site-footer">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-4">
             <h3 class="footer-heading mb-4">About Us</h3>
             <p>大学生による大学生専用の使いやすいサイトを目指します</p>
+          </div>
+          <div class="col-md-4">
+            <h3 class="footer-heading mb-4">Contact</h3>
+            <p>サービスへの要望がある場合はこちら</p>
+            <p><%= mail_to "aftercampus0617@gmail.com"%></p>
           </div>
         </div>
         <div class="row">
@@ -108,15 +100,11 @@
               Copyright &copy; <script>(function(){document.write(new Date().getFullYear())});</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <%=link_to "https://colorlib.com", target: "_blank"%>Colorlib</a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               </p>
+              <p>Powered by <%= link_to "http://webservice.recruit.co.jp/" %>ホットペッパー Webサービス</p>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
-
-
-
-    
   </body>
 </html>
