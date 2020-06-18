@@ -27,7 +27,7 @@ class BarsController < ApplicationController
       @genre = "G001,G002,G012"
       @m_area = params[:m_area]
       @budget = "B001,B002"
-      @wifi = 1
+      @wifi = 0
       @non_smoking = 1
       @explain = params[:explain]
       @free_drink = 1

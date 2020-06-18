@@ -19,7 +19,7 @@
               <%= link_to image_tag('top2.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><%= link_to "全部", bars_index_path(m_area: @m_area, area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり・禁煙・wifiあり】") %><li>
+                <li><%= link_to "全部", bars_index_path(m_area: @m_area, area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり・禁煙】") %><li>
                 <li><%= link_to '居酒屋', bars_index_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円・禁煙】の店舗") %><li>
                 <li><%= link_to 'バル', bars_index_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円・禁煙】の店舗") %><li>
                 <li><%= link_to 'バー', bars_index_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗") %><li>
