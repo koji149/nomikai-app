@@ -34,15 +34,15 @@ class BarsController < ApplicationController
     end
 
     data = {
-      key: key,
-      free_drink: @free_drink,
-      budget: @budget,
-      genre: @genre,
-      middle_area: @m_area,
-      wifi: @wifi,
-      non_smoking: @non_smoking,
-      format: "json",
-      count: 100
+      "key" => "#{key}",
+      "free_drink" => "#{@free_drink}",
+      "budget" => "#{@budget}",
+      "genre" => "#{@genre}",
+      "middle_area" => "#{@m_area}",
+      "wifi" => "#{@wifi}",
+      "non_smoking" => "#{@non_smoking}",
+      "format" => "json",
+      "count" => 100
     }
 
     client = HTTPClient.new
