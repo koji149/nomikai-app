@@ -34,19 +34,19 @@ class BarsController < ApplicationController
     end
 
     data = {
-      "key" => "#{key}",
-      "free_drink" => "#{@free_drink}",
-      "budget" => "#{@budget}",
-      "genre" => "#{@genre}",
-      "middle_area" => "#{@m_area}",
-      "wifi" => "#{@wifi}",
-      "non_smoking" => "#{@non_smoking}",
-      "format" => "json",
-      "count" => 100
+      key: key,
+      free_drink: @free_drink,
+      budget: @budget,
+      genre: @genre,
+      middle_area: @m_area,
+      wifi: @wifi,
+      non_smoking: @non_smoking,
+      format: "json",
+      count: 100
     }
 
     client = HTTPClient.new
-    request =  client.get('http://webservice.recruit.co.jp/hotpepper/gourmet/v1/',data)
+    request =  client.get('https://webservice.recruit.co.jp/hotpepper/gourmet/v1/', data)
     @response = JSON.parse(request.body)
     @items = @response["results"]["shop"]
     @items =  Kaminari.paginate_array(@items).page(params[:page]).per(12)
