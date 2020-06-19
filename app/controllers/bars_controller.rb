@@ -8,8 +8,8 @@ class BarsController < ApplicationController
   end
 
   def index
-    uri = ENV['uri']
-    key = ENV['key']
+    uri = ENV['URI']
+    key = ENV['KEY']
 
     if params[:genre]
       @area_name = params[:area_name]
