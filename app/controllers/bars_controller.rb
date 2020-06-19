@@ -49,7 +49,7 @@ class BarsController < ApplicationController
     request =  client.get('https://webservice.recruit.co.jp/hotpepper/gourmet/v1/', data)
     @response = JSON.parse(request.body)
     @items = @response["results"]["shop"]
-    @items = @items.page(params[:page]).per(12)
+    @items =  Kaminari.paginate(@items).page(params[:page]).per(12)
   end
 
   private
