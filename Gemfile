@@ -66,3 +66,4 @@ gem 'activesupport'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'rails_12factor', group: :production
