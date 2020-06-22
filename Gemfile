@@ -74,3 +74,4 @@ gem 'canonical-rails'
 gem 'sitemap_generator'
 gem 'roboto'
 gem 'whenever', require: false
+gem 'aws-sdk'
