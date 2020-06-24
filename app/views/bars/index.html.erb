@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <% set_meta_tags title: "「どこ行く？」 #{@area_name}の#{@category}", description: "「どこ行く？」#{@area_name}の#{@category}「#{@explain}」"%>
+    <% set_meta_tags title: "「どこ行く？」 #{@area_name}の#{@category}", description: "#{@first_item["name"]}、予算#{@first_item["budget"]["name"]}、飲み放題#{@first_item["free_drink"].slice(0,2)}、#{@first_item["mobile_access"]}...他#{@sum_items}件"%>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
@@ -35,8 +35,7 @@
             <span><%=@area_name%></span>
             <h1><%=@category%></h1>
             <h2><%=@explain%></h2>
-            <%items = @response["results"]["shop"].length%>
-            <p>ヒット数：<%=items%>件</p>
+            <p>ヒット数：<%=@sum_items%>件</p>
           </div>
         </div>
       </div>
