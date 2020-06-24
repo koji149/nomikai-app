@@ -1,4 +1,5 @@
 # Set the host name for URL creation
+require 'aws-sdk-s3'
 SitemapGenerator::Sitemap.default_host = "https://www.after-campus.com/"
 SitemapGenerator::Sitemap.sitemaps_host = "https://#{ENV['S3_BUCKET_NAME']}.s3-ap-northeast-1.amazonaws.com/"
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
@@ -32,6 +33,6 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
-  add root_path
+  add root_path, :changefreq => 'daily'
   add bars_index_path, :priority => 0.7, :changefreq => 'daily'
 end
