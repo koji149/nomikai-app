@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: "#{@first_item["name"]}、予算#{@first_item["budget"]["name"]}、飲み放題#{@first_item["free_drink"].slice(0,2)}、#{@first_item["mobile_access"]}...他#{@sum_items}件"%>
   <head>
-    <% set_meta_tags title: "「どこ行く？」 #{@area_name}の#{@category}", description: "#{@first_item["name"]}、予算#{@first_item["budget"]["name"]}、飲み放題#{@first_item["free_drink"].slice(0,2)}、#{@first_item["mobile_access"]}...他#{@sum_items}件"%>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
@@ -9,7 +9,6 @@
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
   </head>
-  <body>
   <div class="site-wrap">
     <header class="site-navbar" >
       <div class="container-fluid">
@@ -105,5 +104,4 @@
       </div>
     </div>
   </div>
-  </body>
 </html>
