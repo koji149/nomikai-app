@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <% set_meta_tags title: "「どこ行くか決まらない？」渋谷、新宿、高田馬場... 大学生用居酒屋サイト", description: "「どこ行く？」池袋、新宿、新大久保・大久保、高田馬場、渋谷、秋葉原、上野...予算3000円で楽しめる居酒屋、ダイニングバー、バーを紹介" %>
+    <% set_meta_tags title: "「どこ行くか決まらない？」渋谷、新宿、高田馬場... 大学生用居酒屋サイト", description: @top_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
     <%= canonical_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

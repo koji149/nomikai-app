@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: "#{@first_item["name"]}、予算#{@first_item["budget"]["name"]}、飲み放題#{@first_item["free_drink"].slice(0,2)}、#{@first_item["mobile_access"]}...他#{@sum_items}件"%>
+  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

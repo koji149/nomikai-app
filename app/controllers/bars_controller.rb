@@ -5,6 +5,7 @@ class BarsController < ApplicationController
   before_action :params_exist?, only: [:index]
 
   def top
+    @top_description = "「どこ行く？」池袋、新宿、新大久保・大久保、高田馬場、渋谷、秋葉原、上野...予算3000円で楽しめる居酒屋、ダイニングバー、バーを紹介"
   end
 
   def index
@@ -51,6 +52,7 @@ class BarsController < ApplicationController
     @items = @response["results"]["shop"]
     @sum_items = @response["results"]["shop"].length
     @first_item = @response["results"]["shop"].first
+    @index_description = "#{@first_item["name"]}、予算#{@first_item["budget"]["name"]}、飲み放題#{@first_item["free_drink"].slice(0,2)}、#{@first_item["mobile_access"]}...他#{@sum_items}件"
     @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
   end
 
