@@ -22,6 +22,43 @@ class BarsController < ApplicationController
       @non_smoking = params[:non_smoking]
       @explain = params[:explain]
       @free_drink = params[:free_drink]
+      data = {
+        key: key,
+        free_drink: @free_drink,
+        budget: @budget,
+        genre: @genre,
+        middle_area: @m_area,
+        wifi: @wifi,
+        non_smoking: @non_smoking,
+        format: "json",
+        count: 100
+      }
+    elsif params[:latitude]
+      @lat = params[:latitude]
+      @lng = params[:longitude]
+      @range = 1
+      @area_name = "あなたのちかく"
+      @category = "あなたのちかく"
+      @genre = "G001,G002,G012"
+      @budget = "B001,B002"
+      @wifi = 0
+      @non_smoking = 1
+      @explain ="あなたのちかく"
+      @free_drink = 1
+
+      data = {
+        key: key,
+        lat: @lat,
+        lng: @lng,
+        range: @range,
+        free_drink: @free_drink,
+        budget: @budget,
+        genre: @genre,
+        wifi: @wifi,
+        non_smoking: @non_smoking,
+        format: "json",
+        count: 100
+      }
     else
       @area_name = params[:area_name]
       @category = params[:category]
@@ -32,19 +69,18 @@ class BarsController < ApplicationController
       @non_smoking = 1
       @explain = params[:explain]
       @free_drink = 1
+      data = {
+        key: key,
+        free_drink: @free_drink,
+        budget: @budget,
+        genre: @genre,
+        middle_area: @m_area,
+        wifi: @wifi,
+        non_smoking: @non_smoking,
+        format: "json",
+        count: 100
+      }
     end
-
-    data = {
-      key: key,
-      free_drink: @free_drink,
-      budget: @budget,
-      genre: @genre,
-      middle_area: @m_area,
-      wifi: @wifi,
-      non_smoking: @non_smoking,
-      format: "json",
-      count: 100
-    }
 
     client = HTTPClient.new
     request =  client.get('https://webservice.recruit.co.jp/hotpepper/gourmet/v1/', data)
