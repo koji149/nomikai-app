@@ -20,13 +20,13 @@ function getMyPlace() {
     var longitude = position.coords.longitude;//経度
     output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
     $.ajax({
-    url: "bars/index",
+    url: "/bars/index",
     type: "GET",
     data: {latitude: latitude, longitude: longitude},
     datatype: "html",
     success: function(data){
       //成功時の処理
-      alert("success");  
+      alert("success");
     },
     error: function(data){
       //失敗時の処理
