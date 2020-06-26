@@ -90,6 +90,9 @@ class BarsController < ApplicationController
     @first_item = @response["results"]["shop"].first
     @index_description = "#{@first_item["name"]}、予算#{@first_item["budget"]["name"]}、飲み放題#{@first_item["free_drink"].slice(0,2)}、#{@first_item["mobile_access"]}...他#{@sum_items}件"
     @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
+    if params[:latitude]
+      redirect_to(bars_index_path)
+    end
   end
 
   def getposition
