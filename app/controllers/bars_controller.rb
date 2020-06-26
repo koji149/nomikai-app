@@ -56,6 +56,10 @@ class BarsController < ApplicationController
     @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
   end
 
+  def getposition
+    @key = ENV['GKEY']
+    @url = "https://maps.googleapis.com/maps/api/js?key=#{@key}"
+  end
   private
 
     def params_exist?
