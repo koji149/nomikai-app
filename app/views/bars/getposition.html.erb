@@ -3,8 +3,7 @@
 <head>
 <script src=<%=@url%>></script> 
 </head>
-
-<p><button onclick="getMyPlace()">現在位置を取得</button></p>
+<%=link_to('現在位置を取得', bars_index_path, onclick: "getMyPlace()")%>
 <div id="result"></div>
 <div id="map" style="width:100%;height:300px;"></div>
 <script>
