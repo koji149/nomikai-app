@@ -81,7 +81,7 @@ class BarsController < ApplicationController
       @explain = params[:explain]
       @free_drink = params[:free_drink]
     else
-      @range = 5
+      @range = 2
       @area_name = params[:area_name]
       @category = params[:category]
       @genre = "G001,G002,G012"
