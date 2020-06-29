@@ -19,18 +19,30 @@
                 <%=image_tag 'top2.png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
               <%end%>
             </h1>
-            <%= link_to bars_getposition_path(area_name: "近くの飲み屋", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "post-category text-white bg-light mb-3" do %>
-                <div class="post-category text-white mb-3">
-                  <h2>徒歩5分で着く居酒屋を探す</h2>
-                  <span class="post-category text-info mb-3">一件目行く居酒屋、朝まで過ごすバーなどなど...</span>
-                </div>
-            <%end%>
+            <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+          <!-- ユーザーがログインしていた時の処理 -->
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+          <% else %>
+          <!-- ユーザーがログインしていなかった時の処理 -->
+          <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: 'post' %></button> <!-- ログイン画面に移行する -->
+          <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: 'post' %></button> <!-- 新規登録画面に移行する -->
+          <% end %>
           </div>
+          
         </div>
       </header>
       <div class="site-section bg-light">
         <div class="container">
           <div class="row align-items-stretch retro-layout-2">
+          <div class="col-md-4">
+              <%= link_to bars_getposition_path(area_name: "近くの飲み屋", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
+                <%=image_tag 'osake.png', alt: "徒歩5分で着く居酒屋を探す", class: "h-entry mb-30 v-height gradient"%>
+                <div class="text">
+                  <h2>徒歩5分で着く居酒屋を探す</h2>
+                  <span class="date">一件目行く居酒屋、朝まで過ごすバーなどなど...</span>
+                </div>
+              <%end%>
+            </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y500,Y505", area_name: "北海道", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
                 <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>

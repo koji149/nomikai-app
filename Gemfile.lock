@@ -959,6 +959,7 @@ GEM
     aws-sigv2 (1.0.1)
     aws-sigv4 (1.2.0)
       aws-eventstream (~> 1, >= 1.0.2)
+    bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -995,6 +996,12 @@ GEM
     declarative (0.0.10)
     declarative-option (0.1.0)
     device_detector (1.0.3)
+    devise (4.7.2)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -1045,6 +1052,14 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
+    letter_opener_web (1.4.0)
+      actionmailer (>= 3.2)
+      letter_opener (~> 1.0)
+      railties (>= 3.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -1071,6 +1086,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    orm_adapter (0.5.0)
     os (1.1.0)
     popper_js (1.16.0)
     public_suffix (4.0.5)
@@ -1116,6 +1132,9 @@ GEM
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     retriable (3.1.2)
     roboto (1.0.1)
       rails (>= 4.2)
@@ -1172,6 +1191,8 @@ GEM
     uber (0.1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -1191,6 +1212,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   aws-sdk
+  bcrypt
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
@@ -1199,12 +1221,14 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   device_detector
+  devise
   dotenv-rails
   google-api-client (~> 0.34)
   httpclient
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
+  letter_opener_web (~> 1.0)
   listen (>= 3.0.5, < 3.2)
   meta-tags
   mysql2 (>= 0.4.4, < 0.6.0)
