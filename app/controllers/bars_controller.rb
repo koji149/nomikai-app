@@ -58,7 +58,7 @@ class BarsController < ApplicationController
     uri = ENV['URI']
     key = ENV['KEY']
     g_uri = ENV['GURI']
-    g_key = ENV['GKEY']
+    g_key = ENV['PRO_GKEY']
 
     clnt = HTTPClient.new
     body = {
