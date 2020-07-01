@@ -23,6 +23,7 @@
         // 取得成功した場合
         function(position) {
             alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+            window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
         },
 
         // 取得失敗した場合
