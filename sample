@@ -1,23 +1,53 @@
-  <p><button onclick="geoFindMe()">Show my location</button></p>
-  <div id="out"></div>
-  <script>
-  function geoFindMe() {
-    var output = document.getElementById("out");
-    if (!navigator.geolocation){
-      output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-      return;
+<script>
+    (function geoFindUser() {
+   //ユーザーのブラウザがGeolocation APIに対応していた場合
+    if (navigator.geolocation) {
+
+      //getCurrentPositionメソッドで現在地を取得
+      navigator.geolocation.getCurrentPosition(
+
+          //現在地の取得に成功した場合の処理
+          function(position) {
+
+            //データを変数にして整理（position.coords.latitude/longitudeが座標）
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+
+            //座標のデータをクエリパラメータとし、座標データを渡したいページに遷移させる
+            //Javascriptで文字列の中に変数を入れたいときは、バッククオートで囲む
+            window.location.href = `/bars/getposition?latitude=${lat}&longitude=${lng}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`
+          },
+
+          //現在地の取得に失敗した場合の処理
+          function (error) {
+            //エラー情報を配列として定義
+            var errorInfo = [
+            "原因不明のエラーが発生しました…。" ,
+            "位置情報の取得が許可されませんでした…。" ,
+            "電波状況などで位置情報が取得できませんでした…。" ,
+            "位置情報の取得に時間がかかり過ぎてタイムアウトしました…。"
+          ] ;
+
+            //エラーコードを変数に代入（エラーコードはgetCurrentPositionの引数として受け取っている）
+            var errorNo = error.code ;
+            //エラーメッセージに、先に定義したエラーコードと、エラー番号に対応した情報をalert表示させる
+            var errorMessage = "[エラー番号: " + errorNo + "]\n" + errorInfo[ errorNo ] ;
+            alert( errorMessage ) ;
+          } 
+          //オプション設定（10秒でタイムアウトになる）
+          {
+            "enableHighAccuracy": false,
+            "timeout": 10000,
+            "maximumAge": 0,
+          }
+        );
     }
-    function success(position) {
-      var latitude  = position.coords.latitude;
-      var longitude = position.coords.longitude;
-      console.log(latitude)
-      output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+    //ユーザーのブラウザがGeolocation APIに対応していなかった場合の処理
+    else {
+      var errorMessage = "お使いの端末は、GeoLacation APIに対応していません。" ;
+
+      alert( errorMessage ) ;
     }
-    function error() {
-      output.innerHTML = "Unable to retrieve your location";
-    }
-    output.innerHTML = "<p>Locating…</p>";
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
-</script>
-  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDtw84PFhKn88DCjmDvpzdIqeqivJPpokQ&callback=geoFindMe"></script>
+  })
+  </script>

@@ -7,8 +7,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script>
+    // Geolocation APIに対応している
+    if (navigator.geolocation) {
+      alert("この端末では位置情報が取得できます");
+    // Geolocation APIに対応していない
+    } else {
+      alert("この端末では位置情報が取得できません");
+    }
 
+    // 現在地取得処理
+    function getPosition() {
+      // 現在地を取得
+      navigator.geolocation.getCurrentPosition(
+        // 取得成功した場合
+        function(position) {
+            alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+        },
+          window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`
+
+        // 取得失敗した場合
+        function(error) {
+          switch(error.code) {
+            case 1: //PERMISSION_DENIED
+              alert("位置情報の利用が許可されていません");
+              break;
+            case 2: //POSITION_UNAVAILABLE
+              alert("現在位置が取得できませんでした");
+              break;
+            case 3: //TIMEOUT
+              alert("タイムアウトになりました");
+              break;
+            default:
+              alert("その他のエラー(エラーコード:"+error.code+")");
+              break;
+          }
+        }
+      );
+    }
+  </script>
   </head>
+  <body>
     <div class="site-wrap">
       <header class="site-navbar" role="banner">
         <div class="container-fluid">
@@ -80,6 +119,19 @@
                 </div>
               <%end%>
             </div>
+            <div class="col-md-4" >
+              <button onclick="getPosition();">位置情報を取得する</button>
+
+            <%= link_to onclick: "getPosition();" do %>
+              <div class="h-entry mb-30 v-height gradient">
+                <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>
+                <div class="text">
+                  <h2>北海道</h2>
+                  <span class="date">札幌駅、大通、すすきの</span>
+                </div>
+                </div>
+              <%end%>
+            </div>
           </div>
         </div>
       </div>
@@ -98,4 +150,6 @@
       </div>
     </div>
     </div>
+    
+  </body>
 </html>
