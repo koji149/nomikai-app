@@ -63,7 +63,7 @@ class BarsController < ApplicationController
 
 
     @lat = params["latitude"]
-    @lon = params["longitude"]
+    @lng = params["longitude"]
 
 
     if params[:genre]
