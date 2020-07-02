@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root 'bars#top'
   get 'bars/index' => 'bars#index'
   get 'bars/getposition' => 'bars#getposition'
+  
 end
