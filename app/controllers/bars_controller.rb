@@ -2,6 +2,7 @@ class BarsController < ApplicationController
   require 'httpclient'
   require 'json'
 
+  before_action :params_exist?, only: [:index, :getposition]
 
   def top
     @top_description = "「どこ行く？」池袋、新宿、新大久保・大久保、高田馬場、渋谷、秋葉原、上野...予算3000円で楽しめる居酒屋、ダイニングバー、バーを紹介"
@@ -57,18 +58,13 @@ class BarsController < ApplicationController
   def getposition
     uri = ENV['URI']
     key = ENV['KEY']
-    g_uri = ENV['GURI']
-    g_key = ENV['GKEY']
-
-    clnt = HTTPClient.new
-    body = {
-      key: g_key,
-    }
-    res = clnt.post(g_uri, body)
-    @res = JSON.parse(res.body)
-    @lat = @res["location"]["lat"]
-    @lng = @res["location"]["lng"]
-
+    if params["latitude"] == true && params["longitude"] == true
+      @lat = params["latitude"]
+      @lng = params["longitude"]
+    else
+      @lat = @lat
+      @lng = @lng
+    end
 
     if params[:genre]
       @range = 2
@@ -90,6 +86,8 @@ class BarsController < ApplicationController
       @non_smoking = 0
       @explain = params[:explain]
       @free_drink = 1
+      @lat = params["latitude"]
+    　@lng = params["longitude"]
     end
 
     data = {

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {   registrations: 'users/registrations',
+    sessions: 'users/sessions' }
   mount_roboto
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -7,5 +8,8 @@ Rails.application.routes.draw do
   root 'bars#top'
   get 'bars/index' => 'bars#index'
   get 'bars/getposition' => 'bars#getposition'
+  resources :users, only: [:show]
   
+  get '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
 end

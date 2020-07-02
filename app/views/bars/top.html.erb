@@ -21,7 +21,7 @@
       navigator.geolocation.getCurrentPosition(
         // 取得成功した場合
         function(position) {
-            alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+            alert("位置情報を使って近くのお店を探します");
             window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
         },
 
@@ -57,15 +57,7 @@
                 <%=image_tag 'top2.png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
               <%end%>
             </h1>
-            <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-            <!-- ユーザーがログインしていた時の処理 -->
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
-              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button> <!-- ログイン画面に移行する -->
-            <% else %>
-            <!-- ユーザーがログインしていなかった時の処理 -->
-              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: 'post' %></button> <!-- ログイン画面に移行する -->
-              <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: 'post' %></button> <!-- 新規登録画面に移行する -->
-            <% end %>
+          
           </div>
         </div>
       </header>
