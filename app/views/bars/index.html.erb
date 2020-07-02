@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
   <head>
-    <title>アフターキャンパス～「どこ行く？」を解決する飲み会サイト～</title>
-    <meta name="description" content="「飲みに行こう！」と駅に集まり、「どこ行く？」「いつものとこで良くない？」「お金ないから安いところで」結局いつもと同じ居酒屋...そんな悩みを解決する予算3000円で楽しめる大学生専用飲み会サイト！" />
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <%= canonical_tag %>
+    <%= rel_next_prev_link_tags @items %>
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
   </head>
-  <body>
   <div class="site-wrap">
     <header class="site-navbar" >
       <div class="container-fluid">
@@ -33,10 +32,9 @@
         <div class="row">
           <div class="col-md-6">
             <span><%=@area_name%></span>
-            <h3><%=@category%></h3>
-            <h4><%=@explain%></h4>
-            <%items = @response["results"]["shop"].length%>
-            <p>ヒット数：<%=items%>件</p>
+            <h1><%=@category%></h1>
+            <h2><%=@explain%></h2>
+            <p>ヒット数：<%=@sum_items%>件</p>
           </div>
         </div>
       </div>
@@ -106,5 +104,4 @@
       </div>
     </div>
   </div>
-  </body>
 </html>
