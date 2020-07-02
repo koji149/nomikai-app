@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/sitemap', to: redirect("https://#{ENV['S3_BUCKET_NAME']}.s3-ap-northeast-1.amazonaws.com/sitemap.xml.gz")
   root 'bars#top'
   get 'bars/index' => 'bars#index'
+  get 'bars/getposition' => 'bars#getposition'
 end

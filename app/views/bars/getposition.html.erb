@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
+  <% set_meta_tags title: "「どこ行くか決まらない？」 ", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
-    <%= rel_next_prev_link_tags @items %>
+    <%= rel_next_prev_link_tags @items if @items.present?%>
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
   </head>
@@ -18,10 +18,10 @@
               <%= link_to image_tag('top2.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><%= link_to "全部", bars_index_path(m_area: @m_area, area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】"), class: "post-category text-info bg-light mb-3" %><li>
-                <li><%= link_to '居酒屋', bars_index_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円】の店舗"), class: "post-category text-info bg-light mb-3" %><li>
-                <li><%= link_to 'バル', bars_index_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円】の店舗"), class: "post-category text-info bg-light mb-3" %><li>
-                <li><%= link_to 'バー', bars_index_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗"), class: "post-category text-info bg-light mb-3" %><li>
+                <li><%= link_to "全部", bars_getposition_path(area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】"), class: "post-category text-info bg-light mb-3" %><li>
+                <li><%= link_to '居酒屋', bars_getposition_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円】の店舗"), class: "post-category text-info bg-light mb-3" %><li>
+                <li><%= link_to 'バル', bars_getposition_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円】の店舗"), class: "post-category text-info bg-light mb-3" %><li>
+                <li><%= link_to 'バー', bars_getposition_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗"), class: "post-category text-info bg-light mb-3" %><li>
               </ul>
             </nav>
         </div>
@@ -75,7 +75,7 @@
         </div>
         <div class="row text-center pt-5 border-top">
           <div class="col-md-12">
-              <%= paginate @items %>
+              <%= paginate @items if @items.present?%>
           </div>
         </div>
     </div>
@@ -106,4 +106,4 @@
       </div>
     </div>
   </div>
-</html>
+</html> 
