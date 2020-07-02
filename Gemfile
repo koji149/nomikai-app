@@ -67,3 +67,11 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'rails_12factor', group: :production
+gem 'meta-tags'
+gem 'device_detector'
+gem 'google-api-client', '~> 0.34'
+gem 'canonical-rails'
+gem 'sitemap_generator'
+gem 'roboto'
+gem 'whenever', require: false
+gem 'aws-sdk'

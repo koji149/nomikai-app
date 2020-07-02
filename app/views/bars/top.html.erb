@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <title>アフターキャンパス～「どこ行く？」を解決する飲み会サイト～</title>
-    <meta name="description" content="「飲みに行こう！」と駅に集まり、「どこ行く？」「いつものとこで良くない？」「お金ないから安いところで」結局いつもと同じ居酒屋...そんな悩みを解決する予算3000円で楽しめる大学生専用飲み会サイト！" />
-    <meta charset="utf-8">
+    <% set_meta_tags title: "「どこ行くか決まらない？」渋谷、新宿、高田馬場... 大学生用居酒屋サイト", description: @top_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
+    <%= canonical_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
   </head>
-  <body>
     <div class="site-wrap">
       <header class="site-navbar" role="banner">
         <div class="container-fluid">
           <div class="row align-items-center">
           <div class="site-logo">
-            <%= link_to image_tag('top2.png'), root_path %>
+            <h1>
+              <%= link_to root_path do %>
+                <%=image_tag 'top2.png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
+              <%end%>
+            </h1>
           </div>
         </div>
       </header>
@@ -24,7 +27,7 @@
           <div class="row align-items-stretch retro-layout-2">
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y500,Y505", area_name: "北海道", category: "お店一覧", explain: "予算3000円・飲み放題あり・禁煙"), class: "h-entry mb-30 v-height gradient" do %>
-                <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
                   <h2>北海道</h2>
                   <span class="date">札幌駅、大通、すすきの</span>
@@ -33,7 +36,7 @@
             </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y015,Y020", area_name: "上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水", category: "お店一覧", explain: "予算3000円・飲み放題あり・禁煙"), class: "h-entry v-height gradient" do %>
-                <%=image_tag 'akihabaraFTHG5655_TP_V.jpg', class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'akihabara.png', alt: "上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水のお店を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
                   <h2>東京</h2>
                   <span class="date">上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水</span>
@@ -42,7 +45,7 @@
             </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y072,Y055,Y056,Y050", area_name: "池袋、新宿、新大久保・大久保、高田馬場", category: "お店一覧", explain: "予算3000円・飲み放題あり・禁煙"), class: "h-entry mb-30 v-height gradient" do %>
-                <%=image_tag 'KABUKIIMGL8066_TP_V.jpg', class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'kabuki.png', alt: "池袋、新宿、新大久保・大久保、高田馬場のお店を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
                   <h2>東京</h2>
                   <span class="date">池袋、新宿、新大久保・大久保、高田馬場</span>
@@ -51,7 +54,7 @@
             </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y030", area_name: "渋谷", category: "お店一覧", explain: "予算3000円・飲み放題あり・禁煙"), class: "h-entry v-height gradient" do %>
-                <%=image_tag 'KZ190105004_TP_V.jpg', class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'sibuya.png', alt: "渋谷のお店を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
                   <h2>東京</h2>
                   <span class="date">渋谷</span>
@@ -60,7 +63,7 @@
             </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y300,Y315", area_name: "大阪", category: "お店一覧", explain: "予算3000円・飲み放題あり・禁煙"), class: "h-entry mb-30 v-height gradient" do %>
-                <%=image_tag 'photo-1561454520-8d5804aa996e.jpg', class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'photo-1561454520-8d5804aa996e.jpg', alt: "梅田、心斎橋、なんば、南船場、堀江のお店を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
                   <h2>大阪</h2>
                   <span class="date">梅田、心斎橋、なんば、南船場、堀江</span>
@@ -69,7 +72,7 @@
             </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y705,Y706,Y700", area_name: "福岡", category: "お店一覧", explain: "予算3000円・飲み放題あり・禁煙"), class: "h-entry v-height gradient" do %>
-                <%=image_tag 'AMEMAN1222027_TP_V.jpg', class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'hukuoka.png', alt: "博多、中洲・中洲川端、天神・西中洲・春吉のお店を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
                   <h2>福岡</h2>
                   <span class="date">博多、中洲・中洲川端、天神・西中洲・春吉</span>
@@ -94,5 +97,4 @@
       </div>
     </div>
     </div>
-  </body>
 </html>
