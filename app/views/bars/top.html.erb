@@ -127,6 +127,19 @@
                 </div>
               <%end%>
             </div>
+            <div class="col-md-4" >
+              <button onclick="getPosition();">位置情報を取得する</button>
+
+            <%= link_to onclick: "getPosition();" do %>
+              <div class="h-entry mb-30 v-height gradient">
+                <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>
+                <div class="text">
+                  <h2>北海道</h2>
+                  <span class="date">札幌駅、大通、すすきの</span>
+                </div>
+                </div>
+              <%end%>
+            </div>
           </div>
         </div>
       </div>

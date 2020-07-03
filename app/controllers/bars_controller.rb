@@ -72,7 +72,7 @@ class BarsController < ApplicationController
       @lat = params[:latitude]
       @lng = params[:longitude]
     else
-      @range = 2
+      @range = 5
       @area_name = params[:area_name]
       @category = params[:category]
       @genre = "G001,G002,G012"
@@ -110,6 +110,7 @@ class BarsController < ApplicationController
       @index_description = "#{@first_item["name"]}、予算#{@first_item["budget"]["name"]}、飲み放題#{@first_item["free_drink"].slice(0,2)}、#{@first_item["mobile_access"]}...他#{@sum_items}件"
       @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
     end
+
   end
 
   private
