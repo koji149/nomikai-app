@@ -72,7 +72,7 @@ class BarsController < ApplicationController
       @lat = params[:latitude]
       @lng = params[:longitude]
     else
-      @range = 5
+      @range = 2
       @area_name = params[:area_name]
       @category = params[:category]
       @genre = "G001,G002,G012"
