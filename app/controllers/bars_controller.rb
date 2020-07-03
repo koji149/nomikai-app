@@ -58,12 +58,9 @@ class BarsController < ApplicationController
   def getposition
     uri = ENV['URI']
     key = ENV['KEY']
-    if params[:latitude] == true
+    if params[:latitude]
       @lat = params[:latitude]
       @lng = params[:longitude]
-    else
-      @lat = @lat
-      @lng = @lng
     end
 
     if params[:genre]
@@ -77,7 +74,7 @@ class BarsController < ApplicationController
       @explain = params[:explain]
       @free_drink = params[:free_drink]
     else
-      @range = 2
+      @range = 5
       @area_name = params[:area_name]
       @category = params[:category]
       @genre = "G001,G002,G012"
@@ -86,8 +83,6 @@ class BarsController < ApplicationController
       @non_smoking = 0
       @explain = params[:explain]
       @free_drink = 1
-      @lat = params[:latitude]
-      @lng = params[:longitude]
     end
 
     data = {
