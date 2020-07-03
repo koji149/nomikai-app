@@ -10,8 +10,7 @@
     <script>
     // Geolocation APIに対応している
     if (navigator.geolocation) {
-      alert("この端末では位置情報が取得できます");
-    // Geolocation APIに対応していない
+          // Geolocation APIに対応していない
     } else {
       alert("この端末では位置情報が取得できません");
     }
@@ -22,7 +21,7 @@
       navigator.geolocation.getCurrentPosition(
         // 取得成功した場合
         function(position) {
-            alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+            alert("位置情報を使って近くのお店を探します");
             window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
         },
 
@@ -65,6 +64,15 @@
       <div class="site-section bg-light">
         <div class="container">
           <div class="row align-items-stretch retro-layout-2">
+          <div class="col-md-4" >
+              <div class="h-entry mb-30 v-height gradient">
+                <%=image_tag 'osake.png', alt: "近くの居酒屋を探す", class: "h-entry mb-30 v-height gradient"%>
+                <div class="text">
+                  <h2><button onclick="getPosition();" type="button" class="btn-outline-info rounded-pill">徒歩5分で着く居酒屋を探す</button></h2>
+                  <span class="date">一件目行く居酒屋、朝まで過ごすバーなど...</span>
+                </div>
+                </div>
+            </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y500,Y505", area_name: "北海道", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
                 <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>
