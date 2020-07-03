@@ -86,6 +86,8 @@ class BarsController < ApplicationController
       @non_smoking = 0
       @explain = params[:explain]
       @free_drink = 1
+      @lat = params[:latitude]
+      @lng = params[:longitude]
     end
 
     data = {
