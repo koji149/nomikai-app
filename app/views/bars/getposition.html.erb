@@ -18,10 +18,10 @@
               <%= link_to image_tag('top2.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to "全部", bars_getposition_path(area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】") %></button><li>
-                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to '居酒屋', bars_getposition_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円】の店舗") %></button><li>
-                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to 'バル', bars_getposition_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円】の店舗") %></button><li>
-                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to 'バー', bars_getposition_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗") %></button><li>
+                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to "全部", bars_getposition_path(area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】", latitude: @lat, longitude: @lng) %></button><li>
+                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to '居酒屋', bars_getposition_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円】の店舗", latitude: @lat, longitude: @lng) %></button><li>
+                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to 'バル', bars_getposition_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円】の店舗", latitude: @lat, longitude: @lng) %></button><li>
+                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to 'バー', bars_getposition_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗", latitude: @lat, longitude: @lng) %></button><li>
               </ul>
             </nav>
         </div>
