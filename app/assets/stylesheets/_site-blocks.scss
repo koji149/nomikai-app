@@ -88,10 +88,10 @@
 .post-category {
 	display: inline-block;
 	padding: 2px 10px;
-	border-radius: 4px;
+	border-radius: 32px;
 	letter-spacing: .2em;
 	font-weight: 700;
-	font-size: .6rem;
+	font-size: 16px;
 	text-transform: uppercase;	
 }
 
@@ -885,35 +885,5 @@
 .subscribe-1 {
 	h2 {
 		font-size: 20px;
-	}
-}
-
-.search-form-wrap {
-	position: absolute;
-	width: 100%;
-	background: $white;
-	z-index: 1;
-	visibility: hidden;
-	opacity: 0;
-	transition: .3s all ease;
-	&.active {
-		visibility: visible;
-		opacity: 1;
-	}
-	.search-btn {
-		border: none;
-		background: none;
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		right: 20px;
-		&:active, &:focus {
-			outline: none;
-		}
-	}
-	form {
-		.form-control {
-			border: none;
-		}
 	}
 }

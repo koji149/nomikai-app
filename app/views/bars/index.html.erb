@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
   <head>
-    <title>アフターキャンパス～「どこ行く？」を解決する飲み会サイト～</title>
-    <meta name="description" content="「飲みに行こう！」と駅に集まり、「どこ行く？」「いつものとこで良くない？」「お金ないから安いところで」結局いつもと同じ居酒屋...そんな悩みを解決する予算3000円で楽しめる大学生専用飲み会サイト！" />
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <%= canonical_tag %>
+    <%= rel_next_prev_link_tags @items %>
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
   </head>
-  <body>
   <div class="site-wrap">
     <header class="site-navbar" >
       <div class="container-fluid">
@@ -19,10 +18,10 @@
               <%= link_to image_tag('top2.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><%= link_to "全部", bars_index_path(m_area: @m_area, area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり・禁煙】") %><li>
-                <li><%= link_to '居酒屋', bars_index_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円・禁煙】の店舗") %><li>
-                <li><%= link_to 'バル', bars_index_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円・禁煙】の店舗") %><li>
-                <li><%= link_to 'バー', bars_index_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗") %><li>
+                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to "全部", bars_index_path(m_area: @m_area, area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】")%></button><li>
+                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to '居酒屋', bars_index_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円】の店舗") %></button><li>
+                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to 'バル', bars_index_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円】の店舗") %></button><li>
+                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to 'バー', bars_index_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗") %></button><li>
               </ul>
             </nav>
         </div>
@@ -33,10 +32,9 @@
         <div class="row">
           <div class="col-md-6">
             <span><%=@area_name%></span>
-            <h3><%=@category%></h3>
-            <h4><%=@explain%></h4>
-            <%items = @response["results"]["shop"].length%>
-            <p>ヒット数：<%=items%>件</p>
+            <h1><%=@category%></h1>
+            <h2><%=@explain%></h2>
+            <p>ヒット数：<%=@sum_items%>件</p>
           </div>
         </div>
       </div>
@@ -57,7 +55,9 @@
                 <%if (@genre == "G001" || @genre == "G002")&& item["free_drink"].slice(0,2) == "あり"%>
                 <span class="post-category text-white bg-primary mb-3">飲み放題<%=  item["free_drink"].slice(0,2) %></span>
                 <%end%>
+                <%if item["non_smoking"] == "一部禁煙" || item["non_smoking"] == "全面禁煙"%>
                 <span class="post-category text-white bg-secondary mb-3"><%=  item["non_smoking"] %></span>
+                <%end%>
                 <%if @genre == "G012" && item["midnight"] == "営業している"%>
                 <span class="post-category text-white bg-primary mb-3">23時以降<%= item["midnight"] %></span>
                 <%end%>
@@ -106,5 +106,4 @@
       </div>
     </div>
   </div>
-  </body>
 </html>
