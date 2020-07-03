@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'bars#top'
   get 'bars/index' => 'bars#index'
   get 'bars/getposition' => 'bars#getposition'
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
   
   get '*not_found' => 'application#routing_error'
   post '*not_found' => 'application#routing_error'

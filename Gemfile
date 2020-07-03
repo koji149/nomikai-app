@@ -78,3 +78,4 @@ gem 'whenever', require: false
 gem 'aws-sdk'
 gem 'devise'
 gem 'bcrypt'
+gem 'font-awesome-sass'
