@@ -58,9 +58,9 @@ class BarsController < ApplicationController
   def getposition
     uri = ENV['URI']
     key = ENV['KEY']
-    if params["latitude"] == true && params["longitude"] == true
-      @lat = params["latitude"]
-      @lng = params["longitude"]
+    if params[:latitude] == true
+      @lat = params[:latitude]
+      @lng = params[:longitude]
     else
       @lat = @lat
       @lng = @lng
