@@ -13,7 +13,7 @@ module ApplicationHelper
       reverse: true,
       charset: 'utf-8',
       description: '「飲みに行こう！」と駅に集まり、「どこ行く？」「いつものとこで良くない？」「安いところ?」結局いつもと同じ居酒屋...そんな悩みを解決する予算3000円で楽しめる大学生専用飲み会サイト！',
-      keywords: '居酒屋, 居酒屋 安い, 大学生 オススメ 居酒屋, 飲み放題 居酒屋, 渋谷 居酒屋, 新宿, 大学生 バー, 飲み屋 安い',
+      keywords: '居酒屋, 飲み放題, 安い',
       canonical: request.original_url,
       separator: '|',
       icon: [
@@ -29,10 +29,13 @@ module ApplicationHelper
         image: image_url('toplogo.png'),
         locale: 'ja_JP',
       },
-      #twitter: {
-        #card: 'summary',
-        #site: '@ツイッターのアカウント名',
-      #}
+      twitter: {
+        card: 'summary',
+        site: '@campus_after',
+        image: image_url('toplogo.png'),
+        width: 100,
+        height: 100
+      }
     }
   end
 end

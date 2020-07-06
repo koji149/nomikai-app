@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
   <head>
+  <% set_meta_tags noindex: true %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
@@ -29,15 +29,9 @@
             <%= form_with model: @user, html: { class: "p-5 bg-white" } do |f| %>
               <h2>マイページ編集</h2><br/>
 
-              <br/><div class="row form-group">
-                
-                <div class="col-md-12">
-                  <%= f.label :"トップ画像（任意）", :class => "text-black" %><br />
-                  <%= f.file_field :image, autocomplete: "image", :class => "form-control" %>
-                </div>
-              </div>
+              
 
-              <div class="row form-group">
+              <br/><div class="row form-group">
                 
                 <div class="col-md-12">
                   <%= f.label :"ユーザーネーム（必須）", :class => "text-black"  %><br />
@@ -61,13 +55,7 @@
                 </div>
               </div>
 
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <%= f.label :"動画（自己紹介等、任意）", :class => "text-black" %><br />
-                  <%= f.file_field :video, autocomplete: "video", :class => "form-control" %>
-                </div>
-              </div>
+            
               
               <div class="row form-group">
                 
@@ -121,6 +109,7 @@
           </div>
           <div class="col-md-4">
             <h3 class="footer-heading mb-4">Contact</h3>
+            <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
             <p>サービスへの要望がある場合はこちら</p>
             <p><%= mail_to "aftercampus0617@gmail.com"%></p>
           </div>

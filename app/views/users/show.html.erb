@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
   <head>
+  <% set_meta_tags noindex: true %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
@@ -31,7 +31,9 @@
         </div>
         <div class="row mb-5 justify-content-center">
           <div class="col-md-5 text-center">
-
+          <% if @user.image %>
+            <%=image_tag "#{@user.image}", alt: "札幌駅、大通、すすきののお店を探す", class: "img-fluid w-50 rounded-circle mb-4"%>
+          <%end%>
             <h2 class="mb-3 h5"><%=@user.name%></h2>
             <ul class="list-unstyled success">
               <li><%=@user.gender%></li>
@@ -39,15 +41,21 @@
             </ul>
             <%=@user.comment%>
             <p class="mt-5">
+            <% if @user.twitter %>
               <%=link_to (@user.twitter) do %>
                 <span class="fab fa-twitter fa-3x"></span>
-              <%end%>
+              <% end %>
+            <% end %>
+            <% if @user.instagram %>
               <%=link_to (@user.instagram) do %>
                 <span class="fab fa-instagram fa-3x"></span>
-              <%end%>
+              <% end %>
+            <% end %>
+            <% if @user.other_link %>
               <%=link_to (@user.other_link) do %>
                 <span class="fas fa-link fa-3x"></span>
-              <%end%>
+              <% end %>
+            <% end %>
             </p>
             <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user) %></button>
           </div>
@@ -64,6 +72,7 @@
           <div class="col-md-4">
             <h3 class="footer-heading mb-4">Contact</h3>
             <p>サービスへの要望がある場合はこちら</p>
+            <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
             <p><%= mail_to "aftercampus0617@gmail.com"%></p>
           </div>
         </div>
