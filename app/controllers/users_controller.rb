@@ -13,14 +13,20 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(params.require(:user).permit(:image, :name, :gender, :university, :comment, :twitter, :instagram, :other_link))# POINT
-    if image = params[:user][:image]
-      @comment.image.attach(image)
+
+    if @user.update(params.require(:user).permit(:image, :name, :gender, :university, :comment, :twitter, :instagram, :other_link))# POINT
+      if image = params[:user][:image]
+        @comment.image.attach(image)
+      end
+      if video = params[:user][:video]
+        @comment.image.attach(video)
+      end
+      flash[:success] = "修正を反映しました"
+      redirect_to @user
+    else
+      flash.now[:danger] = "更新に失敗しました。"
+      render 'users/edit'
     end
-    if video = params[:user][:video]
-      @comment.image.attach(video)
-    end
-    redirect_to @user
   end
   private
 
