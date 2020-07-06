@@ -60,11 +60,13 @@
             <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
             <!-- ユーザーがログインしていた時の処理 -->
             <!-- ログアウトをする -->
-              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "マイページ", user_path %></button> <!-- ログイン画面に移行する -->
+              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "マイページ", user_path(current_user) %></button> <!-- ログイン画面に移行する -->
               <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
             <% else %>
             <!-- ユーザーがログインしていなかった時の処理 -->
-              <% end %>
+              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: 'post' %></button> <!-- ログイン画面に移行する -->
+              <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: 'post' %></button> <!-- 新規登録画面に移行する -->
+            <% end %>
           </div>
         </div>
       </header>
