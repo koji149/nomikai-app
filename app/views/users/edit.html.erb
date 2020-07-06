@@ -29,9 +29,15 @@
             <%= form_with model: @user, html: { class: "p-5 bg-white" } do |f| %>
               <h2>マイページ編集</h2><br/>
 
-              
-
               <br/><div class="row form-group">
+                
+                <div class="col-md-12">
+                  <%= f.label :"トップ画像（任意）", :class => "text-black" %><br />
+                  <%= f.file_field :image, autocomplete: "image", :class => "form-control" %>
+                </div>
+              </div>
+
+              <div class="row form-group">
                 
                 <div class="col-md-12">
                   <%= f.label :"ユーザーネーム（必須）", :class => "text-black"  %><br />
@@ -55,7 +61,13 @@
                 </div>
               </div>
 
-            
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <%= f.label :"動画（自己紹介等、任意）", :class => "text-black" %><br />
+                  <%= f.file_field :video, autocomplete: "video", :class => "form-control" %>
+                </div>
+              </div>
               
               <div class="row form-group">
                 
@@ -109,7 +121,7 @@
           </div>
           <div class="col-md-4">
             <h3 class="footer-heading mb-4">Contact</h3>
-            <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
+          <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
             <p>サービスへの要望がある場合はこちら</p>
             <p><%= mail_to "aftercampus0617@gmail.com"%></p>
           </div>
