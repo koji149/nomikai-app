@@ -1262,6 +1262,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   meta-tags
   mysql2 (>= 0.4.4, < 0.6.0)
+  omniauth
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter

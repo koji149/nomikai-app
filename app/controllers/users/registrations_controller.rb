@@ -60,12 +60,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def after_inactive_sign_up_path_for(resource)
-    redirect_to user_path
-  end
-  
-  #アカウント編集後のリダイレクト先
-  def after_update_path_for(resource)
-    redirect_to root_path
+
+
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 end
