@@ -78,3 +78,8 @@ gem 'whenever', require: false
 gem 'aws-sdk'
 gem 'devise'
 gem 'bcrypt'
+gem 'font-awesome-sass'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
