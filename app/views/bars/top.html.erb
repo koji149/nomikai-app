@@ -46,6 +46,7 @@
     }
   </script>
   </head>
+
   <body>
     <div class="site-wrap">
       <header class="site-navbar" role="banner">
@@ -65,7 +66,10 @@
             <% else %>
             <!-- ユーザーがログインしていなかった時の処理 -->
               <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: 'post' %></button> <!-- ログイン画面に移行する -->
-              <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: 'post' %></button> <!-- 新規登録画面に移行する -->
+              <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: 'post' %></button> 
+              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集", new_meeting_path, remote: true %></button> 
+
+<!-- 新規登録画面に移行する -->
             <% end %>
           </div>
         </div>
@@ -73,6 +77,7 @@
       <div class="site-section bg-light">
         <div class="container">
           <div class="row align-items-stretch retro-layout-2">
+
           <div class="col-md-4" >
               <div class="h-entry mb-30 v-height gradient">
                 <%=image_tag 'osake.png', alt: "近くの居酒屋を探す", class: "h-entry mb-30 v-height gradient"%>
@@ -80,25 +85,25 @@
                   <h2><button onclick="getPosition();" type="button" class="btn-outline-info rounded-pill">徒歩5分で着く居酒屋を探す</button></h2>
                   <span class="date">一件目行く居酒屋、朝まで過ごすバーなど...</span>
                 </div>
-                </div>
+              </div>
             </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y500,Y505", area_name: "北海道", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
-                <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>
+            <div class="col-md-4" >
+              <div class="h-entry mb-30 v-height gradient">
+                <%=image_tag 'bar1839361_640.jpg', alt: "近くの大学生を募集する", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2>北海道</h2>
-                  <span class="date">札幌駅、大通、すすきの</span>
+                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "近くの大学生を募集", new_meeting_path, remote: true %></button></h2>
+                  <span class="date">新たな出会いや楽しさを求めて...</span>
                 </div>
-              <%end%>
+              </div>
             </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y015,Y020", area_name: "上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry v-height gradient" do %>
-                <%=image_tag 'akihabara.png', alt: "上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水のお店を探す", class: "h-entry mb-30 v-height gradient"%>
+            <div class="col-md-4" >
+              <div class="h-entry mb-30 v-height gradient">
+                <%=image_tag 'drinks-2578446_640.jpg', alt: "参加する", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2>東京</h2>
-                  <span class="date">上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水</span>
+                  <h2><button type="button" class="btn-outline-info rounded-pill">参加する</button></h2>
+                  <span class="date">今日は人数多めで楽しむもありかも...</span>
                 </div>
-              <%end%>
+              </div>
             </div>
             <div class="col-md-4">
               <%= link_to bars_index_path(m_area: "Y072,Y055,Y056,Y050", area_name: "池袋、新宿、新大久保・大久保、高田馬場", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
@@ -154,6 +159,8 @@
       </div>
     </div>
     </div>
-    
+  </div>
+
   </body>
+
 </html>

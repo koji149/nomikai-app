@@ -1,0 +1,33 @@
+<%@meetings.each do |meeting|%>
+    <div class="col-lg-4 mb-4">
+      <div class="entry2">
+      <div class="excerpt">
+        <div class="card text-left" style="width: w-100">
+        <%= image_tag 'bar1839361_640.jpg' , class: "bd-placeholder-img card-img-top"%>
+          <div class="card-body">
+              <h5 class="card-title">
+              <div class="post-meta align-items-center text-left clearfix">
+              <figure class="author-figure mb-0 mr-3 float-left"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
+              <span class="d-inline-block mt-1">By <%=link_to "#{meeting.user.name}", "users/#{meeting.user_id}"%></span>
+              </div>
+              </h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><label for="name1">説明</label><br/><%=meeting.explain%></li>
+                <li class="list-group-item"><label for="name1">日時</label><br/><%=meeting.date_time%></li>
+                <li class="list-group-item"><label for="name1">店名</label><br/><%=meeting.bar%></li>
+                <li class="list-group-item"><label for="name1">お店のURL</label><br/><%=meeting.url%></li>
+              </ul>
+              
+          </div>
+          <div class="card-footer text-center ">
+          <% if meeting.user_id == current_user.id %>
+          <button type="button" class="btn-outline-success rounded-pill"><%= link_to "修正する", edit_meeting_path(meeting), remote: true %></button>
+          <%else%>
+          <button type="button" class="btn-outline-primary rounded-pill">参加する</button>
+          <%end%>
+          </div>
+        </div>
+        </div>
+  </div>
+</div>
+<%end%>
