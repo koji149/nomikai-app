@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit]
 
   def show
     @user = User.find(params[:id])
+
   end
 
   def edit
+    @user = User.find(params[:id])
+
     unless @user == current_user
       redirect_to user_path(@user)
     end
@@ -14,17 +16,19 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(params.require(:user).permit(:image, :name, :gender, :university, :comment, :twitter, :instagram, :other_link))# POINT
-      if image = params[:user][:image]
-        @comment.image.attach(image)
+    if @user.update(creat_params)# POINT
+      if params[:user][:image]
+        image = params[:user][:image]
+        @user.image.attach(image)
       end
-      if video = params[:user][:video]
-        @comment.image.attach(video)
+      if params[:user][:video]
+        video = params[:user][:video]
+        @user.image.attach(video)
       end
       flash[:success] = "修正を反映しました"
       redirect_to @user
     else
-      flash.now[:danger] = "更新に失敗しました。"
+      flash.now[:danger] = "更新に失敗しました"
       render 'users/edit'
     end
   end
@@ -32,5 +36,9 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def creat_params
+      params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link)
     end
 end

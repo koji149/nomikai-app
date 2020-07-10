@@ -61,13 +61,13 @@
             <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
             <!-- ユーザーがログインしていた時の処理 -->
             <!-- ログアウトをする -->
-              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "マイページ", user_path(current_user) %></button> <!-- ログイン画面に移行する -->
-              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
+              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button>
+              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "参加する", meetings_path, class: "fas fa-glass-cheers" %></button>
+              <button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button> <!-- ログイン画面に移行する -->
             <% else %>
             <!-- ユーザーがログインしていなかった時の処理 -->
-              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: 'post' %></button> <!-- ログイン画面に移行する -->
-              <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: 'post' %></button> 
-              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集", new_meeting_path, remote: true %></button> 
+              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt" %></button> <!-- ログイン画面に移行する -->
+              <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: "fas fa-user-plus" %></button> 
 
 <!-- 新規登録画面に移行する -->
             <% end %>
@@ -100,7 +100,7 @@
               <div class="h-entry mb-30 v-height gradient">
                 <%=image_tag 'drinks-2578446_640.jpg', alt: "参加する", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2><button type="button" class="btn-outline-info rounded-pill">参加する</button></h2>
+                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "参加する", meetings_path%></button></h2>
                   <span class="date">今日は人数多めで楽しむもありかも...</span>
                 </div>
               </div>

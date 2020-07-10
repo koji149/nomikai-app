@@ -56,7 +56,7 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"大学（任意）（30文字まで）", :class => "text-black" %><br />
+                  <%= f.label :"大学（任意）（50文字まで）", :class => "text-black" %><br />
                   <%= f.text_field :university, autocomplete: "university", :class => "form-control" %>
                 </div>
               </div>
@@ -80,7 +80,7 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"twitterのリンク（任意）（30文字まで）", :class => "text-black" %><br />
+                  <%= f.label :"twitterのリンク（任意）（50文字まで）", :class => "text-black" %><br />
                   <%= f.text_field :twitter, autocomplete: "twitter", :class => "form-control" %>
                 </div>
               </div>
@@ -88,7 +88,7 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"instagramのリンク（任意）（30文字まで）", :class => "text-black" %><br />
+                  <%= f.label :"instagramのリンク（任意）（50文字まで）", :class => "text-black" %><br />
                   <%= f.text_field :instagram, autocomplete: "instagram", :class => "form-control" %>
                 </div>
               </div>
@@ -96,7 +96,7 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"その他のリンク（facebook TikTok等、任意）（30文字まで）", :class => "text-black" %><br />
+                  <%= f.label :"その他のリンク（facebook TikTok等、任意）（50文字まで）", :class => "text-black" %><br />
                   <%= f.text_field :other_link, autocomplete: "other_link", :class => "form-control" %>
                 </div>
               </div>
@@ -104,7 +104,7 @@
 
               <div class="row form-group">
                 <div class="col-md-12">
-                    <%= f.submit "保存", :class => "btn btn-primary py-2 px-4 text-white"  %>
+                    <%= f.submit "保存", :class => "btn btn-outline-primary"  %>
                 </div>
               </div>
             <% end %>

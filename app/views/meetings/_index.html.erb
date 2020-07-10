@@ -7,23 +7,24 @@
           <div class="card-body">
               <h5 class="card-title">
               <div class="post-meta align-items-center text-left clearfix">
-              <figure class="author-figure mb-0 mr-3 float-left"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
+              <figure class="author-figure mb-0 mr-3 float-left"><%=image_tag "bar1839361_640.jpg", alt: "Image", class: "img-fluid"%></figure>
               <span class="d-inline-block mt-1">By <%=link_to "#{meeting.user.name}", "users/#{meeting.user_id}"%></span>
               </div>
               </h5>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><label for="name1">説明</label><br/><%=meeting.explain%></li>
-                <li class="list-group-item"><label for="name1">日時</label><br/><%=meeting.date_time%></li>
+                <li class="list-group-item"><label for="name1">日時</label><br/><%=meeting.date_time.strftime("%Y-%m-%d %H:%M")%></li>
                 <li class="list-group-item"><label for="name1">店名</label><br/><%=meeting.bar%></li>
-                <li class="list-group-item"><label for="name1">お店のURL</label><br/><%=meeting.url%></li>
+                <li class="list-group-item"><label for="name1">お店のURL</label><br/><%= link_to "#{meeting.url}", "#{meeting.url}"%></li>
               </ul>
               
           </div>
           <div class="card-footer text-center ">
           <% if meeting.user_id == current_user.id %>
-          <button type="button" class="btn-outline-success rounded-pill"><%= link_to "修正する", edit_meeting_path(meeting), remote: true %></button>
+          <button type="button" class="btn-outline-success rounded-pill"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+          <button type="button" class="btn-outline-danger rounded-pill"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
           <%else%>
-          <button type="button" class="btn-outline-primary rounded-pill">参加する</button>
+          <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers"%></button>
           <%end%>
           </div>
         </div>

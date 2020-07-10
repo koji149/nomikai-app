@@ -1,2 +1,2 @@
-$("#user-modal").html("<%= escape_javascript(render 'formedit') %>")
+$("#user-modal").html("<%= escape_javascript(render(partial:'meetings/formedit')) %>")
 $("#user-modal").modal("show")

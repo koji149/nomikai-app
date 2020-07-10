@@ -57,7 +57,8 @@
               <% end %>
             <% end %>
             </p>
-            <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user) %></button>
+            <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user), class: "fas fa-user-edit" %></button>
+            <button type="button" class="btn-outline-danger rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "fas fa-sign-out-alt"%></button>
           </div>
         </div>
       </div>

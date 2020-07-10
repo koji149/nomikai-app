@@ -19,12 +19,17 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     flash[:success]
-    user_path(resource.id)
+    root_path
   end
 
   def after_sign_out_path_for(resource)
     flash[:success]
     root_path
+  end
+
+  def after_sign_up_path_for(resource)
+    flash[:success]
+      super(resource)
   end
 
   private

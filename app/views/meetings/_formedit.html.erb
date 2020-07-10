@@ -12,7 +12,8 @@
     </div>
     <% end %>
     <div class="modal-header">
-      <h5 class="modal-title">募集条件を修正してください</h5>
+      <h5 class="modal-title">募集条件を修正してください<p>※空欄だと保存できません※</p></h5>
+      
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -41,8 +42,7 @@
       </div>
     </div>
     <div class="modal-footer actions">
-      <button type="button" class="btn-outline-success rounded-pill" data-dismiss="modal">Close</button>
-      <%= f.submit "修正する", class: "btn btn-success"%>
+      <%= f.submit "修正する", class: "btn btn-outline-success"%>
     </div>
 
     <% end %>

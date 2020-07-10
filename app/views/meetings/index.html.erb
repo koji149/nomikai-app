@@ -17,10 +17,9 @@
               <%= link_to image_tag('top2.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to "全部", bars_index_path(m_area: @m_area, area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】")%></button><li>
-                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to '居酒屋', bars_index_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円】の店舗") %></button><li>
-                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to 'バル', bars_index_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円】の店舗") %></button><li>
-                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to 'バー', bars_index_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, m_area: @m_area, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗") %></button><li>
+                <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></li>
+                <li><button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button></li> <!-- ログイン画面に移行する -->
+                <li><button onclick="getPosition();" type="button" class="btn-outline-primary rounded-pill"><div class="fas fa-beer">近くの居酒屋を探す</div></button></li>
               </ul>
             </nav>
         </div>
@@ -30,10 +29,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <span><%=@area_name%></span>
-            <h1><%=@category%></h1>
-            <h2><%=@explain%></h2>
-            <p>ヒット数：<%=@sum_items%>件</p>
+            <h1>募集一覧</h1>
+            <p>ヒット数：<%=@sum_meetings%>件</p>
           </div>
         </div>
       </div>
@@ -46,14 +43,7 @@
         </div>
         <div class="row text-center pt-5 border-top">
           <div class="col-md-12">
-            <div class="custom-pagination">
-              <span>1</span>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <span>...</span>
-              <a href="#">15</a>
-            </div>
+              <%= paginate @meetings %>
           </div>
         </div>
       </div>

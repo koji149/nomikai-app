@@ -9,12 +9,12 @@ class User < ApplicationRecord
     has_one_attached :image
     has_one_attached :video
 
-    validates :name, length: { maximum: 20 }
-    validates :university, length: { maximum: 30 }
+    validates :name, length: { maximum: 50 }
+    validates :university, length: { maximum: 50 }
     validates :comment, length: { maximum: 250 }
-    validates :twitter, length: { maximum: 20 }
-    validates :instagram, length: { maximum: 20 }
-    validates :other_link, length: { maximum: 20 }
+    validates :twitter, length: { maximum: 100 }
+    validates :instagram, length: { maximum: 100 }
+    validates :other_link, length: { maximum: 100 }
 
 
 
