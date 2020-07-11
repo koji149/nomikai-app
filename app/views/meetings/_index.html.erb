@@ -17,7 +17,8 @@
               </h5>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><label for="name1">説明</label><br/><%=meeting.explain%></li>
-                <li class="list-group-item"><label for="name1">日時</label><br/><%=meeting.date_time.strftime("%Y-%m-%d %H:%M")%></li>
+                <li class="list-group-item"><label for="name1">募集日</label><br/><%=meeting.date.strftime("%Y-%m-%d")%></li>
+                <li class="list-group-item"><label for="name1">開始時間</label><br/><%=meeting.time.strftime("%H:%M")%></li>
                 <li class="list-group-item"><label for="name1">店名</label><br/><%=meeting.bar%></li>
                 <li class="list-group-item"><label for="name1">お店のURL</label><br/><%= link_to "#{meeting.url}", "#{meeting.url}"%></li>
               </ul>

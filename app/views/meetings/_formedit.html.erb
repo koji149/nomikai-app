@@ -25,8 +25,12 @@
         <%= f.select :area, Meeting.areas.keys, {prompt: '選択してください'}, class: 'form-control' %>
       </div>
       <div class="form-group field">
+        <%= f.label :"募集日" , class: "form-control-label"%>
+        <%= f.date_field :date, class: "form-control" %>
+      </div>
+      <div class="form-group field">
         <%= f.label :"開始時間" , class: "form-control-label"%>
-        <%= f.datetime_local_field :date_time, class: "form-control" %>
+        <%= f.time_field :time, class: "form-control" %>
       </div>
       <div class="form-group field">
         <%= f.label :"お店の名前" , class: "form-control-label"%>

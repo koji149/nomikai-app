@@ -21,7 +21,8 @@ class MeetingsController < ApplicationController
     if @meeting.save # 保存失敗して
       redirect_to meetings_path
     else
-      render 'meetings/form' # failed_pathに遷移する
+      flash.now[:danger] = "募集の作成に失敗しました"
+      render 'meetings/index' # failed_pathに遷移する
     end
   end
 
@@ -52,7 +53,7 @@ class MeetingsController < ApplicationController
 
   private
     def creat_params
-      params.require(:meeting).permit(:area, :date_time, :bar, :url, :explain, :image)
+      params.require(:meeting).permit(:area, :date, :time, :bar, :url, :explain, :image)
     end
 
     def authenticate
