@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate
 
   def index
     @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
@@ -9,6 +9,7 @@ class MeetingsController < ApplicationController
 
   def show
     @meeting = Meeting.find(params[:id])
+
   end
   def new
     @meeting = Meeting.new
@@ -52,5 +53,10 @@ class MeetingsController < ApplicationController
   private
     def creat_params
       params.require(:meeting).permit(:area, :date_time, :bar, :url, :explain, :image)
+    end
+
+    def authenticate
+      redirect_to new_user_session_path unless user_signed_in?
+      flash[:danger] = "ログインをしてください"
     end
 end

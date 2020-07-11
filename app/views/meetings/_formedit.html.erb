@@ -26,7 +26,7 @@
       </div>
       <div class="form-group field">
         <%= f.label :"開始時間" , class: "form-control-label"%>
-        <%= f.datetime_field :date_time, class: "form-control" %>
+        <%= f.datetime_local_field :date_time, class: "form-control" %>
       </div>
       <div class="form-group field">
         <%= f.label :"お店の名前" , class: "form-control-label"%>
@@ -34,7 +34,7 @@
       </div>
       <div class="form-group field">
         <%= f.label :"お店のURL" , class: "form-control-label"%>
-        <%= f.text_field :url, class: "form-control" %>
+        <%= f.url_field :url, class: "form-control" %>
       </div>
       <div class="form-group field">
         <%= f.label :"人数や、滞在時間について" , class: "form-control-label"%>
