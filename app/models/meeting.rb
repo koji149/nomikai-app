@@ -3,11 +3,11 @@ class Meeting < ApplicationRecord
 
   has_one_attached :image
 
-  validates :area, presence: { message: 'は１文字以上入力してください。' },
-  validates :date_time, presence: { message: 'は１文字以上入力してください。' },
+  validates :area, presence: { message: 'は１文字以上入力してください。' }
+  validates :date_time, presence: { message: 'は１文字以上入力してください。' }
   validates :bar, presence: { message: 'は１文字以上入力してください。' }, length: { maximum: 50 }
   validates :url, presence: { message: 'は１文字以上入力してください。' }, length: { maximum: 100 }
-  validates :explain , presence: { message: 'は１文字以上入力してください。' }
+  validates :explain, presence: { message: 'は１文字以上入力してください。' }
 
 
   #enum area: {
