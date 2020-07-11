@@ -29,13 +29,13 @@
             <%= form_with model: @user, html: { class: "p-5 bg-white" } do |f| %>
               <h2>マイページ編集</h2><br/>
 
-              <%#<br/><div class="row form-group">
+              <br/><div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"トップ画像（任意）", :class => "text-black" %> <%#<br />#%>
-                  <%#<%= f.file_field :image, autocomplete: "image", :class => "form-control" %>
-                <%#</div>#%>
-              <%#</div>#%>
+                  <%= f.label :"トップ画像（任意）", :class => "text-black" %><br/>
+                  <%= f.file_field :image, autocomplete: "image", :class => "form-control" %>
+                </div>
+              </div>
 
               <div class="row form-group">
                 

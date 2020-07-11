@@ -17,10 +17,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(creat_params)# POINT
-      if params[:user][:image]
-        image = params[:user][:image]
-        @user.image.attach(image)
-      end
       if params[:user][:video]
         video = params[:user][:video]
         @user.image.attach(video)
@@ -39,6 +35,6 @@ class UsersController < ApplicationController
     end
 
     def creat_params
-      params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link)
+      params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link, :image)
     end
 end
