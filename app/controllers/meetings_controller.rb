@@ -1,5 +1,6 @@
 class MeetingsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update, :destroy]
 
   def index
     @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
@@ -19,7 +20,7 @@ class MeetingsController < ApplicationController
     if @meeting.save # 保存失敗して
       redirect_to meetings_path
     else
-      render :new # failed_pathに遷移する
+      render 'meetings/form' # failed_pathに遷移する
     end
   end
 
@@ -48,17 +49,8 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def join
-
-  end
-
   private
     def creat_params
       params.require(:meeting).permit(:area, :date_time, :bar, :url, :explain, :image)
-    end
-
-
-    def user_signed_in
-      redirect_to new_user_session_path unless user_signed_in?
     end
 end

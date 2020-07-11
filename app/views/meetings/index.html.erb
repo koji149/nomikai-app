@@ -18,7 +18,9 @@
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
                 <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></li>
-                <li><button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button></li> <!-- ログイン画面に移行する -->
+                <% if user_signed_in? %> 
+                <li><button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button></li>
+                <%end%><!-- ログイン画面に移行する -->
                 <li><button onclick="getPosition();" type="button" class="btn-outline-primary rounded-pill"><div class="fas fa-beer">近くの居酒屋を探す</div></button></li>
               </ul>
             </nav>
