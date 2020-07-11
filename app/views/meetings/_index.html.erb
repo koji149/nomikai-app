@@ -7,7 +7,7 @@
           <div class="card-body">
               <h5 class="card-title">
               <div class="post-meta align-items-center text-left clearfix">
-              <figure class="author-figure mb-0 mr-3 float-left"><%=image_tag "bar1839361_640.jpg", alt: "Image", class: "img-fluid"%></figure>
+              <figure class="author-figure mb-0 mr-3 float-left"><%=image_tag "#{meeting.image}", alt: "Image", class: "img-fluid"%></figure>
               <span class="d-inline-block mt-1">By <%=link_to "#{meeting.user.name}", "users/#{meeting.user_id}"%></span>
               </div>
               </h5>

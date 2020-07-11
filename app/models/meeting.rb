@@ -1,6 +1,8 @@
 class Meeting < ApplicationRecord
   belongs_to :user
 
+  has_one_attached :image
+
   validates :area, presence: { message: 'は１文字以上入力してください。' }
   validates :date_time, presence: { message: 'は１文字以上入力してください。' }
   validates :bar, presence: { message: 'は１文字以上入力してください。' }, length: { maximum: 50 }

@@ -54,7 +54,7 @@ class MeetingsController < ApplicationController
 
   private
     def creat_params
-      params.require(:meeting).permit(:area, :date_time, :bar, :url, :explain)
+      params.require(:meeting).permit(:area, :date_time, :bar, :url, :explain, :image)
     end
 
 
