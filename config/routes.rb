@@ -12,6 +12,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :meetings
   
-  get '*not_found' => 'application#routing_error'
   post '*not_found' => 'application#routing_error'
 end

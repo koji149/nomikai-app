@@ -7,15 +7,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) # 新規登録時(sign_up時)にnameというキーのパラメーターを追加で許可する
   end
 
-  unless Rails.env.development?
-    rescue_from Exception,                        with: :_render_500
-    rescue_from ActiveRecord::RecordNotFound,     with: :_render_404
-    rescue_from ActionController::RoutingError,   with: :_render_404
-  end
+  #unless Rails.env.development?
+    #rescue_from Exception,                        with: :_render_500
+    #rescue_from ActiveRecord::RecordNotFound,     with: :_render_404
+    #rescue_from ActionController::RoutingError,   with: :_render_404
+  #end
 
-  def routing_error
-    raise ActionController::RoutingError, params[:path]
-  end
+  #def routing_error
+    #raise ActionController::RoutingError, params[:path]
+  #end
 
   def after_sign_in_path_for(resource)
     flash[:success]

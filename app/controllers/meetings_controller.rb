@@ -38,9 +38,9 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
-    @meeting = Meeting.find(params[:id]).page(params[:page]).per(10)
+    @meeting = Meeting.find(params[:id])
     if @meeting.destroy
-      @meetings = Meeting.all.order(updated_at: :desc)
+      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
       @sum_meetings = @meetings.length
       flash.now[:success] = "削除に成功しました"
     else
