@@ -12,11 +12,7 @@
               <h5 class="card-title">
                 <div class="post-meta align-items-center text-left clearfix">
                 <figure class="author-figure mb-0 mr-3 float-left">
-                  <% if meeting.user.avatar %>
-                    <%=image_tag meeting.user.avatar, alt: "プロフィール画像", class: "img-fluid"%>
-                  <%else%>
-                    <%=image_tag "bar1839361_640.jpg", alt: "Image", class: "img-fluid"%>
-                  <%end%>
+                  <img src="<%meeting.user.try(:image)%>">
                 </figure>
                 <span class="d-inline-block mt-1">By<%=link_to "#{meeting.user.name}", "users/#{meeting.user_id}"%></span>
                 </div>

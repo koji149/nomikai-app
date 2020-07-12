@@ -31,6 +31,6 @@ class UsersController < ApplicationController
     end
 
     def creat_params
-      params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link, :avatar)
+      params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link, :image)
     end
 end
