@@ -17,10 +17,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(creat_params)# POINT
-      if params[:user][:video]
-        video = params[:user][:video]
-        @user.image.attach(video)
-      end
       flash[:success] = "修正を反映しました"
       redirect_to @user
     else
@@ -35,6 +31,6 @@ class UsersController < ApplicationController
     end
 
     def creat_params
-      params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link, :image)
+      params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link, :avatar)
     end
 end

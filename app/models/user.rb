@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[twitter google_oauth2]
         
-    has_one_attached :image
+    has_one_attached :avatar
     has_one_attached :video
 
     validates :name, length: { maximum: 50 }
