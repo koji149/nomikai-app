@@ -2,10 +2,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    unless @user.image
-      @user.image.attach("human.png")
-      @user.save
-    end
   end
 
   def edit

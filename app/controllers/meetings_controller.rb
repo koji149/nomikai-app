@@ -18,9 +18,6 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
     @meeting.user_id = current_user.id
-    unless params[:image]
-      @meeting.image.attach("bar1839361_640.jpg")
-    end
     if @meeting.save
       redirect_to meetings_path
     else
