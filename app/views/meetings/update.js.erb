@@ -1,2 +1,2 @@
-$("#user-modal").html("<%= escape_javascript(render(partial:'meetings/index')) %>")
+$("#bookmark_btn_<%= @meeting.id %>").html("<%= escape_javascript(render(partial:'meetings/index')) %>")
 $("#user-modal").modal("hide")
