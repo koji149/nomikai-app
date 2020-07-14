@@ -13,9 +13,17 @@ class MeetingsController < ApplicationController
     twitter_key = ENV['TWITTER_API_KEY']
     twitter_secret = ENV['TWITTER_API_SECRET']
     twitter_url = ENV['TWITTER_URL']
-
+    data = {
+      event: {
+        type: "message_create",
+        message_create: {
+          target: { recipient_id: @user.uid },
+          message_data: { text: "ダイレクトメッセージ" }
+        }
+      }
+    }
     client = HTTPClient.new
-    request =  client.post(twitter_url, request_body_hash(@user))
+    request =  client.post(twitter_url, data)
     @response = JSON.parse(request.body)
 
   end
@@ -69,15 +77,4 @@ class MeetingsController < ApplicationController
       flash[:danger] = "ログインをしてください"
     end
 
-    def request_body_hash(@user)
-      {
-        event: {
-          type: "message_create",
-          message_create: {
-            target: { recipient_id: @user.uid },
-            message_data: { text: "ダイレクトメッセージ" }
-          }
-        }
-      }
-    end
 end
