@@ -16,14 +16,18 @@ class User < ApplicationRecord
     validates :instagram, length: { maximum: 100 }
     validates :other_link, length: { maximum: 100 }
 
-
+    def to_param
+      username
+    end
 
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
         user.uid = auth.uid
-        user.name = auth.name
+        user.name = auth.info.name
         user.email = auth.info.email
+        user.image = auth.info.image.gsub("_normal","") if user.provider == "twitter"
+        user.image = auth.info.image if user.provider == "google_oauth2"
         user.password = Devise.friendly_token[0, 20] # ランダムなパスワードを作成
       end
     end

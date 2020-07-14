@@ -32,16 +32,16 @@
               <%= render "devise/shared/links" %>
               <br/><div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <%= f.label :name, :class => "text-black"  %> <br />
-                  <%= f.text_field :name, :class => "form-control" %>
+                  <%= f.label :"ユーザーネーム（最大30字）", :class => "text-black"  %> <br />
+                  <%= f.text_field :name, maxlength: "30", :class => "form-control" %>
                 </div>
               </div>
 
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :email, :class => "text-black"  %><br />
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
+                  <%= f.label :"email（最大30字）", :class => "text-black"  %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", maxlength: "30", :class => "form-control" %>
                 </div>
               </div>
 

@@ -32,7 +32,7 @@
               <br/><div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"トップ画像（任意）", :class => "text-black" %><br/>
+                  <%= f.label :"トップ画像", :class => "text-black" %><br/>
                   <%= f.file_field :image, autocomplete: "image", :class => "form-control" %>
                 </div>
               </div>
@@ -40,8 +40,8 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"ユーザーネーム（必須）（30文字まで）", :class => "text-black"  %><br />
-                  <%= f.text_field :name, autofocus: true, autocomplete: "name", :class => "form-control" %>
+                  <%= f.label :"ユーザーネーム（最大30字）", :class => "text-black"  %><br />
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name", maxlength: "30", :class => "form-control" %>
                 </div>
               </div>
 
@@ -56,8 +56,8 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"大学（任意）（50文字まで）", :class => "text-black" %><br />
-                  <%= f.text_field :university, autocomplete: "university", :class => "form-control" %>
+                  <%= f.label :"大学（最大30字", :class => "text-black" %><br />
+                  <%= f.text_field :university, autocomplete: "university", maxlength: "30", :class => "form-control" %>
                 </div>
               </div>
 
@@ -72,32 +72,32 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"紹介文（趣味や好きなお酒等、任意）（200文字まで）", :class => "text-black" %><br />
-                  <%=  f.text_area :comment, autocomplete: "comment", :class => "form-control" %>
+                  <%= f.label :"紹介文", :class => "text-black" %><br />
+                  <%=  f.text_area :comment, autocomplete: "comment", maxlength: "250", :class => "form-control" %>
                 </div>
               </div>
 
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"twitterのリンク（任意）（50文字まで）", :class => "text-black" %><br />
-                  <%= f.text_field :twitter, autocomplete: "twitter", :class => "form-control" %>
+                  <%= f.label :"twitter（最大300字）", :class => "text-black" %><br />
+                  <%= f.url_field :twitter, autocomplete: "twitter", maxlength: "300", :class => "form-control" %>
                 </div>
               </div>
 
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"instagramのリンク（任意）（50文字まで）", :class => "text-black" %><br />
-                  <%= f.text_field :instagram, autocomplete: "instagram", :class => "form-control" %>
+                  <%= f.label :"instagram（最大300字）", :class => "text-black" %><br />
+                  <%= f.url_field :instagram, autocomplete: "instagram", maxlength: "300", :class => "form-control" %>
                 </div>
               </div>
 
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"その他のリンク（facebook TikTok等、任意）（50文字まで）", :class => "text-black" %><br />
-                  <%= f.text_field :other_link, autocomplete: "other_link", :class => "form-control" %>
+                  <%= f.label :"その他（facebook TikTok等）（最大300字）", :class => "text-black" %><br />
+                  <%= f.url_field :other_link, autocomplete: "other_link", maxlength: "300", :class => "form-control" %>
                 </div>
               </div>
 

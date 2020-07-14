@@ -28,23 +28,23 @@
         <%= f.date_field :date, class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"開始時間" , class: "form-control-label"%>
+        <%= f.label :"集合時間" , class: "form-control-label"%>
         <%= f.time_field :time, class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"お店の名前" , class: "form-control-label"%>
-        <%= f.text_field :bar, class: "form-control" %>
+        <%= f.label :"お店の名前（最大100字）" , class: "form-control-label"%>
+        <%= f.text_field :bar, maxlength: "100", class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"お店のURL" , class: "form-control-label"%>
-        <%= f.url_field :url, class: "form-control" %>
+        <%= f.label :"お店のURL（最大300字）" , class: "form-control-label"%>
+        <%= f.url_field :url, maxlength: "300", class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"人数や、滞在時間について" , class: "form-control-label"%>
-        <%= f.text_area :explain, class: "form-control" %>
+        <%= f.label :"人数や、滞在時間について（最大500字）" , class: "form-control-label"%>
+        <%= f.text_area :explain, maxlength: "500", class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"トップ画像", class: "form-control-label" %>
+        <%= f.label :"プロフィール画像", class: "form-control-label" %>
         <%= f.file_field :image, autocomplete: "image", class: "form-control" %>
       </div>
     </div>
