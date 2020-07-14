@@ -10,6 +10,14 @@ class MeetingsController < ApplicationController
   def show
     @meeting = Meeting.find(params[:id])
 
+    twitter_key = ENV['TWITTER_API_KEY']
+    twitter_secret = ENV['TWITTER_API_SECRET']
+    twitter_url = ENV['TWITTER_URL']
+
+    client = HTTPClient.new
+    request =  client.post(twitter_url, request_body_hash(@user))
+    @response = JSON.parse(request.body)
+
   end
   def new
     @meeting = Meeting.new
@@ -59,5 +67,17 @@ class MeetingsController < ApplicationController
     def authenticate
       redirect_to new_user_session_path unless user_signed_in?
       flash[:danger] = "ログインをしてください"
+    end
+
+    def request_body_hash(@user)
+      {
+        event: {
+          type: "message_create",
+          message_create: {
+            target: { recipient_id: @user.uid },
+            message_data: { text: "ダイレクトメッセージ" }
+          }
+        }
+      }
     end
 end
