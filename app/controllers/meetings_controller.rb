@@ -17,7 +17,7 @@ class MeetingsController < ApplicationController
       event: {
         type: "message_create",
         message_create: {
-          target: { recipient_id: @user.uid },
+          target: { recipient_id: @meeting.user.uid },
           message_data: { text: "ダイレクトメッセージ" }
         }
       }
