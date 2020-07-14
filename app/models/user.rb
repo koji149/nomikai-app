@@ -16,10 +16,6 @@ class User < ApplicationRecord
     validates :instagram, length: { maximum: 100 }
     validates :other_link, length: { maximum: 100 }
 
-    def to_param
-      username
-    end
-
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
