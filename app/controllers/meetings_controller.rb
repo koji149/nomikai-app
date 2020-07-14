@@ -12,7 +12,14 @@ class MeetingsController < ApplicationController
 
     twitter_key = ENV['TWITTER_API_KEY']
     twitter_secret = ENV['TWITTER_API_SECRET']
+    twitter_access_token = ENV['TWITTER_ACCESS_TOKEN']
+    twitter_secret_token = ENV['TWITTER_ACCESS_SECRET']
     twitter_url = ENV['TWITTER_URL']
+
+    headers = {
+      "content-type" => "application/json"
+    
+    }
     data = {
       event: {
         type: "message_create",
@@ -23,7 +30,7 @@ class MeetingsController < ApplicationController
       }
     }
     client = HTTPClient.new
-    request =  client.post(twitter_url, data)
+    request =  client.post(twitter_url, body: data, header: headers)
     @response = JSON.parse(request.body)
 
   end
