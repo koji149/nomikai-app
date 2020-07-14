@@ -22,8 +22,8 @@ class User < ApplicationRecord
         user.uid = auth.uid
         user.name = auth.info.name
         user.email = auth.info.email
-        user.image = auth.info.image.gsub("_normal","") if user.provider == "twitter"
-        user.image = auth.info.image if user.provider == "google_oauth2"
+        user.image.attach(auth.info.image.gsub("_normal","")) if user.provider == "twitter"
+        user.image.attach(auth.info.image) if user.provider == "google_oauth2"
         user.password = Devise.friendly_token[0, 20] # ランダムなパスワードを作成
       end
     end
