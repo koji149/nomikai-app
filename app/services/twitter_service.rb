@@ -1,4 +1,10 @@
-require 'net/http'
+require "json"
+require "uri"
+require "net/http"
+require "base64"
+require "openssl"
+require "securerandom"
+require "erb"
 
 class TwitterService
   TWITTER_API_DOMAIN          = "https://api.twitter.com"
