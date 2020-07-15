@@ -7,17 +7,17 @@ class MeetingsController < ApplicationController
     @sum_meetings = @meetings.length
   end
 
-  def join
-    @meeting = Meeting.find(params[:id])
-
-  end
-  
   def show
-    @meeting = Meeting.find(params.require(:meeting).permit(:id))
-    @twitter_url = params[:twitter_url]
-    text = "アフターキャンパスです。あなたの募集に参加リクエストが届きました\n参加者のtwitter:#{@twitter_url}\n参加者はあなたの返事を待っています。"
-    TwitterService.new(@meeting.user.uid, text).call
-
+      @meeting = Meeting.find(params[:id])
+    unless params.has_key?(:twitter_url)
+      render "join"
+      return
+    else
+      @twitter_url = params[:twitter_url]
+      text = "アフターキャンパスです。あなたの募集に参加リクエストが届きました\n参加者のtwitter:#{@twitter_url}\n参加者はあなたの返事を待っています。"
+      TwitterService.new(@meeting.user.uid, text).call
+      return
+    end
   end
   
   def new
