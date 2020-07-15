@@ -67,7 +67,7 @@
             <% else %>
             <!-- ユーザーがログインしていなかった時の処理 -->
               <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt" %></button> <!-- ログイン画面に移行する -->
-              <button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: "fas fa-user-plus" %></button> 
+              <%#<button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: "fas fa-user-plus" %><%#</button> #%>
 
 <!-- 新規登録画面に移行する -->
             <% end %>

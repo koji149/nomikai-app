@@ -32,37 +32,37 @@
               <%= render "devise/shared/links" %>
               
 
-              <br/><div class="row form-group">
+              <%#<br/><div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :email, :class => "text-black"  %><br />
+                  <%= f.label :email, :class => "text-black"  %><%#<br />
                   <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
-                </div>
-              </div>
+                <%#</div>
+              </div>#%>
 
 
               
-              <div class="row form-group">
+              <%#<div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :password, :class => "text-black" %><br />
+                  <%= f.label :password, :class => "text-black" %><%#<br />
                   <%= f.password_field :password, autocomplete: "current-password", :class => "form-control" %>
-                </div>
-              </div>
+                <%#</div>
+              </div>#%>
 
-              <% if devise_mapping.rememberable? %>
-                <div class="field">
+              <%#<% if devise_mapping.rememberable? %>
+                <%#<div class="field">
                   <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
-                </div>
+                  <%#<%= f.label :remember_me %>
+                <%#</div>
               <% end %>
 
 
-              <div class="row form-group">
+              <%#<div class="row form-group">
                 <div class="col-md-12">
                     <%= f.submit "ログイン", :class => "btn btn-outline-primary"  %>
-                </div>
-              </div>
+                <%#</div>
+              </div>#%>
             <% end %>
           
         </div>

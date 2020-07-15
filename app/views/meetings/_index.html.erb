@@ -34,7 +34,7 @@
               <button type="button" class="btn-outline-success rounded-pill"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
               <button type="button" class="btn-outline-danger rounded-pill"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
             <%else%>
-              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers"%></button>
+              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "参加", meetings_join_path(meeting), remote: true, class: "fas fa-glass-cheers"%></button>
             <%end%>
           </div>
         </div>

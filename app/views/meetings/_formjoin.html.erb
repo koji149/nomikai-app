@@ -1,0 +1,31 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    
+    <div class="modal-header">
+      <h5 class="modal-title">twitterのプロフィール画面のURLを記入してください</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    <p>募集者が連絡を取れるように、あなたのtwitterのプロフィール画面のURLを記入してください</p>
+      <%= form_with url: meeting_path(@meeting), html: { class: "p-5 bg-white" } do |f| %>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <%= f.label :"twitter（最大300字）", :class => "text-black" %><br />
+                  <%= f.url_field :twitter_url, autocomplete: "twitter", maxlength: "300", :class => "form-control" %>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                    <%= f.submit "送信", :class => "btn btn-outline-primary"  %>
+                </div>
+              </div>
+        <% end %>
+    </div>
+    <div class="modal-footer actions">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+    </div>
+
+  </div>
+</div>

@@ -30,46 +30,46 @@
               <h2>新規登録</h2><br/>
             <%= render "devise/shared/error_messages", resource: resource %>
               <%= render "devise/shared/links" %>
-              <br/><div class="row form-group">
+              <%#<br/><div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <%= f.label :"ユーザーネーム（最大30字）", :class => "text-black"  %> <br />
+                  <%= f.label :"ユーザーネーム（最大30字）", :class => "text-black" %><%#<br />
                   <%= f.text_field :name, maxlength: "30", :class => "form-control" %>
-                </div>
-              </div>
+                <%#</div>
+              </div>#%>
 
-              <div class="row form-group">
+              <%#<div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"email（最大30字）", :class => "text-black"  %><br />
+                  <%= f.label :"email（最大30字）", :class => "text-black"  %><%#<br />
                   <%= f.email_field :email, autofocus: true, autocomplete: "email", maxlength: "30", :class => "form-control" %>
-                </div>
-              </div>
+                <%#</div>
+              </div>#%>
 
-              <div class="row form-group">
+              <%#<div class="row form-group">
                 
                 <div class="col-md-12">
                   <%= f.label :password, :class => "text-black"  %>
-                    <% if @minimum_password_length %>
-                    <em>(<%= @minimum_password_length %> characters minimum)</em>
-                    <% end %><br />
+                    <%#<% if @minimum_password_length %>
+                    <%#<em>(<%= @minimum_password_length %> <%#characters minimum)</em>
+                    <%#<% end %><%#<br />
                     <%= f.password_field :password, autocomplete: "new-password", :class => "form-control" %>
-                </div>
-              </div>
+                <%#</div>
+              </div>#%>
               
-              <div class="row form-group">
+              <%#<div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :password_confirmation, :class => "text-black" %><br />
+                  <%= f.label :password_confirmation, :class => "text-black" %><%#<br />
                   <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control" %>
-                </div>
+                <%#</div>
               </div>
 
 
               <div class="row form-group">
                 <div class="col-md-12">
                     <%= f.submit "登録", :class => "btn btn-outline-primary"  %>
-                </div>
-              </div>
+                <%#</div>
+              </div>#%>
             <% end %>
           
         </div>
