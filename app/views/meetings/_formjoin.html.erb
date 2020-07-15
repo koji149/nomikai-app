@@ -9,10 +9,10 @@
     </div>
     <div class="modal-body">
     <p>募集者が連絡を取れるように、あなたのtwitterのプロフィール画面のURLを記入してください</p>
-      <%= form_with url: meeting_path(@meeting), html: { class: "p-5 bg-white" } do |f| %>
+      <%= form_with url: meeting_path(@meeting), method: :get, html: { class: "p-5 bg-white" } do |f| %>
               <div class="row form-group">
                 <div class="col-md-12">
-                  <%= f.label :"twitter（最大300字）", :class => "text-black" %><br />
+                  <%= f.label :"twitterのURL（最大300字）", :class => "text-black" %><br />
                   <%= f.url_field :twitter_url, autocomplete: "twitter", maxlength: "300", :class => "form-control" %>
                 </div>
               </div>
@@ -23,9 +23,5 @@
               </div>
         <% end %>
     </div>
-    <div class="modal-footer actions">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-    </div>
-
   </div>
 </div>
