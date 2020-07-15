@@ -15,6 +15,8 @@ class User < ApplicationRecord
     validates :twitter, length: { maximum: 100 }
     validates :instagram, length: { maximum: 100 }
     validates :other_link, length: { maximum: 100 }
+    validate :image_content_type, if: :was_attached?
+
 
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -28,9 +30,18 @@ class User < ApplicationRecord
         user.password = Devise.friendly_token[0, 20] # ランダムなパスワードを作成
       end
     end
-
+    
     private
     def self.dumy_email(auth)
       "#{auth.uid}-#{auth.provider}@example.com"
+    end
+
+    def image_content_type
+      extension = ['image/png', 'image/jpg', 'image/jpeg']
+      errors.add(:image, "の拡張子が間違っています") unless image.content_type.in?(extension)
+    end
+
+    def was_attached?
+      self.image.attached?
     end
 end

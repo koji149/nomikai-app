@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   root 'bars#top'
   get 'bars/index' => 'bars#index'
   get 'bars/getposition' => 'bars#getposition'
-  resources :users, only: [:show, :edit, :update]
+  resources :users, param: :uid, path: '/', only: [:show, :edit, :update]
+  #resources :users, only: [:show, :edit, :update]
   resources :meetings
   
   post '*not_found' => 'application#routing_error'
