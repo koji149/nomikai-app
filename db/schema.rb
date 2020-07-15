@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_140606) do
+ActiveRecord::Schema.define(version: 2020_07_15_145511) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
+    t.string "name", limit: 255, null: false
+    t.string "record_type", limit: 255, null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 2020_07_11_140606) do
   end
 
   create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
+    t.string "key", limit: 255, null: false
+    t.string "filename", limit: 255, null: false
+    t.string "content_type", limit: 255
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
+    t.string "checksum", limit: 255, null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2020_07_11_140606) do
   create_table "meetings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "area"
-    t.string "bar"
-    t.string "url"
+    t.string "bar", limit: 255
+    t.string "url", limit: 255
     t.text "explain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,27 +50,27 @@ ActiveRecord::Schema.define(version: 2020_07_11_140606) do
     t.time "time"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+  create_table "users", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "email", limit: 255, default: "", null: false
+    t.string "encrypted_password", limit: 255, default: "", null: false
+    t.string "reset_password_token", limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "confirmation_token"
+    t.string "confirmation_token", limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
+    t.string "unconfirmed_email", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "provider"
-    t.string "uid"
-    t.string "gender"
-    t.string "university"
+    t.string "name", limit: 255
+    t.string "provider", limit: 255
+    t.string "uid", limit: 255
+    t.string "gender", limit: 255
+    t.string "university", limit: 255
     t.text "comment"
-    t.string "twitter"
-    t.string "instagram"
-    t.string "other_link"
+    t.string "twitter", limit: 255
+    t.string "instagram", limit: 255
+    t.string "other_link", limit: 255
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

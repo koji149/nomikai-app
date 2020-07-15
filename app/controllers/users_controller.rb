@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find_by(uid: params[:uid])
+    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find_by(uid: params[:uid])
+    @user = User.find(params[:id])
 
     unless @user == current_user
       redirect_to user_path(@user)
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(uid: params[:uid])
+    @user = User.find(params[:id])
 
     if @user.update(creat_params)# POINT
       flash[:success] = "修正を反映しました"
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   private
 
     def set_user
-      @user = User.find_by(uid: params[:uid])
+      @user = User.find(params[:id])
     end
 
     def creat_params

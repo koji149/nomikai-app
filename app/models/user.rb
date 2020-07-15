@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :meetings, dependent: :destroy
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,6 +8,8 @@ class User < ApplicationRecord
     has_one_attached :image
     has_one_attached :video
 
+    before_create :generate_token
+
     validates :name, length: { maximum: 50 }
     validates :university, length: { maximum: 50 }
     validates :comment, length: { maximum: 250 }
@@ -16,7 +17,6 @@ class User < ApplicationRecord
     validates :instagram, length: { maximum: 100 }
     validates :other_link, length: { maximum: 100 }
     validate :image_content_type, if: :was_attached?
-
 
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -30,7 +30,14 @@ class User < ApplicationRecord
         user.password = Devise.friendly_token[0, 20] # ランダムなパスワードを作成
       end
     end
-    
+
+  def generate_token
+    self.id = loop do
+      random_token = SecureRandom.uuid
+      break random_token unless self.class.exists?(id: random_token)
+    end
+  end
+
     private
     def self.dumy_email(auth)
       "#{auth.uid}-#{auth.provider}@example.com"
