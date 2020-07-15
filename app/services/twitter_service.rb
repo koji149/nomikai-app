@@ -1,3 +1,5 @@
+require 'net/http'
+
 class TwitterService
   TWITTER_API_DOMAIN          = "https://api.twitter.com"
   TWITTER_CREATE_DM_ENDPOINT  = "#{TWITTER_API_DOMAIN}/1.1/direct_messages/events/new.json"
@@ -7,7 +9,7 @@ class TwitterService
   TWITTER_CONSUMER_SECRET     = ENV['TWITTER_API_SECRET']
   TWITTER_ACCESS_TOKEN        = ENV['TWITTER_ACCESS_TOKEN']
   TWITTER_ACCESS_TOKEN_SECRET = ENV['TWITTER_ACCESS_SECRET']
-  
+
   def initialize(user_id, text)
     @user_id = user_id
     @text = text
