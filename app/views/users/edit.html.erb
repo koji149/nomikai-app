@@ -56,7 +56,7 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"大学（最大30字", :class => "text-black" %><br />
+                  <%= f.label :"大学（最大30字）", :class => "text-black" %><br />
                   <%= f.text_field :university, autocomplete: "university", maxlength: "30", :class => "form-control" %>
                 </div>
               </div>
@@ -72,7 +72,7 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <%= f.label :"紹介文", :class => "text-black" %><br />
+                  <%= f.label :"紹介文（最大300字）", :class => "text-black" %><br />
                   <%=  f.text_area :comment, autocomplete: "comment", maxlength: "250", :class => "form-control" %>
                 </div>
               </div>

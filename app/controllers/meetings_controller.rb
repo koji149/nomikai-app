@@ -14,7 +14,13 @@ class MeetingsController < ApplicationController
       return
     else
       @twitter_url = params[:twitter_url]
-      text = "アフターキャンパスです。あなたの募集に参加リクエストが届きました\n参加者のtwitter:#{@twitter_url}\n参加者はあなたの返事を待っています。"
+      text = "アフターキャンパスです。\n#{@twitter_url}さんから参加リクエストが届きました！\n
+      #{@twitter_url}さんはあなたの返事を待っています。早速連絡しましょう！\n\n
+      募集情報\n
+      募集日字：#{@meeting.date}#{@meeting.time}\n
+      お店：#{@meeting.store}\n
+      お店のURL：#{@meeting.url}
+      "
       TwitterService.new(@meeting.user.uid, text).call
       return
     end

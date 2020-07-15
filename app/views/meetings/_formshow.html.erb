@@ -1,8 +1,7 @@
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
-    
     <div class="modal-header">
-      <h5 class="modal-title">募集条件を記入してください</h5>
+      <h5 class="modal-title">参加リクエストを送りました</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -10,12 +9,11 @@
     <div class="modal-body">
     <p>募集者の連絡先</p>
       <p><%= link_to "#{@meeting.user.twitter}", @meeting.user.twitter %></p>
-      <p>アフターキャンパスからDMを送りましたので、募集者からの返信をお待ちください。</p>
-    <p>※twitter上で募集者からDMを受け取れるよう設定をしてください※</p>
+      <p>アフターキャンパスから募集者にDMを送りましたので、募集者からの返信をお待ちください。</p>
+    <p>※twitter上で募集者から<b>DMを受け取れるよう設定</b>をしてください※</p>
     </div>
     <div class="modal-footer actions">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
     </div>
-
   </div>
 </div>

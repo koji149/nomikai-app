@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "style";
+@import "font";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 /*
@@ -15,6 +16,10 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
+body{
+  font-family: 'NotoSansCJKjp-Medium.otf_font';
+}
 /*ページネーション自体のデザイン*/
 .pagination>li>a {          
   border: none;     /*枠線をなくす*/
