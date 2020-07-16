@@ -12,13 +12,11 @@
     <header class="site-navbar" >
       <div class="container-fluid">
         <div class="row align-items-center">
-            <nav class="site-navigation" >
+          <nav class="site-navigation" >
             <div class="site-logo">
               <%= link_to image_tag('top2.png'), root_path %>
             </div>
-              <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-              </ul>
-            </nav>
+          </nav>
         </div>
       </div>
     </header>
@@ -30,7 +28,6 @@
               <h2>マイページ編集</h2><br/>
 
               <br/><div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"トップ画像", :class => "text-black" %><br/>
                   <%= f.file_field :image, autocomplete: "image", :class => "form-control" %>
@@ -38,7 +35,6 @@
               </div>
 
               <div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"ユーザーネーム（最大30字）", :class => "text-black"  %><br />
                   <%= f.text_field :name, autofocus: true, autocomplete: "name", maxlength: "30", :class => "form-control" %>
@@ -46,7 +42,6 @@
               </div>
 
               <div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"性別（必須）", :class => "text-black"  %><br />
                   <%= f.radio_button :gender, "男" %>男性 <%= f.radio_button :gender, "女" %>女性
@@ -54,7 +49,6 @@
               </div>
 
               <div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"大学（最大30字）", :class => "text-black" %><br />
                   <%= f.text_field :university, autocomplete: "university", maxlength: "30", :class => "form-control" %>
@@ -62,7 +56,6 @@
               </div>
 
               <%#<div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"動画（自己紹介等、任意）", :class => "text-black" %><%#<br />#%>
                   <%#<%= f.file_field :video, autocomplete: "video", :class => "form-control" %>
@@ -70,7 +63,6 @@
               <%#</div>#%>
               
               <div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"紹介文（最大300字）", :class => "text-black" %><br />
                   <%=  f.text_area :comment, autocomplete: "comment", maxlength: "250", :class => "form-control" %>
@@ -78,7 +70,6 @@
               </div>
 
               <div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"twitter（最大300字）", :class => "text-black" %><br />
                   <%= f.url_field :twitter, autocomplete: "twitter", maxlength: "300", :class => "form-control" %>
@@ -86,7 +77,6 @@
               </div>
 
               <div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"instagram（最大300字）", :class => "text-black" %><br />
                   <%= f.url_field :instagram, autocomplete: "instagram", maxlength: "300", :class => "form-control" %>
@@ -94,7 +84,6 @@
               </div>
 
               <div class="row form-group">
-                
                 <div class="col-md-12">
                   <%= f.label :"その他（facebook TikTok等）（最大300字）", :class => "text-black" %><br />
                   <%= f.url_field :other_link, autocomplete: "other_link", maxlength: "300", :class => "form-control" %>
@@ -108,7 +97,7 @@
                 </div>
               </div>
             <% end %>
-          
+          </div>
         </div>
       </div>
     </div>

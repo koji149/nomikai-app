@@ -1,3 +1,3 @@
 Rails.application.configure do
-  config.exceptions_app = ErrorsController.action(:show)
+  config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
 end
