@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[twitter google_oauth2]
         
     has_one_attached :image
-    has_one_attached :video
+    #has_one_attached :video
 
     before_create :generate_token
 
@@ -32,7 +32,7 @@ class User < ApplicationRecord
     end
 
     def image_content_type
-      extension = ['image/png', 'image/jpg', 'image/jpeg', 'image/']
+      extension = ['image/png', 'image/jpg', 'image/jpeg']
       errors.add(:image, "の拡張子が間違っています") unless image.content_type.in?(extension)
     end
 
