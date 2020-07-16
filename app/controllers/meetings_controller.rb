@@ -31,7 +31,7 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
     @meeting.user_id = current_user.id
-    if @meeting.save
+    if @meeting.save!
       redirect_to meetings_path
     else
       flash.now[:danger] = "募集の作成に失敗しました"

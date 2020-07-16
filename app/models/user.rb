@@ -31,6 +31,15 @@ class User < ApplicationRecord
       end
     end
 
+    def image_content_type
+      extension = ['image/png', 'image/jpg', 'image/jpeg', 'image/']
+      errors.add(:image, "の拡張子が間違っています") unless image.content_type.in?(extension)
+    end
+
+    def was_attached?
+      self.image.attached?
+    end
+
   def generate_token
     self.id = loop do
       random_token = SecureRandom.uuid
@@ -41,14 +50,5 @@ class User < ApplicationRecord
     private
     def self.dumy_email(auth)
       "#{auth.uid}-#{auth.provider}@example.com"
-    end
-
-    def image_content_type
-      extension = ['image/png', 'image/jpg', 'image/jpeg']
-      errors.add(:image, "の拡張子が間違っています") unless image.content_type.in?(extension)
-    end
-
-    def was_attached?
-      self.image.attached?
     end
 end
