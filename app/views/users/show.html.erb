@@ -46,7 +46,7 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><label for="name1">性別</label><br/><%=@user.gender%></li>
                     <li class="list-group-item"><label for="name1">大学</label><br/><%=@user.university%></li>
-                    <li class="list-group-item"><label for="name1">Twitter</label><br/><%= link_to "https://twitter.com/#{@meeting.user.username}" %></li>
+                    <li class="list-group-item"><label for="name1">Twitter</label><br/><%= link_to "https://twitter.com/#{@user.username}" %></li>
                     <li class="list-group-item"><label for="name1">Instagram</label><br/><%=link_to "#{@user.twitter}", @user.twitter %></li>
                     <li class="list-group-item"><label for="name1">その他のURL</label><br/><%=link_to "#{@user.other_link}", @user.other_link %></li>
                   </ul>
