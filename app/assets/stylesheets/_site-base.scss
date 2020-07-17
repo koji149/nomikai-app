@@ -3,7 +3,7 @@ body {
 	color: lighten($black, 50%);
 	font-weight: 300;
 	font-size: $font-size-base;
-	background: image-url("cozmic.webp");
+	background: image-url("cozmic.jpg");
 	background-size: contain;
 	font-family: $font-family-sans-serif;
 }
@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5,
 
 .site-footer {
 	padding: 4em 0;
-	background: image-url("tonight.webp");
+	background: image-url("tonight.jpg");
 	background-size: cover;
 
 
