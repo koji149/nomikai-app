@@ -1,15 +1,4 @@
 <%@meetings.each do |meeting|%>
-<%case meeting.area
-    when 11 then
-      @area = "埼玉"
-    when 13 then
-      @area = "東京"
-    when 27 then
-      @area = "大阪"
-    when 40 then
-      @area = "福岡"
-    else
-    end%>
   <div class="col-lg-4 mb-4" id="bookmark_btn_<%= meeting.id %>">
     <div class="entry2">
       <div class="excerpt">
@@ -17,7 +6,7 @@
           <% if meeting.image.attached? %>
             <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% else %>
-            <%= image_tag ("bar1839361_640.jpg"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
+            <%= image_tag ("bar.webp"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
           <div class="card-body">
               <h5 class="card-title">
@@ -33,7 +22,7 @@
                 </div>
               </h5>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><label for="name1">場所</label><br/><%=@area%></li>
+                <%#<li class="list-group-item"><label for="name1">場所</label><br/><%=%><%#</li>#%>
                 <li class="list-group-item"><label for="name1">説明</label><br/><%=meeting.explain%></li>
                 <li class="list-group-item"><label for="name1">募集日</label><br/><%=meeting.date.strftime("%Y-%m-%d")%></li>
                 <li class="list-group-item"><label for="name1">開始時間</label><br/><%=meeting.time.strftime("%H:%M")%></li>

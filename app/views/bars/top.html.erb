@@ -61,7 +61,6 @@
             <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
             <!-- ユーザーがログインしていた時の処理 -->
             <!-- ログアウトをする -->
-              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button>
               <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集一覧", meetings_path, class: "fas fa-glass-cheers" %></button>
               <button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button> <!-- ログイン画面に移行する -->
             <% else %>
@@ -80,18 +79,9 @@
           <div class="row align-items-stretch retro-layout-2">
             <div class="col-md-4" >
               <div class="h-entry mb-30 v-height gradient">
-                <%=image_tag 'osake.webp', alt: "近くの大学生を募集する", class: "h-entry mb-30 v-height gradient"%>
-                <div class="text">
-                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "近くの大学生を募集", new_meeting_path, remote: true %></button></h2>
-                  <span class="date">新たな出会いや楽しさを求めて...</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4" >
-              <div class="h-entry mb-30 v-height gradient">
                 <%=image_tag 'nomikai.webp', alt: "参加する", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "参加する", meetings_path%></button></h2>
+                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "募集一覧", meetings_path%></button></h2>
                   <span class="date">今日は人数多めで楽しむもありかも...</span>
                 </div>
               </div>
