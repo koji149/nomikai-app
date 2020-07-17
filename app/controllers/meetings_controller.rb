@@ -9,13 +9,16 @@ class MeetingsController < ApplicationController
 
   def show
       @meeting = Meeting.find(params[:id])
-    unless params.has_key?(:twitter_url)
+    unless params.has_key?(:user)
       render "join"
       return
     else
-      @twitter_url = params[:twitter_url]
-      text = "アフターキャンパスです。\n#{@twitter_url}さんから参加リクエストが届きました！\n#{@twitter_url}さんはあなたの返事を待っています。早速連絡しましょう！\n\n募集情報\n
-      募集日字：#{@meeting.date}#{@meeting.time}\n
+      @user_twitter = User.find(params[:user])
+      user_name = @user_twitter.username
+      date = @meeting.date.strftime("%Y年 %m月 %d日")
+      time = @meeting.time.strftime("%H:%M:%S")
+      text = "アフターキャンパスです。\n「https://twitter.com/#{user_name}」さんから参加リクエストが届きました！\n「https://twitter.com/#{user_name}」さんはあなたの返事を待っています。早速連絡しましょう！\n\n募集情報------\n
+      募集日時：\n#{date}#{time}\n
       お店：#{@meeting.bar}\n
       お店のURL：#{@meeting.url}
       "
@@ -31,7 +34,6 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
     if @meeting.save
-      redirect_to meetings_path
     else
       flash.now[:danger] = "募集の作成に失敗しました"
       render 'meetings/index' # failed_pathに遷移する

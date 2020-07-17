@@ -1,4 +1,4 @@
-class AddColumnsToUsers < ActiveRecord::Migration[5.2]
+class AddGenderToUsers < ActiveRecord::Migration[5.2]
   def change
     add_column :users, :gender, :string
     add_column :users, :university, :string
@@ -6,5 +6,6 @@ class AddColumnsToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :twitter, :string
     add_column :users, :instagram, :string
     add_column :users, :other_link, :string
+    add_column :users, :username, :string
   end
 end

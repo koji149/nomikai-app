@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_163020) do
+ActiveRecord::Schema.define(version: 2020_07_17_054730) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -65,12 +65,13 @@ ActiveRecord::Schema.define(version: 2020_07_16_163020) do
     t.string "name", limit: 255
     t.string "provider", limit: 255
     t.string "uid", limit: 255
-    t.string "gender", limit: 255
-    t.string "university", limit: 255
+    t.string "gender"
+    t.string "university"
     t.text "comment"
-    t.string "twitter", limit: 255
-    t.string "instagram", limit: 255
-    t.string "other_link", limit: 255
+    t.string "twitter"
+    t.string "instagram"
+    t.string "other_link"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

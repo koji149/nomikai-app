@@ -23,6 +23,7 @@ class User < ApplicationRecord
         user.provider = auth.provider
         user.uid = auth.uid
         user.name = auth.info.name
+        user.username = auth.info.nickname
         user.email = auth.info.email if user.provider == "google_oauth2"
         user.email = User.dumy_email(auth) if user.provider == "twitter"
         #user.image = auth.info.image.gsub("_normal","") if user.provider == "twitter"

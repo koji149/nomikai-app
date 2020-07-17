@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <% set_meta_tags title: "「どこ行くか決まらない？」 #{@area_name}の#{@category}", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
+  <% set_meta_tags title: "近くの大学生と飲みに行こう！", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +14,7 @@
         <div class="row align-items-center">
             <nav class="site-navigation" >
             <div class="site-logo">
-              <%= link_to image_tag('top2.png'), root_path %>
+              <%= link_to image_tag('aftercampus_wide.webp'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
                 <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></li>
