@@ -5,6 +5,17 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
     @sum_meetings = @meetings.length
+    case @meetings.area
+    when 11 then
+      @area = "埼玉"
+    when 13 then
+      @area = "東京"
+    when 27 then
+      @area = "大阪"
+    when 40 then
+      @area = "福岡"
+    else
+    end
   end
 
   def show

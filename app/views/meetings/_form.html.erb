@@ -28,7 +28,7 @@
         <%= f.date_field :date, class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"集合時間" , class: "form-control-label"%>
+        <%= f.label :"参加してほしい時間" , class: "form-control-label"%>
         <%= f.time_field :time, class: "form-control" %>
       </div>
       <div class="form-group field">
@@ -40,11 +40,11 @@
         <%= f.url_field :url, maxlength: "300", class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"人数や、滞在時間について（最大500字）" , class: "form-control-label"%>
+        <%= f.label :"募集人数や、滞在時間について（最大500字）" , class: "form-control-label"%>
         <%= f.text_area :explain, maxlength: "500", class: "form-control" %>
       </div>
       <div class="form-group field">
-        <%= f.label :"プロフィール画像", class: "form-control-label" %>
+        <%= f.label :"サムネイル画像", class: "form-control-label" %>
         <%= f.file_field :image, autocomplete: "image", class: "form-control" %>
       </div>
     </div>

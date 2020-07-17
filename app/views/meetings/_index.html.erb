@@ -22,6 +22,7 @@
                 </div>
               </h5>
               <ul class="list-group list-group-flush">
+                <li class="list-group-item"><label for="name1">場所</label><br/><%=@area%></li>
                 <li class="list-group-item"><label for="name1">説明</label><br/><%=meeting.explain%></li>
                 <li class="list-group-item"><label for="name1">募集日</label><br/><%=meeting.date.strftime("%Y-%m-%d")%></li>
                 <li class="list-group-item"><label for="name1">開始時間</label><br/><%=meeting.time.strftime("%H:%M")%></li>
