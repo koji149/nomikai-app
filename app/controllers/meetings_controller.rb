@@ -34,6 +34,7 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
     if @meeting.save
+      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
     else
       flash.now[:danger] = "募集の作成に失敗しました"
       render 'meetings/index' # failed_pathに遷移する
