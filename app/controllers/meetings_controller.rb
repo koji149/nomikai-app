@@ -16,9 +16,9 @@ class MeetingsController < ApplicationController
       @user_twitter = User.find(params[:user])
       user_name = @user_twitter.username
       date = @meeting.date.strftime("%Y年 %m月 %d日")
-      time = @meeting.time.strftime("%H:%M:%S")
-      text = "アフターキャンパスです。\n「https://twitter.com/#{user_name}」さんから参加リクエストが届きました！\n「https://twitter.com/#{user_name}」さんはあなたの返事を待っています。早速連絡しましょう！\n\n募集情報------\n
-      募集日時：\n#{date}#{time}\n
+      time = @meeting.time.strftime("%H時 %M分")
+      text = "アフターキャンパスです。\n「https://twitter.com/#{user_name}」さんから参加リクエストが届きました！\n「https://twitter.com/#{user_name}」さんはあなたの返事を待っています。早速連絡しましょう！\n\n------募集情報------\n
+      募集日時：\n#{date}　#{time}\n
       お店：#{@meeting.bar}\n
       お店のURL：#{@meeting.url}
       "

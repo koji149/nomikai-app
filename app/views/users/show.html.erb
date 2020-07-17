@@ -24,45 +24,38 @@
     </header>
     <div class="site-section bg-light">
       <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-5 text-center">
-            <h2　class="fas fa-user">マイページ</h2>
-          </div>
-        </div>
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-5 text-center">
-            <% if @user.image.attached? %>
-              <%= image_tag @user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
-            <% else %>
-              <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
-            <% end %>
-            <h2 class="mb-3 h5"><%=@user.name%></h2>
-            <ul class="list-unstyled success">
-              <li><%=@user.gender%></li>
-              <li><%=@user.university%></li>
-            </ul>
-            <%=@user.comment%>
-            <p class="mt-5">
-            <% if @user.twitter.present? %>
-              <%=link_to (@user.twitter) do %>
-                <span class="fab fa-twitter fa-3x"></span>
-              <% end %>
-            <% end %>
-            <% if @user.instagram.present? %>
-              <%=link_to (@user.instagram) do %>
-                <span class="fab fa-instagram fa-3x"></span>
-              <% end %>
-            <% end %>
-            <% if @user.other_link.present? %>
-              <%=link_to (@user.other_link) do %>
-                <span class="fas fa-link fa-3x"></span>
-              <% end %>
-            <% end %>
-            </p>
-            <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user), class: "fas fa-user-edit" %></button>
-            <button type="button" class="btn-outline-danger rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "fas fa-sign-out-alt"%></button>
-            <button type="button" class="btn-outline-danger rounded-pill"><%= link_to "トップに戻る", root_path, class: "fas fa-home"%></button>
-          </div>
+        <div class="card text-left" style="width: w-100">
+              <%#<% if meeting.image.attached? %>
+                <%#<%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
+              <%#<% else %>
+                <%#<%= image_tag ("bar1839361_640.jpg"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
+              <%#<% end %>
+              <div class="card-body">
+                  <h5 class="card-title">
+                    <div class="post-meta align-items-center text-left clearfix">
+                    <figure class="author-figure mb-0 mr-3 float-left">
+                        <% if @user.image.attached? %>
+                          <%= image_tag @user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
+                        <% else %>
+                          <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
+                        <% end %>
+                    </figure>
+                    <span class="d-inline-block mt-1">By<%=link_to "#{@user.name}", "users/#{@user.id}"%></span>
+                    </div>
+                  </h5>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><label for="name1">性別</label><br/><%=@user.gender%></li>
+                    <li class="list-group-item"><label for="name1">大学</label><br/><%=@user.university%></li>
+                    <li class="list-group-item"><label for="name1">Twitter</label><br/><%= link_to "https://twitter.com/#{@meeting.user.username}" %></li>
+                    <li class="list-group-item"><label for="name1">Instagram</label><br/><%=link_to "#{@user.twitter}", @user.twitter %></li>
+                    <li class="list-group-item"><label for="name1">その他のURL</label><br/><%=link_to "#{@user.other_link}", @user.other_link %></li>
+                  </ul>
+              </div>
+              <div class="card-footer text-center ">
+                <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user), class: "fas fa-user-edit" %></button>
+                <button type="button" class="btn-outline-danger rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "fas fa-sign-out-alt"%></button>
+                <button type="button" class="btn-outline-danger rounded-pill"><%= link_to "トップに戻る", root_path, class: "fas fa-home"%></button>
+              </div>
         </div>
       </div>
     </div>
