@@ -1,4 +1,15 @@
 <%@meetings.each do |meeting|%>
+<%case meetings.area
+    when 11 then
+      @area = "埼玉"
+    when 13 then
+      @area = "東京"
+    when 27 then
+      @area = "大阪"
+    when 40 then
+      @area = "福岡"
+    else
+    end%>
   <div class="col-lg-4 mb-4" id="bookmark_btn_<%= meeting.id %>">
     <div class="entry2">
       <div class="excerpt">
