@@ -70,4 +70,10 @@ class MeetingsController < ApplicationController
     def creat_params
       params.require(:meeting).permit(:area, :date, :time, :bar, :url, :explain, :image).merge(user_id: current_user.id)
     end
+
+    def authenticate
+      redirect_to new_user_session_path unless user_signed_in?
+      flash[:danger] = "ログインをしてください"
+    end
+
 end
