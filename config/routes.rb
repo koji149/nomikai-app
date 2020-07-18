@@ -11,6 +11,4 @@ Rails.application.routes.draw do
   get 'bars/getposition' => 'bars#getposition'
   resources :users, only: [:show, :edit, :update]
   resources :meetings
-  
-  post '*not_found' => 'application#routing_error'
 end
