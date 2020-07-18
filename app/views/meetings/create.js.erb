@@ -1,6 +1,6 @@
 $("#user-modal").html("<%= escape_javascript(render 'formconfirm') %>")
 $("#user-modal").modal("show")
 $("#user-modal").on('hidden.bs.modal', function () {
-  $("#row").html("<%= escape_javascript(render 'index') %>")
-  $("#row").modal("show")
+  $("#user-modal").html("<%= escape_javascript(render 'index') %>")
+  $("#user-modal").modal("hide")
 })
