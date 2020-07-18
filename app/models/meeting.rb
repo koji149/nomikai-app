@@ -7,7 +7,16 @@ class Meeting < ApplicationRecord
   validates :bar, presence: { message: 'は１文字以上入力してください。' }
   validates :url, presence: { message: 'は１文字以上入力してください。' }
   validates :explain, presence: { message: 'は１文字以上入力してください。' }
+  validate :image_content_type, if: :was_attached?
 
+  def image_content_type
+    extension = ['image/PNG', 'image/png', 'image/jpg', 'image/jpeg', 'image/JPEG', 'image/JPG']
+    errors.add(:image, "の拡張子が間違っています") unless image.content_type.in?(extension)
+  end
+  
+  def was_attached?
+    self.image.attached?
+  end
 
   #enum area: {
     #北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,

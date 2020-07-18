@@ -26,15 +26,16 @@ class User < ApplicationRecord
         user.username = auth.info.nickname
         user.email = auth.info.email if user.provider == "google_oauth2"
         user.email = User.dumy_email(auth) if user.provider == "twitter"
-        #user.image = auth.info.image.gsub("_normal","") if user.provider == "twitter"
+        twitter_image = auth.info.image.gsub("_normal","")
+        user.image.attach(twitter_image) unless user.image.present?
         #user.image = auth.info.image if user.provider == "google_oauth2"
         user.password = Devise.friendly_token[0, 20] # ランダムなパスワードを作成
       end
     end
 
     def image_content_type
-      extension = ['image/png', 'image/jpg', 'image/jpeg']
-      errors.add(:image, "の拡張子が間違っています") unless image.content_type.in?(extension)
+      extension = ['image/PNG', 'image/png', 'image/jpg', 'image/jpeg', 'image/JPEG', 'image/JPG']
+      errors.add(:image, "の拡張子は「png PNG jpg jpeg JPG JPEG」のみ有効です") unless image.content_type.in?(extension)
     end
 
     def was_attached?
