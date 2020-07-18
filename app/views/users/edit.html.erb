@@ -9,16 +9,6 @@
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
   </head>
   <div class="site-wrap">
-  <% if @meeting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@meeting.errors.count, "error") %> 更新に失敗しました</h2>
-      <ul>
-        <% @meeting.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
     <header class="site-navbar" >
       <div class="container-fluid">
         <div class="row align-items-center">
