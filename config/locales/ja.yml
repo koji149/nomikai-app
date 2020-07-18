@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      meeting:
+        attributes:
+          area: "場所"
+          bar: "お店の名前"
+          url: "説明欄"
+          image: "写真"

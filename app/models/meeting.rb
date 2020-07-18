@@ -11,7 +11,7 @@ class Meeting < ApplicationRecord
 
   def image_content_type
     extension = ['image/PNG', 'image/png', 'image/jpg', 'image/jpeg', 'image/JPEG', 'image/JPG']
-    errors.add(:image, "の拡張子が間違っています") unless image.content_type.in?(extension)
+    errors.add(:image, "の拡張子は「png PNG jpg jpeg JPG JPEG」のみ有効です") unless image.content_type.in?(extension)
   end
   
   def was_attached?

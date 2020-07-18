@@ -1144,6 +1144,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails-i18n (5.1.3)
+      i18n (>= 0.7, < 2)
+      railties (>= 5.0, < 6)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -1276,6 +1279,7 @@ DEPENDENCIES
   omniauth-twitter
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.3)
+  rails-i18n
   rails_12factor
   rambulance
   roboto
