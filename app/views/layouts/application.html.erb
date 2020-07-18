@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 　　 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <script>
@@ -50,7 +51,6 @@
     }
   </script>
   </head>
-    <div id="user-modal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
   <body>
 <%= flash_message(flash[:success], :success) if flash[:success] %>
@@ -60,4 +60,5 @@
     <%= yield %>
   </body>
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="user-modal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </html>
