@@ -7,44 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script>
-    // Geolocation APIに対応している
-    if (navigator.geolocation) {
-          // Geolocation APIに対応していない
-    } else {
-      alert("この端末では位置情報が取得できません");
-    }
-
-    // 現在地取得処理
-    function getPosition() {
-      // 現在地を取得
-      navigator.geolocation.getCurrentPosition(
-        // 取得成功した場合
-        function(position) {
-            alert("位置情報を使って近くのお店を探します");
-            window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
-        },
-
-        // 取得失敗した場合
-        function(error) {
-          switch(error.code) {
-            case 1: //PERMISSION_DENIED
-              alert("位置情報の利用が許可されていません");
-              break;
-            case 2: //POSITION_UNAVAILABLE
-              alert("現在位置が取得できませんでした");
-              break;
-            case 3: //TIMEOUT
-              alert("タイムアウトになりました");
-              break;
-            default:
-              alert("その他のエラー(エラーコード:"+error.code+")");
-              break;
-          }
-        }
-      );
-    }
-  </script>
   </head>
 
   <body>
@@ -61,7 +23,7 @@
             <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
             <!-- ユーザーがログインしていた時の処理 -->
             <!-- ログアウトをする -->
-              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集一覧", meetings_path, class: "fas fa-glass-cheers" %></button>
+              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する/参加する", meetings_path, class: "fas fa-glass-cheers" %></button>
               <button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button> <!-- ログイン画面に移行する -->
             <% else %>
             <!-- ユーザーがログインしていなかった時の処理 -->
@@ -81,7 +43,7 @@
               <div class="h-entry mb-30 v-height gradient">
                 <%=image_tag 'nomikai.jpg', alt: "参加する", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "募集一覧", meetings_path%></button></h2>
+                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "募集する/参加する", meetings_path, class: "fas fa-glass-cheers" %></button></h2>
                   <span class="date">今日は人数多めで楽しむもありかも...</span>
                 </div>
               </div>
@@ -90,7 +52,7 @@
               <div class="h-entry mb-30 v-height gradient">
                 <%=image_tag 'bar.png', alt: "近くの居酒屋を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2><button onclick="getPosition();" type="button" class="btn-outline-info rounded-pill">徒歩5分で着く居酒屋を探す</button></h2>
+                  <h2><button onclick="getPosition();" type="button" class="btn-outline-info rounded-pill"><p class="fas fa-beer">徒歩5分で着く居酒屋を探す</p></button></h2>
                   <span class="date">一件目行く居酒屋、朝まで過ごすバーなど...</span>
                 </div>
               </div>

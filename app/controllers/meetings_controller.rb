@@ -36,8 +36,7 @@ class MeetingsController < ApplicationController
     if @meeting.save
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
     else
-      flash.now[:danger] = "募集の作成に失敗しました"
-      render 'meetings/index' # failed_pathに遷移する
+      render action: :new
     end
   end
 
@@ -52,6 +51,7 @@ class MeetingsController < ApplicationController
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
       @sum_meetings = @meetings.length
     else
+      render action: :edit
     end
   end
 
@@ -62,7 +62,7 @@ class MeetingsController < ApplicationController
       @sum_meetings = @meetings.length
       flash.now[:success] = "削除に成功しました"
     else
-      flash.now[:danger] = "削除に失敗しました"
+      render action: :index
     end
   end
 
@@ -70,10 +70,4 @@ class MeetingsController < ApplicationController
     def creat_params
       params.require(:meeting).permit(:area, :date, :time, :bar, :url, :explain, :image).merge(user_id: current_user.id)
     end
-
-    def authenticate
-      redirect_to new_user_session_path unless user_signed_in?
-      flash[:danger] = "ログインをしてください"
-    end
-
 end
