@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_07_17_054730) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name", limit: 255, null: false
-    t.string "record_type", limit: 255, null: false
+    t.string "name", null: false
+    t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_054730) do
   end
 
   create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "key", limit: 255, null: false
-    t.string "filename", limit: 255, null: false
-    t.string "content_type", limit: 255
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", limit: 255, null: false
+    t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2020_07_17_054730) do
   create_table "meetings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "user_id"
     t.integer "area"
-    t.string "bar", limit: 255
-    t.string "url", limit: 255
+    t.string "bar"
+    t.string "url"
     t.text "explain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,20 +51,20 @@ ActiveRecord::Schema.define(version: 2020_07_17_054730) do
   end
 
   create_table "users", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "email", limit: 255, default: "", null: false
-    t.string "encrypted_password", limit: 255, default: "", null: false
-    t.string "reset_password_token", limit: 255
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "confirmation_token", limit: 255
+    t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email", limit: 255
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", limit: 255
-    t.string "provider", limit: 255
-    t.string "uid", limit: 255
+    t.string "name"
+    t.string "provider"
+    t.string "uid"
     t.string "gender"
     t.string "university"
     t.text "comment"
