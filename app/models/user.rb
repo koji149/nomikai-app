@@ -14,8 +14,8 @@ class User < ApplicationRecord
     validates :university, length: { maximum: 50 }
     validates :comment, length: { maximum: 250 }
     validates :twitter, length: { maximum: 100 }
-    validates :instagram, length: { maximum: 100 }
-    validates :other_link, length: { maximum: 100 }
+    validates :instagram, length: { maximum: 150 }
+    validates :other_link, length: { maximum: 150 }
     validate :image_content_type, if: :was_attached?
 
     def self.from_omniauth(auth)

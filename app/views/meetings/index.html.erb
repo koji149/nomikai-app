@@ -17,7 +17,6 @@
               <%= link_to image_tag('aftercampus_wide.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></li>
                 <% if user_signed_in? %> 
                 <li><button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button></li>
                 <%end%><!-- ログイン画面に移行する -->
@@ -30,8 +29,9 @@
     <div class="py-5 bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
-            <h1>募集一覧</h1>
+          <div class="col-md-6" style="text-align: center;">
+            <span>募集一覧</span>
+            <h1><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></h1>
             <p>ヒット数：<%=@sum_meetings%>件</p>
           </div>
         </div>
