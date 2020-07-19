@@ -3,10 +3,12 @@ class Meeting < ApplicationRecord
 
   has_one_attached :image
 
-  validates :area, presence: { message: 'は１文字以上入力してください。' }
-  validates :bar, presence: { message: 'は１文字以上入力してください。' }
-  validates :url, presence: { message: 'は１文字以上入力してください。' }
-  validates :explain, presence: { message: 'は１文字以上入力してください。' }
+  validates :area, presence: { message: 'を選択してください' }
+  validates :date, presence: { message: 'を選択してください' }
+  validates :time, presence: { message: 'を選択してください' }
+  validates :bar, length: { in: 1..100 }
+  validates :url, length: { in: 1..175 }
+  validates :explain, length: { in: 1..400 }
   validate :image_content_type, if: :was_attached?
 
   def image_content_type
