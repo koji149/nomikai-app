@@ -18,10 +18,11 @@
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
                 <% if user_signed_in? %> 
-                <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></li>
-                <li><button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button></li>
+                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button></li>
                 <%end%><!-- ログイン画面に移行する -->
-                <li><button onclick="getPosition();" type="button" class="btn-outline-primary rounded-pill"><div class="fas fa-beer">近くの居酒屋を探す</div></button></li>
+                <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></li>
+                <li><button onclick="getmeetingPosition();" type="button" class="btn-outline-success rounded-pill"><div class="fas fa-wine-glass-alt">徒歩5分で着く募集を探す</div></button></li>
+                <li><button onclick="getPosition();" type="button" class="btn-outline-danger rounded-pill"><div class="fas fa-beer">徒歩5分で着く居酒屋を探す</div></button></li>
               </ul>
             </nav>
         </div>
@@ -31,15 +32,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6" >
-            <h1>募集一覧</h1>
+            <h1><%=@area_name%></h1>
             <p>ヒット数：<%=@sum_meetings%>件</p>
           </div>
         </div>
         <nav class="nav nav-pills nav-justified">
-            <button type="button" class="nav-item btn-outline-info rounded-pill font-weight-bold" ><%= link_to "東京", meetings_path(area: 13) %></button>
-            <button type="button" class="nav-item btn-outline-info rounded-pill font-weight-bold" ><%= link_to "埼玉", meetings_path(area: 11) %></button>
-            <button type="button" class="nav-item btn-outline-info rounded-pill font-weight-bold" ><%= link_to "大阪", meetings_path(area: 27) %></button>
-            <button type="button" class="nav-item btn-outline-info rounded-pill font-weight-bold" ><%= link_to "福岡", meetings_path(area: 40) %></button>
+        <% unless @area_name == "近くの募集一覧" %>
+            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "東京", meetings_path(area: 13) %></button>
+            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "埼玉", meetings_path(area: 11) %></button>
+            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "大阪", meetings_path(area: 27) %></button>
+            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "福岡", meetings_path(area: 40) %></button>
+        <%end%>
         </nav>
       </div>
     </div>

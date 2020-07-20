@@ -17,6 +17,8 @@
               <%= link_to image_tag('aftercampus_wide.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
+                <li><button onclick="getmeetingPosition();" type="button" class="btn-outline-success rounded-pill"><div class="fas fa-wine-glass-alt">徒歩5分で着く募集を探す</div></button></li>
+                <li><button onclick="getPosition();" type="button" class="btn-outline-danger rounded-pill"><div class="fas fa-beer">徒歩5分で着く居酒屋を探す</div></button></li>
                 <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する/参加する", meetings_path, class: "fas fa-glass-cheers" %></button></li>
               </ul>
             </nav>

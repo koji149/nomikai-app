@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate
+
   def show
     @user = User.find(params[:id])
   end
@@ -30,5 +32,10 @@ class UsersController < ApplicationController
 
     def creat_params
       params.require(:user).permit(:name, :gender, :university, :comment, :twitter, :instagram, :other_link, :image)
+    end
+
+    def authenticate
+      redirect_to new_user_session_path unless user_signed_in?
+      flash[:danger] = "ログインをしてください"
     end
 end

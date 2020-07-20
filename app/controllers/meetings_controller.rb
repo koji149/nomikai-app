@@ -1,8 +1,6 @@
-require 'uri'
-
 class MeetingsController < ApplicationController
 
-  before_action :authenticate
+  before_action :authenticate, except: [:index]
 
   def index
     if params[:latitude].present? && params[:longitude].present?
@@ -25,7 +23,7 @@ class MeetingsController < ApplicationController
       FROM
         meetings
       HAVING
-        distance <= 10
+        distance <= 6
       ORDER BY
         distance
       LIMIT 12
@@ -40,16 +38,17 @@ class MeetingsController < ApplicationController
 
     if params[:area]
       area_num = params[:area]
-      case area_num
-        when 11 then
+      
+      if area_num == "11" 
           @area_name = "埼玉の募集一覧"
-        when 13 then
+        elsif area_num == "13"
           @area_name = "東京の募集一覧"
-        when 27 then
+        elsif area_num == "27"
           @area_name = "大阪の募集一覧"
-        when 40 then
+        elsif area_num == "40"
           @area_name = "福岡の募集一覧"
-      end
+        else
+        end
       @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(10)
     else
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
