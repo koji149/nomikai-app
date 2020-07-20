@@ -85,8 +85,8 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
 
-    if params[:bar]
-    address = params[:bar]
+    if params.require(:meeting).permit(:bar)
+    address = params.require(:meeting).permit(:bar)
     address = address.gsub(" ", "")
     geo_url = ENV['GEO_URL']
     geo_key = ENV['GEO_KEY']
@@ -100,13 +100,16 @@ class MeetingsController < ApplicationController
     geo_request = geo_client.get(geo_url, geo_data)
     @geo_response = JSON.parse(geo_request.body)
     p @geo_response
-    if latitude.present? && longitude.present?
-      latitude = @geo_response["results"][0]["geometry"]["location"]["lat"]
-      longitude = @geo_response["results"][0]["geometry"]["location"]["lng"]
-      @meeting.lat = latitude
-      @meeting.lng = longitude
+      if latitude.present? && longitude.present?
+        latitude = @geo_response["results"][0]["geometry"]["location"]["lat"]
+        longitude = @geo_response["results"][0]["geometry"]["location"]["lng"]
+        @meeting.lat = latitude
+        @meeting.lng = longitude
+      end
+    else
+      @meeting.lat = 3
+      @meeting.lng = 3
     end
-  end
 
     if @meeting.save
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
