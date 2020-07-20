@@ -1,9 +1,58 @@
 class MeetingsController < ApplicationController
 
-  before_action :authenticate
+  before_action :authenticate, except: [:index]
 
   def index
-    @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
+    if params[:latitude].present? && params[:longitude].present?
+      current_lat = params[:latitude]
+      current_lng = params[:longitude]
+
+      #半径500m以内の募集を現在地から近い順に12件取り出す
+      sql = <<-"EOS"
+      SELECT
+        id, bar, lat, lng,
+        (
+          6371 * acos(
+            cos(radians(#{current_lat}))
+            * cos(radians(lat))
+            * cos(radians(lng) - radians(#{current_lng}))
+            + sin(radians(#{current_lat}))
+            * sin(radians(lat))
+          )
+        ) AS distance
+      FROM
+        spots
+      HAVING
+        distance <= 10
+      ORDER BY
+        distance
+      LIMIT 12
+      ;
+      EOS
+      
+      # sqlを実行
+      @meetings = ActiveRecord::Base.connection.select_all(sql)
+      @sum_meetings = @meetings.length
+      @area_name = "近くの募集一覧"
+    end
+
+    if params[:area]
+      area_num = params[:area]
+      case area_num
+        when 11 then
+          @area_name = "埼玉の募集一覧"
+        when 13 then
+          @area_name = "東京の募集一覧"
+        when 27 then
+          @area_name = "大阪の募集一覧"
+        when 40 then
+          @area_name = "福岡の募集一覧"
+      end
+      @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(10)
+    else
+      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
+      @area_name = "全募集一覧"
+    end
     @sum_meetings = @meetings.length
   end
 
@@ -33,6 +82,26 @@ class MeetingsController < ApplicationController
   
   def create
     @meeting = Meeting.new(creat_params)
+
+    address = params[:bar]
+    geo_url = ENV['GEO_URL']
+    geo_key = ENV['GEO_KEY']
+
+    geo_data = {
+      outputFormat: "json",
+      address: address,
+      key: geo_key
+    }
+
+    geo_client = HTTPClient.new
+    geo_request = geo_client.get(geo_url, geo_data)
+    @geo_response = JSON.parse(geo_request.body)
+    latitude = @geo_response["results"][0]["geometry"]["location"]["lat"]
+    longitude = @geo_response["results"][0]["geometry"]["location"]["lng"]
+
+    @meeting.lat = latitude if latitude.present?
+    @meeting.lng = longitude if longitude.present?
+
     if @meeting.save
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
     else

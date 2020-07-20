@@ -29,7 +29,6 @@
             alert("位置情報を使って近くのお店を探します");
             window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
         },
-
         // 取得失敗した場合
         function(error) {
           switch(error.code) {
@@ -49,6 +48,34 @@
         }
       );
     }
+
+    function getmeetingPosition() {
+      // 現在地を取得
+      navigator.geolocation.getCurrentPosition(
+        // 取得成功した場合
+        function(position) {
+            alert("位置情報を使って近くの募集を探します");
+            window.location.href = `/meetings/index?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`;
+        },
+        function(error) {
+          switch(error.code) {
+            case 1: //PERMISSION_DENIED
+              alert("位置情報の利用が許可されていません");
+              break;
+            case 2: //POSITION_UNAVAILABLE
+              alert("現在位置が取得できませんでした");
+              break;
+            case 3: //TIMEOUT
+              alert("タイムアウトになりました");
+              break;
+            default:
+              alert("その他のエラー(エラーコード:"+error.code+")");
+              break;
+          }
+        }
+      );
+    }
+
   </script>
   </head>
 
