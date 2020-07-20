@@ -87,7 +87,7 @@ class MeetingsController < ApplicationController
 
     if params.require(:meeting).permit(:bar)
     address = params[:bar]
-    address = address.gsub(" ", "")
+    #address = address.gsub(/[[:space:]]/, '')
     geo_url = ENV['GEO_URL']
     geo_key = ENV['GEO_KEY']
 
