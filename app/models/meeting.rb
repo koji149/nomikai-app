@@ -14,6 +14,15 @@ class Meeting < ApplicationRecord
   geocoded_by :bar
   after_validation :geocode
 
+  class << self
+    def within_box(distance, latitude, longitude)
+        distance = distance
+        center_point = [latitude, longitude]
+        box = Geocoder::Calculations.bounding_box(center_point, distance)
+        self.within_bounding_box(box)
+    end
+  end
+
   def image_content_type
     extension = ['image/PNG', 'image/png', 'image/jpg', 'image/jpeg', 'image/JPEG', 'image/JPG']
     errors.add(:image, "の拡張子は「png PNG jpg jpeg JPG JPEG」のみ有効です") unless image.content_type.in?(extension)

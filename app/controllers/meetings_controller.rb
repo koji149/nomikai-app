@@ -8,30 +8,13 @@ class MeetingsController < ApplicationController
       current_lng = params[:longitude]
 
       #半径500m以内の募集を現在地から近い順に12件取り出す
-      sql = <<-"EOS"
-      SELECT
-        id, bar, latitude, longitude,
-        (
-          6371 * acos(
-            cos(radians(#{current_lat}))
-            * cos(radians(latitude))
-            * cos(radians(longitude) - radians(#{current_lng}))
-            + sin(radians(#{current_lat}))
-            * sin(radians(latitude))
-          )
-        ) AS distance
-      FROM
-        meetings
-      HAVING
-        distance <= 6
-      ORDER BY
-        distance
-      LIMIT 12
-      ;
-      EOS
-      
+
+      latitude = current_lat.to_f
+      longitude = current_lng.to_f
+      @meetings = Meeting.within_box(3.728227, latitude, longitude)
+
+
       # sqlを実行
-      @meetings = ActiveRecord::Base.connection.select_all(sql)
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
     end
@@ -48,13 +31,13 @@ class MeetingsController < ApplicationController
         elsif area_num == "40"
           @area_name = "福岡の募集一覧"
         else
-        end
-      @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(10)
+      end
+      @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(12)
     else
-      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
+      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @area_name = "全募集一覧"
+      @sum_meetings = @meetings.length
     end
-    @sum_meetings = @meetings.length
   end
 
   def show
@@ -84,7 +67,7 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
     if @meeting.save
-      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
+      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
     else
       render action: :new
     end
@@ -98,7 +81,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     
     if @meeting.update(creat_params)
-      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
+      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
     else
       render action: :edit
@@ -108,7 +91,7 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting = Meeting.find(params[:id])
     if @meeting.destroy
-      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
+      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
       flash.now[:success] = "削除に成功しました"
     else
