@@ -100,7 +100,7 @@ class MeetingsController < ApplicationController
     geo_request = geo_client.get(geo_url, geo_data)
     @geo_response = JSON.parse(geo_request.body)
     p @geo_response
-      if latitude.present? && longitude.present?
+      if @geo_response["results"][0]["geometry"]["location"]["lat"].present? && @geo_response["results"][0]["geometry"]["location"]["lng"].present?
         latitude = @geo_response["results"][0]["geometry"]["location"]["lat"]
         longitude = @geo_response["results"][0]["geometry"]["location"]["lng"]
         @meeting.lat = latitude
