@@ -9,9 +9,7 @@ class MeetingsController < ApplicationController
       @meetings = Meeting.all.within(6, origin: [current_lat, current_lng])
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
-    end
-
-    if params[:area]
+    elsif params[:area]
       area_num = params[:area]
       
       if area_num == "11" 
@@ -25,6 +23,7 @@ class MeetingsController < ApplicationController
         else
       end
       @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(12)
+      @sum_meetings = @meetings.length
     else
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @area_name = "全募集一覧"
