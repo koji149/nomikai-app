@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_091538) do
+ActiveRecord::Schema.define(version: 2020_07_20_094239) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 2020_07_20_091538) do
     t.datetime "updated_at", null: false
     t.date "date"
     t.time "time"
-    t.float "latitude"
-    t.float "longitude"
+    t.decimal "latitude", precision: 11, scale: 8
+    t.decimal "longitude", precision: 11, scale: 8
   end
 
   create_table "users", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
