@@ -1,9 +1,6 @@
 class Meeting < ApplicationRecord
   belongs_to :user
 
-  geocoded_by :bar
-  after_validation :geocode, if: :bar_changed?
-
   has_one_attached :image
 
   validates :area, presence: { message: 'を選択してください' }
@@ -12,7 +9,10 @@ class Meeting < ApplicationRecord
   validates :bar, length: { in: 1..100 }
   validates :url, length: { in: 1..175 }
   validates :explain, length: { in: 1..400 }
-  validate :image_content_type, if: :was_attached?
+  validate :image_content_type, if: :was_attached
+  
+  geocoded_by :bar
+  after_validation :geocode
 
   def image_content_type
     extension = ['image/PNG', 'image/png', 'image/jpg', 'image/jpeg', 'image/JPEG', 'image/JPG']
