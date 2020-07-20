@@ -1,6 +1,8 @@
+require 'uri'
+
 class MeetingsController < ApplicationController
 
-  before_action :authenticate, except: [:index]
+  before_action :authenticate
 
   def index
     if params[:latitude].present? && params[:longitude].present?
@@ -83,12 +85,13 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
 
+    if params[:bar]
     address = params[:bar]
+    address = address.gsub(" ", "")
     geo_url = ENV['GEO_URL']
     geo_key = ENV['GEO_KEY']
 
     geo_data = {
-      outputFormat: "json",
       address: address,
       key: geo_key
     }
@@ -96,11 +99,14 @@ class MeetingsController < ApplicationController
     geo_client = HTTPClient.new
     geo_request = geo_client.get(geo_url, geo_data)
     @geo_response = JSON.parse(geo_request.body)
-    latitude = @geo_response["results"][0]["geometry"]["location"]["lat"]
-    longitude = @geo_response["results"][0]["geometry"]["location"]["lng"]
-
-    @meeting.lat = latitude if latitude.present?
-    @meeting.lng = longitude if longitude.present?
+    p @geo_response
+    if latitude.present? && longitude.present?
+      latitude = @geo_response["results"][0]["geometry"]["location"]["lat"]
+      longitude = @geo_response["results"][0]["geometry"]["location"]["lng"]
+      @meeting.lat = latitude
+      @meeting.lng = longitude
+    end
+  end
 
     if @meeting.save
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)
