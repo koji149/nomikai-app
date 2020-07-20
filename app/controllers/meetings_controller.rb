@@ -23,7 +23,7 @@ class MeetingsController < ApplicationController
           )
         ) AS distance
       FROM
-        spots
+        meetings
       HAVING
         distance <= 10
       ORDER BY
