@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
     if params[:latitude].present? && params[:longitude].present?
       current_lat = params[:latitude]
       current_lng = params[:longitude]
-      @meetings = Meeting.within(6, origin: [current_lat, current_lng])
+      @meetings = Meeting.all.within(6, origin: [current_lat, current_lng])
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
     end
