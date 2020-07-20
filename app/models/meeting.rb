@@ -1,6 +1,9 @@
 class Meeting < ApplicationRecord
   belongs_to :user
 
+  geocoded_by :bar
+  after_validation :geocode, if: :bar_changed?
+
   has_one_attached :image
 
   validates :area, presence: { message: 'を選択してください' }

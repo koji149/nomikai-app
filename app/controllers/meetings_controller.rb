@@ -12,14 +12,14 @@ class MeetingsController < ApplicationController
       #半径500m以内の募集を現在地から近い順に12件取り出す
       sql = <<-"EOS"
       SELECT
-        id, bar, lat, lng,
+        id, bar, latitude, longitude,
         (
           6371 * acos(
             cos(radians(#{current_lat}))
-            * cos(radians(lat))
-            * cos(radians(lng) - radians(#{current_lng}))
+            * cos(radians(latitude))
+            * cos(radians(longitude) - radians(#{current_lng}))
             + sin(radians(#{current_lat}))
-            * sin(radians(lat))
+            * sin(radians(latitude))
           )
         ) AS distance
       FROM
@@ -85,31 +85,6 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(creat_params)
 
-    if params.require(:meeting).permit(:bar)
-    address = params[:bar]
-    #address = address.gsub(/[[:space:]]/, '')
-    geo_url = ENV['GEO_URL']
-    geo_key = ENV['GEO_KEY']
-
-    geo_data = {
-      address: address,
-      key: geo_key
-    }
-
-    geo_client = HTTPClient.new
-    geo_request = geo_client.get(geo_url, geo_data)
-    @geo_response = JSON.parse(geo_request.body)
-    p @geo_response
-      if @geo_response["results"][0]["geometry"]["location"]["lat"].present? && @geo_response["results"][0]["geometry"]["location"]["lng"].present?
-        latitude = @geo_response["results"][0]["geometry"]["location"]["lat"]
-        longitude = @geo_response["results"][0]["geometry"]["location"]["lng"]
-        @meeting.lat = latitude
-        @meeting.lng = longitude
-      end
-    else
-      @meeting.lat = 3
-      @meeting.lng = 3
-    end
 
     if @meeting.save
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(10)

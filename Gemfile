@@ -86,3 +86,4 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'rambulance'
 gem 'rails-i18n'
+gem 'geocoder'
