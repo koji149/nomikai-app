@@ -55,7 +55,7 @@
         // 取得成功した場合
         function(position) {
             alert("位置情報を使って近くの募集を探します");
-            window.location.href = `/meetings/index?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`;
+            window.location.href = `/meetings?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`;
         },
         function(error) {
           switch(error.code) {
