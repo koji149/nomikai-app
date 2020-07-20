@@ -6,15 +6,7 @@ class MeetingsController < ApplicationController
     if params[:latitude].present? && params[:longitude].present?
       current_lat = params[:latitude]
       current_lng = params[:longitude]
-
-      #半径500m以内の募集を現在地から近い順に12件取り出す
-
-      latitude = current_lat.to_f
-      longitude = current_lng.to_f
-      @meetings = Meeting.within_box(3.728227, latitude, longitude)
-
-
-      # sqlを実行
+      @meetings = Meeting.all.within(6, origin: [current_lat, current_lng])
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
     end

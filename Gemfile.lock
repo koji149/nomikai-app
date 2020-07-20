@@ -1014,6 +1014,10 @@ GEM
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
     geocoder (1.6.3)
+    geokit (1.13.1)
+    geokit-rails (2.3.1)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-api-client (0.40.2)
@@ -1265,6 +1269,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass
   geocoder
+  geokit-rails
   google-api-client (~> 0.34)
   httpclient
   jbuilder (~> 2.5)
