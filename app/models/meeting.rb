@@ -14,8 +14,9 @@ class Meeting < ApplicationRecord
   geocoded_by :bar
   after_validation :geocode
 
-  acts_as_mappable
-
+  acts_as_mappable :lat_column_name => :latitude,
+                   :lng_column_name => :longitude,
+                   :default_units => :kms
   def image_content_type
     extension = ['image/PNG', 'image/png', 'image/jpg', 'image/jpeg', 'image/JPEG', 'image/JPG']
     errors.add(:image, "の拡張子は「png PNG jpg jpeg JPG JPEG」のみ有効です") unless image.content_type.in?(extension)
