@@ -7,45 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script>
-    // Geolocation APIに対応している
-    if (navigator.geolocation) {
-          // Geolocation APIに対応していない
-    } else {
-      alert("この端末では位置情報が取得できません");
-    }
-
-    // 現在地取得処理
-    function getPosition() {
-      // 現在地を取得
-      navigator.geolocation.getCurrentPosition(
-        // 取得成功した場合
-        function(position) {
-            alert("位置情報を使って近くのお店を探します");
-            window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
-        },
-
-        // 取得失敗した場合
-        function(error) {
-          switch(error.code) {
-            case 1: //PERMISSION_DENIED
-              alert("位置情報の利用が許可されていません");
-              break;
-            case 2: //POSITION_UNAVAILABLE
-              alert("現在位置が取得できませんでした");
-              break;
-            case 3: //TIMEOUT
-              alert("タイムアウトになりました");
-              break;
-            default:
-              alert("その他のエラー(エラーコード:"+error.code+")");
-              break;
-          }
-        }
-      );
-    }
-  </script>
   </head>
+
   <body>
     <div class="site-wrap">
       <header class="site-navbar" role="banner">
@@ -54,10 +17,21 @@
           <div class="site-logo">
             <h1>
               <%= link_to root_path do %>
-                <%=image_tag 'top2.png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
+                <%=image_tag 'aftercampus_wide.png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
               <%end%>
             </h1>
-            
+            <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+            <!-- ユーザーがログインしていた時の処理 -->
+            <!-- ログアウトをする -->
+              <button type="button" class="btn-outline-success rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button> <!-- ログイン画面に移行する -->
+            <% else %>
+            <!-- ユーザーがログインしていなかった時の処理 -->
+              <button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する/参加する", meetings_path, class: "fas fa-glass-cheers" %></button>
+              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt" %></button> <!-- ログイン画面に移行する -->
+              <%#<button type="button" class="btn-outline-info rounded-pill"><%= link_to "新規登録", new_user_registration_path, class: "fas fa-user-plus" %><%#</button> #%>
+
+<!-- 新規登録画面に移行する -->
+            <% end %>
           </div>
         </div>
       </header>
@@ -66,80 +40,32 @@
           <div class="row align-items-stretch retro-layout-2">
           <div class="col-md-4" >
               <div class="h-entry mb-30 v-height gradient">
-                <%=image_tag 'osake.png', alt: "近くの居酒屋を探す", class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'osake.jpg', alt: "近くの居酒屋を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2><button onclick="getPosition();" type="button" class="btn-outline-info rounded-pill">徒歩5分で着く居酒屋を探す</button></h2>
-                  <span class="date">一件目行く居酒屋、朝まで過ごすバーなど...</span>
+                  <h2><button onclick="getmeetingPosition();" type="button" class="btn-outline-success rounded-pill"><div class="fas fa-wine-glass-alt">徒歩5分で着く募集を探す</div></button></h2>
+                  <span class="date">新たな出会いを求めて...</span>
                 </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y500,Y505", area_name: "北海道", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
-                <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>
-                <div class="text">
-                  <h2>北海道</h2>
-                  <span class="date">札幌駅、大通、すすきの</span>
-                </div>
-              <%end%>
-            </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y015,Y020", area_name: "上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry v-height gradient" do %>
-                <%=image_tag 'akihabara.png', alt: "上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水のお店を探す", class: "h-entry mb-30 v-height gradient"%>
-                <div class="text">
-                  <h2>東京</h2>
-                  <span class="date">上野・御徒町・浅草、神田・神保町・秋葉原・御茶ノ水</span>
-                </div>
-              <%end%>
-            </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y072,Y055,Y056,Y050", area_name: "池袋、新宿、新大久保・大久保、高田馬場", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
-                <%=image_tag 'kabuki.png', alt: "池袋、新宿、新大久保・大久保、高田馬場のお店を探す", class: "h-entry mb-30 v-height gradient"%>
-                <div class="text">
-                  <h2>東京</h2>
-                  <span class="date">池袋、新宿、新大久保・大久保、高田馬場</span>
-                </div>
-              <%end%>
-            </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y030", area_name: "渋谷", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry v-height gradient" do %>
-                <%=image_tag 'sibuya.png', alt: "渋谷のお店を探す", class: "h-entry mb-30 v-height gradient"%>
-                <div class="text">
-                  <h2>東京</h2>
-                  <span class="date">渋谷</span>
-                </div>
-              <%end%>
-            </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y300,Y315", area_name: "大阪", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry mb-30 v-height gradient" do %>
-                <%=image_tag 'photo-1561454520-8d5804aa996e.jpg', alt: "梅田、心斎橋、なんば、南船場、堀江のお店を探す", class: "h-entry mb-30 v-height gradient"%>
-                <div class="text">
-                  <h2>大阪</h2>
-                  <span class="date">梅田、心斎橋、なんば、南船場、堀江</span>
-                </div>
-              <%end%>
-            </div>
-            <div class="col-md-4">
-              <%= link_to bars_index_path(m_area: "Y705,Y706,Y700", area_name: "福岡", category: "お店一覧", explain: "予算3000円・飲み放題あり"), class: "h-entry v-height gradient" do %>
-                <%=image_tag 'hukuoka.png', alt: "博多、中洲・中洲川端、天神・西中洲・春吉のお店を探す", class: "h-entry mb-30 v-height gradient"%>
-                <div class="text">
-                  <h2>福岡</h2>
-                  <span class="date">博多、中洲・中洲川端、天神・西中洲・春吉</span>
-                </div>
-              <%end%>
+              </div>
             </div>
             <div class="col-md-4" >
-              <button onclick="getPosition();">位置情報を取得する</button>
-
-            <%= link_to onclick: "getPosition();" do %>
               <div class="h-entry mb-30 v-height gradient">
-                <%=image_tag 'photo-1587813026513-feccb4b34fa5.jpg', alt: "札幌駅、大通、すすきののお店を探す", class: "h-entry mb-30 v-height gradient"%>
+                <%=image_tag 'bar.png', alt: "近くの居酒屋を探す", class: "h-entry mb-30 v-height gradient"%>
                 <div class="text">
-                  <h2>北海道</h2>
-                  <span class="date">札幌駅、大通、すすきの</span>
+                  <h2><button onclick="getPosition();" type="button" class="btn-outline-danger rounded-pill"><div class="fas fa-beer">徒歩5分で着く居酒屋を探す</div></button></h2>
+                  <span class="date">一件目行く居酒屋、朝まで過ごすバーなど...</span>
                 </div>
-                </div>
-              <%end%>
+              </div>
             </div>
+            <div class="col-md-4" >
+              <div class="h-entry mb-30 v-height gradient">
+                <%=image_tag 'nomikai.jpg', alt: "参加する", class: "h-entry mb-30 v-height gradient"%>
+                <div class="text">
+                  <h2><button type="button" class="btn-outline-info rounded-pill"><%= link_to "募集する/参加する", meetings_path, class: "fas fa-glass-cheers" %></button></h2>
+                  <span class="date">今日は人数多めで楽しむのもありかも...</span>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -158,6 +84,8 @@
       </div>
     </div>
     </div>
-    
+  </div>
+
   </body>
+
 </html>

@@ -5,14 +5,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -60,12 +60,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def after_inactive_sign_up_path_for(resource)
-    redirect_to user_path
-  end
-  
-  #アカウント編集後のリダイレクト先
-  def after_update_path_for(resource)
-    redirect_to root_path
+
+
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 end

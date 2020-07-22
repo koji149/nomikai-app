@@ -1,0 +1,45 @@
+<%@meetings.each do |meeting|%>
+  <div class="col-lg-4 mb-4" id="bookmark_btn_<%= meeting.id %>">
+    <div class="entry2">
+      <div class="excerpt">
+        <div class="card text-left" style="width: w-100">
+          <% if meeting.image.attached? %>
+            <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
+          <% else %>
+            <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
+          <% end %>
+          <div class="card-body">
+              <h5 class="card-title">
+                <div class="post-meta align-items-center text-left clearfix">
+                <figure class="author-figure mb-0 mr-3 float-left">
+                    <% if meeting.user.image.attached? %>
+                      <%= image_tag meeting.user.image, alt: "プロフィール画像", class: "img-fluid" %>
+                    <% else %>
+                      <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid" %>
+                    <% end %>
+                </figure>
+                <span class="d-inline-block mt-1">By<%=link_to "#{meeting.user.name}", "users/#{meeting.user_id}"%></span>
+                </div>
+              </h5>
+              <ul class="list-group list-group-flush">
+                <%#<li class="list-group-item"><label for="name1">場所</label><br/><%=%><%#</li>#%>
+                <li class="list-group-item"><label for="name1">説明</label><br/><%=meeting.explain%></li>
+                <li class="list-group-item"><label for="name1">募集日</label><br/><%=meeting.date.strftime("%Y-%m-%d")%></li>
+                <li class="list-group-item"><label for="name1">開始時間</label><br/><%=meeting.time.strftime("%H:%M")%></li>
+                <li class="list-group-item"><label for="name1">店名</label><br/><%=meeting.bar%></li>
+                <li class="list-group-item"><label for="name1">お店のURL</label><br/><%= link_to "#{meeting.url}", "#{meeting.url}"%></li>
+              </ul>
+          </div>
+          <div class="card-footer text-center ">
+            <% if user_signed_in? && meeting.user_id == current_user.id %>
+              <button type="button" class="btn-outline-success rounded-pill"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+              <button type="button" class="btn-outline-danger rounded-pill"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
+            <%else%>
+              <button type="button" class="btn-outline-primary rounded-pill"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers"%></button>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>

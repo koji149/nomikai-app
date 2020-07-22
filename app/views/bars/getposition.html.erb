@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <% set_meta_tags title: "「どこ行くか決まらない？」 ", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
+  <% set_meta_tags title: "「どこ行くか決まらない？」 近くの居酒屋を探す", description: "徒歩5分・予算3000以下でお店を探します。一件目のの居酒屋や朝までのバーなどなど..." %>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,7 +15,7 @@
         <div class="row align-items-center">
             <nav class="site-navigation" >
             <div class="site-logo">
-              <%= link_to image_tag('top2.png'), root_path %>
+              <%= link_to image_tag('aftercampus_wide.png'), root_path %>
             </div>
               <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
                 <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to "全部", bars_getposition_path(area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】", latitude: @lat, longitude: @lng) %></button><li>
@@ -84,12 +84,9 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-4">
-            <h3 class="footer-heading mb-4">About Us</h3>
-            <p>大学生による大学生専用の使いやすいサイトを目指します</p>
-          </div>
-          <div class="col-md-4">
             <h3 class="footer-heading mb-4">Contact</h3>
             <p>サービスへの要望がある場合はこちら</p>
+            <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
             <p><%= mail_to "aftercampus0617@gmail.com"%></p>
           </div>
         </div>
@@ -97,10 +94,10 @@
           <div class="col-12 text-center">
             <p>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy; <script>(function(){document.write(new Date().getFullYear())});</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <%=link_to "https://colorlib.com", target: "_blank"%>Colorlib</a>
+              Copyright &copy; <script>(function(){document.write(new Date().getFullYear())});</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <%=link_to "https://colorlib.com", "https://colorlib.com", target: "_blank"%>Colorlib</a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               </p>
-              <p>Powered by <%= link_to "http://webservice.recruit.co.jp/" %>ホットペッパー Webサービス</p>
+              <p>Powered by <%= link_to "http://webservice.recruit.co.jp/", "http://webservice.recruit.co.jp/" %>ホットペッパー Webサービス</p>
           </div>
         </div>
       </div>

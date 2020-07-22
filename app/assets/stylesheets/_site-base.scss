@@ -3,7 +3,8 @@ body {
 	color: lighten($black, 50%);
 	font-weight: 300;
 	font-size: $font-size-base;
-	background: image-url("LoveCouple.jpg");
+	background: image-url("cozmic.jpg");
+	background-size: contain;
 	font-family: $font-family-sans-serif;
 }
 
@@ -26,7 +27,6 @@ a {
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
-	font-family: $font-family-sans-serif;
 	line-height: 1.5;
 	color: $black;
 }
@@ -139,6 +139,8 @@ h1, h2, h3, h4, h5,
 .section-heading {
 	image {
 		background: image-url("CanYouFeelTheLoveTonight.jpg");
+		background-size: cover;
+
 	}
 	h2 {
 		font-weight: 700;
@@ -152,7 +154,9 @@ h1, h2, h3, h4, h5,
 
 .site-footer {
 	padding: 4em 0;
-	background: image-url("LoveCouple.jpg");
+	background: image-url("tonight.jpg");
+	background-size: cover;
+
 
 	@include media-breakpoint-up(md) {
 		padding: 5em 0;	
@@ -161,7 +165,7 @@ h1, h2, h3, h4, h5,
 		border-top: 1px solid rgba(255,255,255,.1)!important;
 	}
 	p {
-		color: lighten($black, 45%); 
+		color: $white;
 	}
 	h2,h3,h4,h5 {
 		color: $white;

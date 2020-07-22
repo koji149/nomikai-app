@@ -1,18 +1,30 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  add_flash_types :success, :info, :warning, :danger
+
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) # 新規登録時(sign_up時)にnameというキーのパラメーターを追加で許可する
   end
 
-  unless Rails.env.development?
-    rescue_from Exception,                        with: :_render_500
-    rescue_from ActiveRecord::RecordNotFound,     with: :_render_404
-    rescue_from ActionController::RoutingError,   with: :_render_404
+
+  #def routing_error
+    #raise ActionController::RoutingError, params[:path]
+  #end
+
+  def after_sign_in_path_for(resource)
+    flash[:success]
+    user_path(resource)
   end
 
-  def routing_error
-    raise ActionController::RoutingError, params[:path]
+  def after_sign_out_path_for(resource)
+    flash[:success]
+    root_path
+  end
+
+  def after_sign_up_path_for(resource)
+    flash[:success]
+    user_path(resource)
   end
 
   private

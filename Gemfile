@@ -83,4 +83,17 @@ gem 'aws-sdk'
 =======
 gem 'devise'
 gem 'bcrypt'
+<<<<<<< HEAD
 >>>>>>> 2f38003d77ba244bb9260ddbdc9a8ed4660c86e2
+=======
+gem 'font-awesome-sass'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
+gem 'rambulance'
+gem 'rails-i18n'
+gem 'geocoder'
+gem 'geokit-rails'
+>>>>>>> meeting

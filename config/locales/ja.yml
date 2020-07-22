@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      meeting:
+          area: "場所"
+          bar: "お店"
+          explain: "詳細説明"
+          image: "写真"
