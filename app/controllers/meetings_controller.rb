@@ -104,8 +104,8 @@ class MeetingsController < ApplicationController
     def authenticate
       unless user_signed_in?
         respond_to do |format|
+          flash[:error] = "ログインが必要です。"
           format.js { render ajax_redirect_to(new_user_session_path) }
-          flash.now[:alert] = "ログインが必要です。"
         end 
       end
     end

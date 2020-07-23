@@ -86,10 +86,7 @@
 <%= flash_message(flash[:error], :danger) if flash[:error] %>
 <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
 <%= flash_message(flash[:notice], :info) if flash[:notice] %>
-<%= flash_message(flash.now[:success], :success) if flash.now[:success] %>
-<%= flash_message(flash.now[:error], :danger) if flash.now[:error] %>
-<%= flash_message(flash.now[:alert], :warning) if flash.now[:alert] %>
-<%= flash_message(flash.now[:notice], :info) if flash.now[:notice] %>
+
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
             <%= link_to root_path, class: "navbar-brand" do %>

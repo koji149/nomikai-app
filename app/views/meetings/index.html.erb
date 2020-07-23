@@ -4,18 +4,26 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6" >
-            <h1><%=@area_name%></h1>
+            <h1>
+            <% unless @area_name == "近くの募集一覧" %>
+            <div class="btn-group dropright">
+              <button type="button" class="btn btn-outline-secondary rounded btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%=@area_name%>
+              </button>
+              <div class="dropdown-menu">
+                <%= link_to "東京", meetings_path(area: 13), class: "dropdown-item" %>
+                <%= link_to "埼玉", meetings_path(area: 11), class: "dropdown-item" %>
+                <%= link_to "大阪", meetings_path(area: 27), class: "dropdown-item" %>
+                <%= link_to "福岡", meetings_path(area: 40), class: "dropdown-item" %>
+              </div>
+            </div>
+            <%else%>
+              <%=@area_name%>
+            <%end%>
+            </h1>
             <p>ヒット数：<%=@sum_meetings%>件</p>
           </div>
         </div>
-        <nav class="nav nav-pills nav-justified">
-        <% unless @area_name == "近くの募集一覧" %>
-            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "東京", meetings_path(area: 13) %></button>
-            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "埼玉", meetings_path(area: 11) %></button>
-            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "大阪", meetings_path(area: 27) %></button>
-            <button type="button" class="nav-item btn-outline-secondary rounded-pill font-weight-bold" ><%= link_to "福岡", meetings_path(area: 40) %></button>
-        <%end%>
-        </nav>
       </div>
     </div>
     
