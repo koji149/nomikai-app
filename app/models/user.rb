@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
     before_create :generate_token
 
-    validates :name, length: { maximum: 50 }
+    validates :name, length: { maximum: 100 }
     validates :university, length: { maximum: 50 }
     validates :comment, length: { maximum: 250 }
     validates :twitter, length: { maximum: 100 }

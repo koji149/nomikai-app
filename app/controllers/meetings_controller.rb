@@ -41,7 +41,6 @@ class MeetingsController < ApplicationController
       render "join"
       return
     else
-      @user_twitter = User.find(params[:user])
       user_name = @user_twitter.username
       date = @meeting.date.strftime("%Y年 %m月 %d日")
       time = @meeting.time.strftime("%H時 %M分")
