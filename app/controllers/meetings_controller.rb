@@ -1,5 +1,7 @@
 class MeetingsController < ApplicationController
 
+  include AjaxHelper 
+
   layout 'meeting'
 
   before_action :authenticate, except: [:index]
@@ -76,7 +78,7 @@ class MeetingsController < ApplicationController
     if @meeting.update(creat_params)
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
-      flash[:notice] = "更新に成功しました。"
+      flash.now[:notice] = "更新に成功しました。"
     else
       render action: :edit
     end
@@ -87,7 +89,7 @@ class MeetingsController < ApplicationController
     if @meeting.destroy
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
-      flash[:notice] = "削除に成功しました。"
+      flash.now[:notice] = "削除に成功しました。"
     else
       render action: :index
     end
@@ -101,8 +103,10 @@ class MeetingsController < ApplicationController
 
     def authenticate
       unless user_signed_in?
-        redirect_to new_user_session_path
-        flash[:alert] = "ログインが必要です。"
+        respond_to do |format|
+          format.js { render ajax_redirect_to(new_user_session_path) }
+          flash.now[:alert] = "ログインが必要です。"
+        end 
       end
     end
 end
