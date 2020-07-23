@@ -3,9 +3,16 @@ body {
 	color: lighten($black, 50%);
 	font-weight: 300;
 	font-size: $font-size-base;
-	background: image-url("cozmic.jpg");
-	background-size: contain;
-	font-family: $font-family-sans-serif;
+	height: 0;
+
+	/* 表示画像の高さ ÷ 表示画像の幅 × 100 */
+	
+	margin-bottom: 30px;
+	z-index: 0;
+	position: relative;
+	width: 100%;
+	background: image-url("tonight.jpg");
+	background-size: cover;
 }
 
 ::-moz-selection { 
@@ -137,11 +144,7 @@ h1, h2, h3, h4, h5,
 }
 
 .section-heading {
-	image {
-		background: image-url("CanYouFeelTheLoveTonight.jpg");
-		background-size: cover;
 
-	}
 	h2 {
 		font-weight: 700;
 		color: $black;
@@ -153,9 +156,7 @@ h1, h2, h3, h4, h5,
 }
 
 .site-footer {
-	padding: 4em 0;
-	background: image-url("tonight.jpg");
-	background-size: cover;
+
 
 
 	@include media-breakpoint-up(md) {

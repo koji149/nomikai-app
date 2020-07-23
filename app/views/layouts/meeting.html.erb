@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= display_meta_tags(default_meta_tags) %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <%= canonical_tag %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    
+    <script>
+    // Geolocation APIに対応している
+    if (navigator.geolocation) {
+          // Geolocation APIに対応していない
+    } else {
+      alert("この端末では位置情報が取得できません");
+    }
+
+    // 現在地取得処理
+    function getPosition() {
+      // 現在地を取得
+      navigator.geolocation.getCurrentPosition(
+        // 取得成功した場合
+        function(position) {
+            alert("位置情報を使って近くのお店を探します");
+            window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
+        },
+        // 取得失敗した場合
+        function(error) {
+          switch(error.code) {
+            case 1: //PERMISSION_DENIED
+              alert("位置情報の利用が許可されていません");
+              break;
+            case 2: //POSITION_UNAVAILABLE
+              alert("現在位置が取得できませんでした");
+              break;
+            case 3: //TIMEOUT
+              alert("タイムアウトになりました");
+              break;
+            default:
+              alert("その他のエラー(エラーコード:"+error.code+")");
+              break;
+          }
+        }
+      );
+    }
+
+    function getmeetingPosition() {
+      // 現在地を取得
+      navigator.geolocation.getCurrentPosition(
+        // 取得成功した場合
+        function(position) {
+            alert("位置情報を使って近くの募集を探します");
+            window.location.href = `/meetings?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`;
+        },
+        function(error) {
+          switch(error.code) {
+            case 1: //PERMISSION_DENIED
+              alert("位置情報の利用が許可されていません");
+              break;
+            case 2: //POSITION_UNAVAILABLE
+              alert("現在位置が取得できませんでした");
+              break;
+            case 3: //TIMEOUT
+              alert("タイムアウトになりました");
+              break;
+            default:
+              alert("その他のエラー(エラーコード:"+error.code+")");
+              break;
+          }
+        }
+      );
+    }
+  </script>
+  </head>
+
+  <body>
+<%= flash_message(flash[:success], :success) if flash[:success] %>
+<%= flash_message(flash[:error], :danger) if flash[:error] %>
+<%= flash_message(flash[:alert], :warning) if flash[:alert] %>
+<%= flash_message(flash[:notice], :info) if flash[:notice] %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+            <%= link_to root_path, class: "navbar-brand" do %>
+              <%=image_tag 'アフターキャンパス (1).png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
+            <%end%>
+            <%#<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">#%>
+        <button class="navbar-toggler bg-transparent" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
+            <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "navbar-brand font-weight-bold text-light" %>
+            <% else %>
+              <%= link_to "ログイン", new_user_session_path, class: "navbar-brand font-weight-bold text-light" %>
+            <% end %>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+            <li class="nav-item ">
+              <%= link_to "このサイトについて", bars_privacy_path, class: "font-weight-bold text-light" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Twitter", "https://twitter.com/campus_after", class: "font-weight-bold text-light" %>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <%= yield %>
+    </div>
+    <footer class="fixed-bottom " style="">
+      <nav class="nav nav-pills nav-justified ">
+      <div class= "nav-item nav-link active rounded-0 bg-white">
+        <%= link_to root_path do %>
+          <div class="fas fa-home" style="font-size: 24px; color: Dodgerblue;"></div><br>トップ
+        <%end%>
+      </div>
+      <div class= "nav-item nav-link active rounded-0 bg-white">
+        <%=link_to meetings_path do%>
+          <div class="fas fa-glass-cheers" style="font-size: 24px; color: Dodgerblue;"></div><br>参加
+        <%end%>
+      </div>
+      <div class= "nav-item nav-link active rounded-0 bg-white">
+        <%= link_to new_meeting_path, remote: true do %>
+          <div class="fas fa-cocktail" style="font-size: 24px; color: Dodgerblue;"></div><br>募集
+        <%end%>
+      </div>
+      <div class= "nav-item nav-link active rounded-0 bg-white">
+        <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+          <%= link_to user_path(current_user) do %>
+            <div class="fas fa-user" style="font-size: 24px; color: Dodgerblue;"></div><br>My
+          <%end%>
+        <% else %>
+          <%= link_to new_user_session_path do %>
+            <div class="fas fa-sign-in-alt" style="font-size: 24px; color: Dodgerblue;"></div><br>login
+          <%end%>
+        <% end %>
+      </div>
+      </nav>
+    </footer>
+  </body>
+    <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="user-modal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+</html>

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  layout 'user'
+
   before_action :authenticate
 
   def show
@@ -17,13 +19,14 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(creat_params)# POINT
-      flash[:success] = "修正を反映しました"
+    if @user.update(creat_params)
+      flash[:notice] = "更新に成功しました。"
       redirect_to @user
     else
       render action: :edit
     end
   end
+
   private
 
     def set_user
@@ -35,7 +38,9 @@ class UsersController < ApplicationController
     end
 
     def authenticate
-      redirect_to new_user_session_path unless user_signed_in?
-      flash[:danger] = "ログインをしてください"
+      unless user_signed_in?
+      redirect_to new_user_session_path
+      flash[:alert]= "ログインが必要です。"
+      end
     end
 end

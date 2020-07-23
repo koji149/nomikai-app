@@ -48,4 +48,5 @@ class ApplicationController < ActionController::Base
       render 'errors/500', status: :internal_server_error
     end
   end
+
 end

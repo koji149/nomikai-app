@@ -34,7 +34,6 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
   add root_path, :changefreq => 'daily'
-  add bars_index_path, :priority => 0.7, :changefreq => 'daily'
-  add bars_getposition_path, :priority => 0.7, :changefreq => 'daily'
-  add meetings_path, :priority => 0.7, :changefreq => 'daily'
+  add bars_getposition_path :changefreq => 'daily'
+  add meetings_path :changefreq => 'daily'
 end

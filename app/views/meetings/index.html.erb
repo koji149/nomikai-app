@@ -1,33 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <% set_meta_tags title: "近くの大学生と飲みに行こう！", description: @index_description.to_s.gsub(/\r\n|\r|\n|\s|\t/, "") %>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <%= canonical_tag %>
-    <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
-  </head>
-  <div class="site-wrap">
-    <header class="site-navbar" >
-      <div class="container-fluid">
-        <div class="row align-items-center">
-            <nav class="site-navigation" >
-            <div class="site-logo">
-              <%= link_to image_tag('aftercampus_wide.png'), root_path %>
-            </div>
-              <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <% if user_signed_in? %> 
-                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to "マイページ", user_path(current_user), class: "fas fa-user" %></button></li>
-                <%end%><!-- ログイン画面に移行する -->
-                <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail" %></button></li>
-                <li><button onclick="getmeetingPosition();" type="button" class="btn-outline-success rounded-pill"><div class="fas fa-wine-glass-alt">徒歩5分で着く募集を探す</div></button></li>
-                <li><button onclick="getPosition();" type="button" class="btn-outline-danger rounded-pill"><div class="fas fa-beer">徒歩5分で着く居酒屋を探す</div></button></li>
-              </ul>
-            </nav>
-        </div>
-      </div>
-    </header>
+  <% set_meta_tags title: " 近くの大学生と出会える！", description: "近くの大学生と一緒に飲まない？近くで飲んでいる大学生と飲みたいと思った時に出会えるサイト！", keywords: '出会い, 飲み会, 大学生' %>
+
     <div class="py-5 bg-light">
       <div class="container">
         <div class="row">
@@ -59,27 +31,3 @@
         </div>
       </div>
     </div>
-    <div class="site-footer">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-4">
-            <h3 class="footer-heading mb-4">Contact</h3>
-            <p>サービスへの要望がある場合はこちら</p>
-            <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
-            <p><%= mail_to "aftercampus0617@gmail.com"%></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy; <script>(function(){document.write(new Date().getFullYear())});</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <%=link_to "https://colorlib.com", "https://colorlib.com", target: "_blank"%>Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
-              <p>Powered by <%= link_to "http://webservice.recruit.co.jp/", "http://webservice.recruit.co.jp/" %>ホットペッパー Webサービス</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</html>

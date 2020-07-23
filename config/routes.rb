@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'bars#top'
   get 'bars/index' => 'bars#index'
   get 'bars/getposition' => 'bars#getposition'
+  get 'bars/privacy' => 'bars#privacy'
   resources :users, only: [:show, :edit, :update]
   resources :meetings
 end

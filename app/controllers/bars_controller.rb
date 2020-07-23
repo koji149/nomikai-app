@@ -2,6 +2,8 @@ class BarsController < ApplicationController
   require 'httpclient'
   require 'json'
 
+  layout 'bar'
+
   before_action :params_exist?, only: [:index, :getposition]
 
   def top
@@ -111,6 +113,9 @@ class BarsController < ApplicationController
       @items = Kaminari.paginate_array(@items).page(params[:page]).per(12)
     end
 
+  end
+
+  def privacy
   end
 
   private

@@ -1,12 +1,14 @@
 class MeetingsController < ApplicationController
 
+  layout 'meeting'
+
   before_action :authenticate, except: [:index]
 
   def index
     if params[:latitude].present? && params[:longitude].present?
       current_lat = params[:latitude]
       current_lng = params[:longitude]
-      @meetings = Meeting.all.within(6, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = Meeting.all.within(3, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
     elsif params[:area]
@@ -74,6 +76,7 @@ class MeetingsController < ApplicationController
     if @meeting.update(creat_params)
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
+      flash[:notice] = "更新に成功しました。"
     else
       render action: :edit
     end
@@ -84,20 +87,22 @@ class MeetingsController < ApplicationController
     if @meeting.destroy
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
-      flash.now[:success] = "削除に成功しました"
+      flash[:notice] = "削除に成功しました。"
     else
       render action: :index
     end
   end
 
   private
+
     def creat_params
       params.require(:meeting).permit(:area, :date, :time, :bar, :url, :explain, :image).merge(user_id: current_user.id)
     end
 
     def authenticate
-      redirect_to new_user_session_path unless user_signed_in?
-      flash[:danger] = "ログインをしてください"
+      unless user_signed_in?
+        redirect_to new_user_session_path
+        flash[:alert] = "ログインが必要です。"
+      end
     end
-
 end

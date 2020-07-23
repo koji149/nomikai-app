@@ -13,7 +13,7 @@ module ApplicationHelper
       reverse: true,
       charset: 'utf-8',
       description: '「飲みに行こう！」と駅に集まり、「どこ行く？」「いつものとこで良くない？」「安いところ?」結局いつもと同じ居酒屋...そんな悩みを解決する予算3000円で楽しめる大学生専用飲み会サイト！',
-      keywords: '居酒屋, 飲み放題, 安い',
+      keywords: '居酒屋, 出会い, 大学生',
       canonical: request.original_url,
       separator: '|',
       icon: [
@@ -37,5 +37,8 @@ module ApplicationHelper
         height: 100
       }
     }
+  end
+  def noindex?
+    
   end
 end

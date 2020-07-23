@@ -2,7 +2,7 @@ class ErrorsController < ApplicationController
 
   class Forbidden < ActionController::ActionControllerError; end
 
-  layout 'application'
+  layout 'error'
 
   rescue_from StandardError, with: :error500
   rescue_from Forbidden, with: :error404
