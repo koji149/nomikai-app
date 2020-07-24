@@ -1,0 +1,36 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+  <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h5 class="modar-title">
+                <div class="post-meta align-items-center text-left clearfix">
+                <%= link_to "users/#{@meeting.user_id}" do%>
+                <figure class="author-figure mb-0 mr-3 float-left">
+                    <% if @meeting.user.image.attached? %>
+                      <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid" %>
+                    <% else %>
+                      <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid" %>
+                    <% end %>
+                </figure>
+                <%end%>
+                <span class="d-inline-block mt-1">By<%=link_to "#{@meeting.user.name}", "users/#{@meeting.user_id}"%></span>
+                </div>
+              </h5>
+              <ul class="list-group list-group-flush">
+                <%#<li class="list-group-item"><label for="name1">場所</label><br/><%=%><%#</li>#%>
+                <li class="list-group-item"><label for="name1">説明</label><br/><%=@meeting.explain%></li>
+                <li class="list-group-item"><label for="name1">募集日時</label><br/><%=@meeting.date.strftime("%Y-%m-%d")%> <%=@meeting.time.strftime("%H:%M")%></li>
+                <li class="list-group-item"><label for="name1">店名</label><br/><%=@meeting.bar%></li>
+                <li class="list-group-item"><label for="name1">お店のURL</label><br/><%= link_to "#{@meeting.url}", "#{@meeting.url}"%></li>
+              </ul>
+      </div>
+    <div class="modal-footer actions">
+      <button type="button" class="btn btn-outline-primary" data-dismiss="modal"><%= link_to "OK", meeting_path(id: @meeting.id, user: current_user.id), remote: true %></button>
+      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -87,7 +86,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
             <%= link_to root_path, class: "navbar-brand" do %>
-              <%=image_tag 'アフターキャンパス (1).png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
+              <%=image_tag 'アフターキャンパス (1).png', alt: "アフターキャンパスのロゴ画像" %>
             <%end%>
             <%#<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">#%>
         <button class="navbar-toggler bg-transparent" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +104,7 @@
               <%= link_to "このサイトについて", bars_privacy_path, class: "font-weight-bold text-light" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Twitter", "https://twitter.com/campus_after", class: "font-weight-bold text-light" %>
+              <%= link_to "公式Twitter", "https://twitter.com/campus_after", class: "font-weight-bold text-light" %>
             </li>
           </ul>
         </div>

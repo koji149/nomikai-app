@@ -1,3 +1,18 @@
+.wrapper {
+	min-height: 100vh;
+	position: relative;/*←相対位置*/
+	padding-top: 76px;
+	padding-bottom: 71.2px;/*←footerの高さ*/
+	box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+.wra {
+	width: 100vw;
+  height: auto;
+  min-height: 100vh;
+}
+
+
 body {
 	line-height: 1.7;
 	color: lighten($black, 50%);

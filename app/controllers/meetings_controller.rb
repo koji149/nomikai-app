@@ -4,13 +4,20 @@ class MeetingsController < ApplicationController
 
   layout 'meeting'
 
-  before_action :authenticate, except: [:index]
+  before_action :authenticate, except: [:index, :sample]
+
+  def sample
+    
+  end
+
 
   def index
     if params[:latitude].present? && params[:longitude].present?
       current_lat = params[:latitude]
       current_lng = params[:longitude]
-      @meetings = Meeting.all.within(3, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
+      
+      @meeting = Meeting.first.within(3, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = Meeting.drop(1).within(3, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
     elsif params[:area]
@@ -26,17 +33,23 @@ class MeetingsController < ApplicationController
           @area_name = "福岡の募集一覧"
         else
       end
-      @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(12)
+      @meeting = Meeting.first.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = Meeting.drop(1).where(area: area_num).order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
     else
-      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = Meeting.first.order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = Meeting.drop(1).order(updated_at: :desc).page(params[:page]).per(12)
       @area_name = "全募集一覧"
       @sum_meetings = @meetings.length
     end
   end
 
   def show
-      @meeting = Meeting.find(params[:id])
+    @meeting = Meeting.find(params[:id])
+    if params.has_key?(:detail)
+      render "formdetail"
+      return
+    end
     unless params.has_key?(:user)
       render "join"
       return

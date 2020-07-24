@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -85,65 +84,33 @@
 <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
 <%= flash_message(flash[:notice], :info) if flash[:notice] %>
 
+<div class="wra">
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light">
             <%= link_to root_path, class: "navbar-brand" do %>
               <%=image_tag 'アフターキャンパス (1).png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
             <%end%>
             <%#<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">#%>
-        <button class="navbar-toggler bg-transparent" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      
 
-        <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
-            <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "navbar-brand font-weight-bold text-light" %>
-            <% else %>
-              <%= link_to "ログイン", new_user_session_path, class: "navbar-brand font-weight-bold text-light" %>
-            <% end %>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
-            <li class="nav-item ">
-              <%= link_to "このサイトについて", bars_privacy_path, class: "font-weight-bold text-light" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Twitter", "https://twitter.com/campus_after", class: "font-weight-bold text-light" %>
-            </li>
-          </ul>
-        </div>
+        
       </nav>
     </header>
     <%= yield %>
     </div>
-    <footer class="fixed-bottom " style="">
-      <nav class="nav nav-pills nav-justified ">
-      <div class= "nav-item nav-link active rounded-0 bg-white">
-        <%= link_to root_path do %>
-          <div class="fas fa-home" style="font-size: 24px; color: Dodgerblue;"></div><br>トップ
-        <%end%>
+    <footer class="fixed-bottom " >
+      <nav class="nav nav-pills nav-justified " >
+      <div class= "nav-item nav-link  bg-transparent">
+          <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meetings_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
       </div>
-      <div class= "nav-item nav-link active rounded-0 bg-white">
-        <%=link_to meetings_path do%>
-          <div class="fas fa-glass-cheers" style="font-size: 24px; color: Dodgerblue;"></div><br>参加
-        <%end%>
+      <div class= "nav-item nav-link  bg-transparent">
+        <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
       </div>
-      <div class= "nav-item nav-link active rounded-0 bg-white">
-        <%= link_to new_meeting_path, remote: true do %>
-          <div class="fas fa-cocktail" style="font-size: 24px; color: Dodgerblue;"></div><br>募集
-        <%end%>
-      </div>
-      <div class= "nav-item nav-link active rounded-0 bg-white">
-        <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-          <%= link_to user_path(current_user) do %>
-            <div class="fas fa-user" style="font-size: 24px; color: Dodgerblue;"></div><br>My
-          <%end%>
-        <% else %>
-          <%= link_to new_user_session_path do %>
-            <div class="fas fa-sign-in-alt" style="font-size: 24px; color: Dodgerblue;"></div><br>login
-          <%end%>
-        <% end %>
-      </div>
+
+
       </nav>
     </footer>
+    </div>
   </body>
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div id="user-modal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
