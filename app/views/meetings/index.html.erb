@@ -1,5 +1,6 @@
   <% set_meta_tags title: " 近くの大学生と出会える！", description: "近くの大学生と一緒に飲まない？近くで飲んでいる大学生と飲みたいと思った時に出会えるサイト！", keywords: '出会い, 飲み会, 大学生' %>
 <%i = 0%>
+<%meeting = a%>
 <%@meetings.each do |meeting|%>
 <div id="carouselExampleControls" class="carousel slide" data-ride="false" >
   <div class="carousel-inner">
@@ -36,16 +37,17 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+<%i += 1%>
+<%end%>
 <footer class="fixed-bottom " >
       <nav class="nav nav-pills nav-justified " >
       <div class= "nav-item nav-link  bg-transparent">
-          <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meetings_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+          <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
       </div>
       <div class= "nav-item nav-link  bg-transparent">
         <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
       </div>
       </nav>
     </footer>
-    <%i += 1%>
-<%end%>
+
 
