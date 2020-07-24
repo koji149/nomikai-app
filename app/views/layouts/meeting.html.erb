@@ -97,19 +97,7 @@
       </nav>
     </header>
     <%= yield %>
-    </div>
-    <footer class="fixed-bottom " >
-      <nav class="nav nav-pills nav-justified " >
-      <div class= "nav-item nav-link  bg-transparent">
-          <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meetings_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
-      </div>
-      <div class= "nav-item nav-link  bg-transparent">
-        <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
-      </div>
-
-
-      </nav>
-    </footer>
+    
     </div>
   </body>
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
