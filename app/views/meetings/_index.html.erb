@@ -1,18 +1,14 @@
-    <%if @meeting%>
-    <%@meeting.each do |meeting|%>
     <div class="carousel-item active">
+    <%meeting = @meetings.first%>
       <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
       <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
       </div>
     </div>
-    <%end%>
-    <%end%>
-    <%if @meetings%>
+    <%@meetings = @meetings.drop(1)%>
     <%@meetings.each do |meeting|%>
       <div class="carousel-item ">
         <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
           <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
         </div>
       </div>
-    <%end%>
     <%end%>
