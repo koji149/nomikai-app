@@ -10,7 +10,7 @@ class Meeting < ApplicationRecord
   validates :url, length: { maximum: 175 }
   validates :explain, length: { in: 1..400 }
   validate :image_content_type, if: :was_attached?
-  validates :presence: { message: 'を投稿してください' }
+  validates :image, presence: { message: 'を投稿してください' }
   geocoded_by :bar
   after_validation :geocode
 
