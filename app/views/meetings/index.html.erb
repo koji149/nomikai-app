@@ -1,32 +1,36 @@
   <% set_meta_tags title: " 近くの大学生と出会える！", description: "近くの大学生と一緒に飲まない？近くで飲んでいる大学生と飲みたいと思った時に出会えるサイト！", keywords: '出会い, 飲み会, 大学生' %>
 <%i = 0%>
 <%meeting = 1%>
-<%@meetings.each do |meeting|%>
 <div id="carouselExampleControls" class="carousel slide" data-ride="false" >
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
-      <%if i == 0%>
-        <% if meeting.image.attached? %>
-          <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
-        <% else %>
-          <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
-        <% end %>
-        <%end%>
-      </div>
-    </div>
-      <div class="carousel-item ">
+  <%@meetings.each do |meeting|%>
+    <%if i == 0%>
+      <div class="carousel-item active">
         <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
-        <%unless i == 0 %>
           <% if meeting.image.attached? %>
             <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
-        <% end %>
-        <%end%>
+          <% end %>
         </div>
+        <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+        <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
       </div>
-    </div>
+    <%else%>
+      <div class="carousel-item ">
+        <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
+          <% if meeting.image.attached? %>
+            <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
+          <% else %>
+            <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
+          <% end %>
+        </div>
+        <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+        <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
+      </div>
+    <%end%>
+    <%i += 1%>
+  <%end%>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -37,11 +41,8 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<%i += 1%>
-          <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
-        <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
 
-<%end%>
+
 
 
 
