@@ -98,6 +98,9 @@
           <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
             <li class="nav-item ">
+              <%= link_to "募集一覧", meetings_path, class: "fas fa-glass-cheers font-weight-bold text-light" %>
+            </li>
+            <li class="nav-item ">
               <%= link_to "自分の募集", meetings_path(user_id: current_user.id), class: "fas fa-glass-martini-alt font-weight-bold text-light" %>
             </li>
             <li class="nav-item">
@@ -112,5 +115,5 @@
     </div>
   </body>
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-    <div id="user-modal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="toast" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </html>

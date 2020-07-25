@@ -79,7 +79,9 @@ class MeetingsController < ApplicationController
     if @meeting.update(creat_params)
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
-      flash.now[:notice] = "更新に成功しました。"
+      respond_to do |format|
+        # format.jsとして、flashメッセージはブロック内に記述します 
+        format.js { flash.now[:success] = "投稿を更新しました。" } 
     else
       render action: :edit
     end
@@ -97,7 +99,7 @@ class MeetingsController < ApplicationController
 
         respond_to do |format|
           # format.jsとして、flashメッセージはブロック内に記述します 
-          format.js { flash[:notice] = "投稿を削除しました。" } 
+          format.js { flash.now[:success] = "投稿を削除しました。" } 
         end
 
       else
