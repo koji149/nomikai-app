@@ -82,6 +82,7 @@ class MeetingsController < ApplicationController
       respond_to do |format|
         # format.jsとして、flashメッセージはブロック内に記述します 
         format.js { flash.now[:success] = "投稿を更新しました。" } 
+      end
     else
       render action: :edit
     end
