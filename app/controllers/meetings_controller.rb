@@ -87,12 +87,22 @@ class MeetingsController < ApplicationController
 
   def destroy
     @meeting = Meeting.find(params[:id])
-    if @meeting.destroy
-      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
-      @sum_meetings = @meetings.length
-      flash.now[:notice] = "削除に成功しました。"
+    unless params.has_key?(:status)
+      render "destroyconfirm"
+      return
     else
-      render action: :index
+      if @meeting.destroy
+        @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
+        @sum_meetings = @meetings.length
+
+        respond_to do |format|
+          # format.jsとして、flashメッセージはブロック内に記述します 
+          format.js { flash[:notice] = "投稿を削除しました。" } 
+        end
+
+      else
+        render action: :index
+      end
     end
   end
 

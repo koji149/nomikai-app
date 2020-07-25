@@ -1,4 +1,4 @@
-  <div class="carousel-inner">
+ <div class="carousel-inner">
       <%i = 0%>
   <%@meetings.each do |meeting|%>
     <%if i == 0%>
@@ -13,10 +13,10 @@
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn-outline-success rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+                  <button type="button" class="btn btn-outline-secondary rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
                 </div>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn-outline-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
+                  <button type="button" class="btn btn-outline-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
                 </div>
               <% else %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
@@ -42,10 +42,10 @@
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn btn-secondary rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+                  <button type="button" class="btn btn-outline-secondary rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
                 </div>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn btn-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
+                  <button type="button" class="btn btn-outline-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
                 </div>
               <% else %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
@@ -71,3 +71,8 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+
+
+
+                    <button type="button" class="btn btn-secondary rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+                  <button type="button" class="btn btn-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>

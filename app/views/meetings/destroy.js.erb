@@ -1,3 +1,6 @@
 $("#bookmark_btn_<%= @meeting.id %>").remove();
-$("#user-modal").html("<%= escape_javascript(render 'index') %>")
+$("#carouselExampleControls").html("<%= escape_javascript(render(partial:'meetings/index')) %>")
+<% flash.each do |type, message| %>
+  $("#carouselExampleControls").html('<p class="alert alert-success"><%= type %><%= message %></p>')
+<% end %>
 $("#user-modal").modal("hide")
