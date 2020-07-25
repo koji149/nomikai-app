@@ -16,17 +16,20 @@ class MeetingsController < ApplicationController
       current_lat = params[:latitude]
       current_lng = params[:longitude]
       @meetings = Meeting.all.within(3, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = sample_data unless @meetings.present?
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
       return
     elsif params[:user_id] && user_signed_in?
       user_id = params[:user_id]
       @meetings = Meeting.where(user_id: user_id).order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = sample_data unless @meetings.present?
       @area_name = "My募集一覧"
       @sum_meetings = @meetings.length
       return
     else
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = sample_data unless @meetings.present?
       @area_name = "全募集一覧"
       @sum_meetings = @meetings.length
     end
