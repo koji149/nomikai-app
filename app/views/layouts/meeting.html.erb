@@ -9,73 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
     
-    <script>
-    // Geolocation APIに対応している
-    if (navigator.geolocation) {
-          // Geolocation APIに対応していない
-    } else {
-      alert("この端末では位置情報が取得できません");
-    }
-
-    // 現在地取得処理
-    function getPosition() {
-      // 現在地を取得
-      navigator.geolocation.getCurrentPosition(
-        // 取得成功した場合
-        function(position) {
-            window.location.href = `/bars/getposition?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&area_name=現在地近く&category=お店一覧&explain=予算3000円・飲み放題あり`;
-        },
-        // 取得失敗した場合
-        function(error) {
-          switch(error.code) {
-            case 1: //PERMISSION_DENIED
-              alert("位置情報の利用が許可されていません");
-              break;
-            case 2: //POSITION_UNAVAILABLE
-              alert("現在位置が取得できませんでした");
-              break;
-            case 3: //TIMEOUT
-              alert("タイムアウトになりました");
-              break;
-            default:
-              alert("その他のエラー(エラーコード:"+error.code+")");
-              break;
-          }
-        }
-      );
-    }
-
-    function getmeetingPosition() {
-      // 現在地を取得
-      navigator.geolocation.getCurrentPosition(
-        // 取得成功した場合
-        function(position) {
-            window.location.href = `/meetings?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`;
-        },
-        function(error) {
-          switch(error.code) {
-            case 1: //PERMISSION_DENIED
-              alert("位置情報の利用が許可されていません");
-              break;
-            case 2: //POSITION_UNAVAILABLE
-              alert("現在位置が取得できませんでした");
-              break;
-            case 3: //TIMEOUT
-              alert("タイムアウトになりました");
-              break;
-            default:
-              alert("その他のエラー(エラーコード:"+error.code+")");
-              break;
-          }
-        }
-      );
-    }
-  </script>
   </head>
 
   <body>
@@ -111,6 +45,9 @@
         </div>
       </nav>
     </header>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <%= yield %>
     </div>
   </body>
