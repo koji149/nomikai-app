@@ -1,8 +1,7 @@
   <% set_meta_tags title: " 近くの大学生と出会える！", description: "近くの大学生と一緒に飲まない？近くで飲んでいる大学生と飲みたいと思った時に出会えるサイト！", keywords: '出会い, 飲み会, 大学生' %>
-<%i = 0%>
-<%meeting = 1%>
 <div id="carouselExampleControls" class="carousel slide" data-ride="false" >
   <div class="carousel-inner">
+  <%i = 0%>
   <%@meetings.each do |meeting|%>
     <%if i == 0%>
       <div class="carousel-item active">
@@ -12,9 +11,17 @@
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
+            <footer class="fixed-bottom " style="">
+              <nav class="nav nav-pills nav-justified ">
+              <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+              </div>
+              <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
+              </div>
+              </nav>
+            </footer>
         </div>
-        <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
-        <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
       </div>
     <%else%>
       <div class="carousel-item ">
@@ -24,9 +31,17 @@
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
+            <footer class="fixed-bottom " style="">
+              <nav class="nav nav-pills nav-justified ">
+              <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+              </div>
+              <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
+              </div>
+              </nav>
+            </footer>
         </div>
-        <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
-        <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
       </div>
     <%end%>
     <%i += 1%>
@@ -41,8 +56,6 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-
 
 
 
