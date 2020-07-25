@@ -87,17 +87,15 @@
 <div class="wra">
     <header>
       <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-            <%= link_to root_path, class: "navbar-brand" do %>
-              <%=image_tag 'アフターキャンパス (1).png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
-            <%end%>
-            <%#<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">#%>
-      
-
-        
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%=image_tag 'アフターキャンパス (1).png', alt: "渋谷、新宿、高田馬場のお店 大学生用居酒屋サイト" %>
+        <%end%>
+        <%= link_to new_meeting_path, remote: true, style: "font-size: 4em; color: Mediumslateblue;" do %>
+        　<span class="fas fa-edit"></span>
+        <% end %>
       </nav>
     </header>
     <%= yield %>
-    
     </div>
   </body>
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

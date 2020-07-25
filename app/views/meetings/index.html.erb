@@ -13,12 +13,21 @@
           <% end %>
             <footer class="fixed-bottom " style="">
               <nav class="nav nav-pills nav-justified ">
-              <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
-              </div>
-              <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
-              </div>
+              <% if user_signed_in? && meeting.user_id == current_user.id %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-success rounded-pill"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-danger rounded-pill"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
+                </div>
+              <% else %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                    <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
+                </div>
+              <% end %>
               </nav>
             </footer>
         </div>
@@ -33,12 +42,21 @@
           <% end %>
             <footer class="fixed-bottom " style="">
               <nav class="nav nav-pills nav-justified ">
-              <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
-              </div>
-              <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
-              </div>
+              <% if user_signed_in? && meeting.user_id == current_user.id %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-success rounded-pill"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-danger rounded-pill"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
+                </div>
+              <% else %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                    <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: current_user.id), remote: true, class: "fas fa-user-friends text-white"%></button>
+                </div>
+              <% end %>
               </nav>
             </footer>
         </div>

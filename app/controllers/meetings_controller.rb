@@ -43,7 +43,7 @@ class MeetingsController < ApplicationController
   def show
     @meeting = Meeting.find(params[:id])
     if params.has_key?(:detail)
-      render "formdetail"
+      render "detail"
       return
     end
     unless params.has_key?(:user)
