@@ -29,7 +29,7 @@
               </ul>
       </div>
     <div class="modal-footer actions">
-      <button type="button" class="btn btn-outline-primary" data-dismiss="modal"><%= link_to "OK", meeting_path(id: @meeting.id, user: current_user.id), remote: true %></button>
+      <button type="button" class="btn btn-outline-primary" data-dismiss="modal"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
       <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
     </div>
   </div>

@@ -1,22 +1,63 @@
-    <div class="carousel-item active">
-    <%meeting = @meetings.first%>
-      <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
-        <% if meeting.image.attached? %>
-          <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
-        <% else %>
-          <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
-        <% end %>
+  <%i = 0%>
+  <%@meetings.each do |meeting|%>
+    <%if i == 0%>
+      <div class="carousel-item active">
+        <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
+          <% if meeting.image.attached? %>
+            <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
+          <% else %>
+            <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
+          <% end %>
+            <footer class="fixed-bottom " style="">
+              <nav class="nav nav-pills nav-justified ">
+              <% if user_signed_in? && meeting.user_id == current_user.id %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-success rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
+                </div>
+              <% else %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                    <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: "detail"), remote: true, class: "fas fa-user-friends text-white"%></button>
+                </div>
+              <% end %>
+              </nav>
+            </footer>
+        </div>
       </div>
-    </div>
-    <%@meetings = @meetings.drop(1)%>
-    <%@meetings.each do |meeting|%>
+    <%else%>
       <div class="carousel-item ">
         <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
           <% if meeting.image.attached? %>
             <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
-        <% end %>
+          <% end %>
+            <footer class="fixed-bottom " style="">
+              <nav class="nav nav-pills nav-justified ">
+              <% if user_signed_in? && meeting.user_id == current_user.id %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-secondary rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fas fa-edit"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn-outline-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt"%></button>
+                </div>
+              <% else %>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                    <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
+                </div>
+                <div class= "nav-item nav-link active rounded-0 bg-transparent">
+                  <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: "detail"), remote: true, class: "fas fa-user-friends text-white"%></button>
+                </div>
+              <% end %>
+              </nav>
+            </footer>
         </div>
       </div>
     <%end%>
+    <%i += 1%>
+  <%end%>

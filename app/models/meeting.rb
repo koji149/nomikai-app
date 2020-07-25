@@ -3,7 +3,7 @@ class Meeting < ApplicationRecord
 
   has_one_attached :image
 
-  validates :area, presence: { message: 'を選択してください' }
+  #validates :area, presence: { message: 'を選択してください' }
   validates :date, presence: { message: 'を選択してください' }
   validates :time, presence: { message: 'を選択してください' }
   validates :bar, length: { in: 1..100 }

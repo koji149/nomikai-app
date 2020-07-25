@@ -18,21 +18,13 @@ class MeetingsController < ApplicationController
       @meetings = Meeting.all.within(3, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
-    elsif params[:area]
-      area_num = params[:area]
-      
-      if area_num == "11" 
-          @area_name = "埼玉の募集一覧"
-        elsif area_num == "13"
-          @area_name = "東京の募集一覧"
-        elsif area_num == "27"
-          @area_name = "大阪の募集一覧"
-        elsif area_num == "40"
-          @area_name = "福岡の募集一覧"
-        else
-      end
-      @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(12)
+      return
+    elsif params[:user_id] && user_signed_in?
+      user_id = params[:user_id]
+      @meetings = Meeting.where(user_id: user_id).order(updated_at: :desc).page(params[:page]).per(12)
+      @area_name = "My募集一覧"
       @sum_meetings = @meetings.length
+      return
     else
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @area_name = "全募集一覧"
