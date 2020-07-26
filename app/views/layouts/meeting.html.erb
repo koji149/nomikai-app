@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   </head>
@@ -26,7 +28,7 @@
           <%=image_tag 'aftercampus.png', alt: "アフターキャンパスのロゴ画像" %>
         <%end%>
         <button class="navbar-toggler bg-transparent border-0" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="fas fa-plus fa-2x " style="color:#4169E1;"></span>
+          <span class="fa-arrow-alt-circle-down" style="color:#4169E1;"></span>
         </button>
         <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo01">
               <%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail font-weight-bold text-white"%>
@@ -46,7 +48,6 @@
         </div>
       </nav>
     </header>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <%= yield %>
     </div>

@@ -4,7 +4,7 @@ class MeetingsController < ApplicationController
 
   layout 'meeting'
 
-  before_action :authenticate, except: [:index, :sample]
+  before_action :authenticate, except: [:index, :sample, :new]
 
   def sample
     
