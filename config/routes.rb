@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'bars/index' => 'bars#index'
   get 'bars/getposition' => 'bars#getposition'
   get 'bars/privacy' => 'bars#privacy'
-  get 'meetings/sample' => 'meetings#sample'
   resources :users, only: [:show, :edit, :update]
   resources :meetings
 end
