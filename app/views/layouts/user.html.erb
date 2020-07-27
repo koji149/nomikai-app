@@ -11,7 +11,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
   </head>
@@ -54,33 +53,35 @@
       <nav class="nav nav-pills nav-justified ">
       <div class= "nav-item nav-link active rounded-0 bg-white">
         <%= link_to root_path do %>
-          <div class="fas fa-home" style="font-size: 24px; color: Dodgerblue;"></div><br>トップ
+          <div class="fas fa-home" style="font-size: 24px; color: Dodgerblue;"></div>トップ
         <%end%>
       </div>
       <div class= "nav-item nav-link active rounded-0 bg-white">
         <%=link_to meetings_path do%>
-          <div class="fas fa-glass-cheers" style="font-size: 24px; color: Dodgerblue;"></div><br>参加
+          <div class="fas fa-glass-cheers" style="font-size: 24px; color: Dodgerblue;"></div>参加
         <%end%>
       </div>
       <div class= "nav-item nav-link active rounded-0 bg-white">
         <%= link_to new_meeting_path, remote: true do %>
-          <div class="fas fa-cocktail" style="font-size: 24px; color: Dodgerblue;"></div><br>募集
+          <div class="fas fa-cocktail" style="font-size: 24px; color: Dodgerblue;"></div>募集
         <%end%>
       </div>
       <div class= "nav-item nav-link active rounded-0 bg-white">
         <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
           <%= link_to user_path(current_user) do %>
-            <div class="fas fa-user" style="font-size: 24px; color: Dodgerblue;"></div><br>My
+            <div class="fas fa-user" style="font-size: 24px; color: Dodgerblue;"></div>My
           <%end%>
         <% else %>
           <%= link_to new_user_session_path do %>
-            <div class="fas fa-sign-in-alt" style="font-size: 24px; color: Dodgerblue;"></div><br>login
+            <div class="fas fa-sign-in-alt" style="font-size: 24px; color: Dodgerblue;"></div>login
           <%end%>
         <% end %>
       </div>
       </nav>
     </footer>
   </body>
+          <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div id="toast" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     
