@@ -17,13 +17,23 @@
     flex-grow: 1;
     max-width: 100%;
   }
-  .col-md-4 {
-    flex: 0 0 33.3333333333%;
-    max-width: 33.3333333333%;
-  flex-basis: 0;
-          flex-grow: 1;
-          max-width: 100%;
-  }
+    
+  @media screen and (max-width:767.98px) {/* 変更点。0.02引く。 */
+    /* ここにSP向けのCSS指定 */
+    .col-md-4 {
+      position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+      }}
+    @media screen and (min-width:768px) {
+    /* ここにPC向けのCSS指定 */
+    .col-md-4{
+      flex: 0 0 33.3333333333%;
+      max-width: 33.3333333333%;
+    }
+
+            }
   .col-md-6 {
     flex: 0 0 50%;
     max-width: 50%;
