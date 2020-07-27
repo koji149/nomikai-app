@@ -4,12 +4,7 @@ class MeetingsController < ApplicationController
 
   layout 'meeting'
 
-  before_action :authenticate, except: [:index, :sample, :new]
-
-  def sample
-    
-  end
-
+  before_action :authenticate, except: [:index]
 
   def index
     if params[:latitude].present? && params[:longitude].present?

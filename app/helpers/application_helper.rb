@@ -38,7 +38,4 @@ module ApplicationHelper
       }
     }
   end
-  def noindex?
-    
-  end
 end
