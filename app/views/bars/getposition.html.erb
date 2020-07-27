@@ -1,52 +1,29 @@
 
-  <% set_meta_tags title: "「どこ行く？」 近くの安い居酒屋を探す", description: "徒歩5分・予算3000以下でお店を探します。一件目のの居酒屋や朝までのバーなどなど...", keywords: '居酒屋, 安い, 近い' %>
+  <% set_meta_tags title: "「どこ行く？」 近くの居酒屋、バル、バーを探す", description: "「どこ行くか迷ってない？」徒歩5分でお店を探します。一件目の居酒屋や朝まで過ごすバーなど...", keywords: '居酒屋, バー, 近く' %>
 
-    <div class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <span><%=@area_name%></span>
-            <h1><%=@category%></h1>
-            <h2><%=@explain%></h2>
-            <p>ヒット数：<%=@sum_items%>件</p>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="site-section bg-white">
       <div class="container">
-        <div class="row">
         <%items = @response["results"]["shop"]%>
           <%@items.each do |item|%>
-            <div class="col-lg-4 mb-4">
-              <div class="entry2">
-                <img src="<%= item["photo"]["pc"]["l"] %>" alt="Image" class="img-fluid rounded">
-                <div class="excerpt">
-                <%if @genre == "G001,G002,G012"%>
-                <span class="post-category text-white bg-danger mb-3"><%=  item["genre"]["name"] %></span>
-                <%end%>
-                <span class="post-category text-white bg-info mb-3"><%=  item["budget"]["name"] %></span>
-                <%if (@genre == "G001" || @genre == "G002")&& item["free_drink"].slice(0,2) == "あり"%>
-                <span class="post-category text-white bg-primary mb-3">飲み放題<%=  item["free_drink"].slice(0,2) %></span>
-                <%end%>
-                <%if item["non_smoking"] == "一部禁煙" || item["non_smoking"] == "全面禁煙"%>
-                <span class="post-category text-white bg-secondary mb-3"><%=  item["non_smoking"] %></span>
-                <%end%>
-                <%if @genre == "G012" && item["midnight"] == "営業している"%>
-                <span class="post-category text-white bg-primary mb-3">23時以降<%= item["midnight"] %></span>
-                <%end%>
-                <span class="post-category text-white bg-success mb-3"><%=  item["mobile_access"] %></span>
-                <h2><a ><%=  item["name"] %></a></h2>
-                <p>・飲み放題<%=  item["free_drink"] %>
-                <br/>・<%=  item["budget_memo"] %>
-                <br/>・wifi<%=  item["wifi"] %>
-                <br/>・<%=  item["open"] %></p>
-                <%= link_to '詳細をみる！',  item["urls"]["pc"] %>
-                </div>
+          <div class="card text-center" style="width: w-100">
+            <img src="<%= item["photo"]["pc"]["l"] %>" alt="Image" class="img-fluid rounded">
+              <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><label for="name1">店名</label><br/><%=  item["name"] %></li>
+                    <li class="list-group-item"><label for="name1">ジャンル</label><br/><%=  item["genre"]["name"] %></li>
+                    <li class="list-group-item"><label for="name1">場所</label><br/><%=  item["mobile_access"] %></li>
+                    <li class="list-group-item"><label for="name1">予算<%=  item["budget"]["name"] %></li>
+                    <li class="list-group-item"><label for="name1">飲み放題</label><br/><%=  item["free_drink"].slice(0,2) %></li>
+                    <li class="list-group-item"><label for="name1">23時以降</label><br/><%= item["midnight"] %></li>
+                    <li class="list-group-item"><label for="name1">タバコ</label><br/><%=  item["non_smoking"] %></li>
+                    <li class="list-group-item"><label for="name1">営業日</label><br/><%=  item["open"] %></li>
+                  </ul>
               </div>
-            </div>
-          <%end%>
+              <div class="card-footer text-center ">
+              <%= link_to '詳細をみる！',  item["urls"]["pc"] %>
+          </div>
         </div>
+        <%end%>
         <div class="row text-center pt-5 border-top">
           <div class="col-md-12">
               <%= paginate @items if @items.present?%>
