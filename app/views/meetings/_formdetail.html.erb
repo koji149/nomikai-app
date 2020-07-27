@@ -9,7 +9,7 @@
       <h5 class="modar-title">
                 <div class="post-meta align-items-center text-left clearfix">
                 <%= link_to "users/#{@meeting.user_id}" do%>
-                <figure class="author-figure mb-0 mr-3 float-left">
+                <figure class="author-figure mb-0 mr-auto float-left">
                     <% if @meeting.user.image.attached? %>
                       <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid" %>
                     <% else %>

@@ -1,9 +1,9 @@
 .navbar {
   position: relative;
   display: flex;
-  flex-wrap: wrap; // allow us to do the line break for collapsing content
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between; // space out brand from logo
+  justify-content: space-between;
   padding: $navbar-padding-y $navbar-padding-x;
 }
 .navbar-brand {
@@ -14,20 +14,13 @@
   font-size: $navbar-brand-font-size;
   line-height: inherit;
   white-space: nowrap;
-
   @include hover-focus {
     text-decoration: none;
   }
 }
-
-
-// Navbar nav
-//
-// Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-link`).
-
 .navbar-nav {
   display: flex;
-  flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
+  flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -43,32 +36,22 @@
 .navbar-collapse {
   flex-basis: 100%;
   flex-grow: 1;
-  // For always expanded or extra full navbars, ensure content aligns itself
-  // properly vertically. Can be easily overridden with flex utilities.
   align-items: center;
 }
-
-// Button for toggling the navbar when in its collapsed state
 .navbar-toggler {
   padding: $navbar-toggler-padding-y $navbar-toggler-padding-x;
   font-size: $navbar-toggler-font-size;
   line-height: 1;
-  background-color: transparent; // remove default button style
-  border: $border-width solid transparent; // remove default button style
+  background-color: transparent;
+  border: $border-width solid transparent;
   @include border-radius($navbar-toggler-border-radius);
-
   @include hover-focus {
     text-decoration: none;
   }
-
-  // Opinionated: add "hand" cursor to non-disabled .navbar-toggler elements
   &:not(:disabled):not(.disabled) {
     cursor: pointer;
   }
 }
-
-// Keep as a separate element so folks can easily override it with another icon
-// or image file as needed.
 .navbar-toggler-icon {
   display: inline-block;
   width: 1.5em;
@@ -78,64 +61,39 @@
   background: no-repeat center center;
   background-size: 100% 100%;
 }
-.navbar-expand {
-  @each $breakpoint in map-keys($grid-breakpoints) {
-    $next: breakpoint-next($breakpoint, $grid-breakpoints);
-    $infix: breakpoint-infix($next, $grid-breakpoints);
-
-    &#{$infix} {
-      @include media-breakpoint-down($breakpoint) {
-        > .container,
-        > .container-fluid {
-          padding-right: 0;
-          padding-left: 0;
-        }
-      }
-
-      @include media-breakpoint-up($next) {
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-
-        .navbar-nav {
-          flex-direction: row;
-
-          .dropdown-menu {
-            position: absolute;
-          }
-
-          .nav-link {
-            padding-right: $navbar-nav-link-padding-x;
-            padding-left: $navbar-nav-link-padding-x;
-          }
-        }
-
-        // For nesting containers, have to redeclare for alignment purposes
-        > .container,
-        > .container-fluid {
-          flex-wrap: nowrap;
-        }
-
-        .navbar-collapse {
-          display: flex !important;  // stylelint-disable-line declaration-no-important
-
-          // Changes flex-bases to auto because of an IE10 bug
-          flex-basis: auto;
-        }
-
-        .navbar-toggler {
-          display: none;
-        }
-      }
-    }
+@media (max-width: 991.98px) {
+  .navbar-expand-lg > .container, .navbar-expand-lg > .container-fluid {
+      padding-right: 0;
+      padding-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+  }
+  .navbar-expand-lg .navbar-nav {
+      flex-direction: row;
+  }
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+      position: absolute;
+  }
+  .navbar-expand-lg .navbar-nav .nav-link {
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+  }
+  .navbar-expand-lg > .container, .navbar-expand-lg > .container-fluid {
+      flex-wrap: nowrap;
+  }
+  .navbar-expand-lg .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+  }
+  .navbar-expand-lg .navbar-toggler {
+      display: none;
   }
 }
 
-
-// Navbar themes
-//
-// Styles for switching between navbars with light or dark background.
-
-// Dark links against a light background
 .navbar-light {
   .navbar-brand {
     color: $navbar-light-active-color;

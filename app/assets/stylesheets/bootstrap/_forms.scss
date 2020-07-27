@@ -21,83 +21,10 @@
     color: $input-placeholder-color;
     opacity: 1;
   }
-  &:disabled,
-  &[readonly] {
-    background-color: $input-disabled-bg;
-    opacity: 1;
-  }
 }
-
-select.form-control {
-  &:focus::-ms-value {
-    color: $input-color;
-    background-color: $input-bg;
-  }
-}
-.col-form-label {
-  padding-top: calc(#{$input-padding-y} + #{$input-border-width});
-  padding-bottom: calc(#{$input-padding-y} + #{$input-border-width});
-  margin-bottom: 0; // Override the `<label>/<legend>` default
-  font-size: inherit; // Override the `<legend>` default
-  line-height: $input-line-height;
-}
-
-
-// stylelint-disable no-duplicate-selectors
-select.form-control {
-  &[size],
-  &[multiple] {
-    height: auto;
-  }
-}
-
 textarea.form-control {
   height: auto;
 }
 .form-group {
   margin-bottom: $form-group-margin-bottom;
-}
-.form-text {
-  display: block;
-  margin-top: $form-text-margin-top;
-}
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -5px;
-  margin-left: -5px;
-
-  > .col,
-  > [class*="col-"] {
-    padding-right: 5px;
-    padding-left: 5px;
-  }
-}
-.form-check {
-  position: relative;
-  display: block;
-  padding-left: $form-check-input-gutter;
-}
-.form-check-input {
-  position: absolute;
-  margin-top: $form-check-input-margin-y;
-  margin-left: -$form-check-input-gutter;
-  &:disabled ~ .form-check-label {
-    color: $text-muted;
-  }
-}
-.form-check-label {
-  margin-bottom: 0; // Override default `<label>` bottom margin
-}
-.form-check-inline {
-  display: inline-flex;
-  align-items: center;
-  padding-left: 0; // Override base .form-check
-  margin-right: $form-check-inline-margin-x;
-  .form-check-input {
-    position: static;
-    margin-top: 0;
-    margin-right: $form-check-inline-input-margin-x;
-    margin-left: 0;
-  }
 }
