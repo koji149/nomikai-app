@@ -32,7 +32,7 @@
       </div>
     <%else%>
       <div class="carousel-item " id="bookmark_btn_<%= meeting.id %>">
-        <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
+        <div style="width: 100vw; height: auto; min-height: 100vh; max-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
           <% if meeting.image.attached? %>
             <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
           <% else %>
