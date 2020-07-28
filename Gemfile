@@ -67,8 +67,6 @@ gem 'activesupport'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'kaminari'
-<<<<<<< HEAD
-=======
 gem 'rails_12factor', group: :production
 gem 'meta-tags'
 gem 'device_detector'
@@ -78,14 +76,8 @@ gem 'sitemap_generator'
 gem 'roboto'
 gem 'whenever', require: false
 gem 'aws-sdk'
-<<<<<<< HEAD
->>>>>>> f3df571776c59624ac93c982422b47fb897af128
-=======
 gem 'devise'
 gem 'bcrypt'
-<<<<<<< HEAD
->>>>>>> 2f38003d77ba244bb9260ddbdc9a8ed4660c86e2
-=======
 gem 'font-awesome-sass'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -96,4 +88,3 @@ gem 'rambulance'
 gem 'rails-i18n'
 gem 'geocoder'
 gem 'geokit-rails'
->>>>>>> meeting

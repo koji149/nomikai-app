@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'icomoon';
+  src: asset_url('icomoon.ttf') format('truetype');
+
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="fa-"], [class*=" fa-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-arrow-alt-circle-down:before {
+  content: "\e903";
+}
+.fa-beer:before {
+  content: "\e904";
+}
+.fa-twitter:before {
+  content: "\e906";
+}
+.fa-cocktail:before {
+  content: "\e901";
+}
+.fa-glass-cheers:before {
+  content: "\e902";
+}
+.fa-sign-in-alt:before {
+  content: "\e907";
+}
+.fa-sign-out-alt:before {
+  content: "\e908";
+}
+.fa-trash-alt:before {
+  content: "\e909";
+}
+.fa-user-edit:before {
+  content: "\e90a";
+}
+.fa-user-friends:before {
+  content: "\e90b";
+}
+.fa-user:before {
+  content: "\e90c";
+}
+.fa-wine-bottle:before {
+  content: "\e90d";
+}
+.fa-home:before {
+  content: "\e900";
+}
+.fa-pencil:before {
+  content: "\e905";
+}
+.fa-glass:before {
+  content: "\e9a0";
+}
+.fa-google:before {
+  content: "\ea88";
+}
+.fa-instagram:before {
+  content: "\ea92";
+}

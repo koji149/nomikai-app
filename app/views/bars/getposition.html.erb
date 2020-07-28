@@ -1,106 +1,37 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <% set_meta_tags title: "「どこ行くか決まらない？」 近くの居酒屋を探す", description: "徒歩5分・予算3000以下でお店を探します。一件目のの居酒屋や朝までのバーなどなど..." %>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <%= canonical_tag %>
-    <%= rel_next_prev_link_tags @items if @items.present?%>
-    <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
-  </head>
-  <div class="site-wrap">
-    <header class="site-navbar" >
-      <div class="container-fluid">
-        <div class="row align-items-center">
-            <nav class="site-navigation" >
-            <div class="site-logo">
-              <%= link_to image_tag('aftercampus_wide.png'), root_path %>
-            </div>
-              <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to "全部", bars_getposition_path(area_name: @area_name, category: "お店一覧", explain: "【予算3000円・飲み放題あり】", latitude: @lat, longitude: @lng) %></button><li>
-                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to '居酒屋', bars_getposition_path(free_drink: 0, genre: "G001", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "居酒屋一覧", explain: "【予算3000円】の店舗", latitude: @lat, longitude: @lng) %></button><li>
-                <li><button type="button" class="btn-outline-primary rounded-pill"><%= link_to 'バル', bars_getposition_path(free_drink: 0,genre: "G002", wifi: 0, non_smoking: @non_smoking, budget: @budget, area_name: @area_name, category: "バル・ダイニングバー一覧", explain: "【予算3000円】の店舗", latitude: @lat, longitude: @lng) %></button><li>
-                <li><button type="button" class="btn-outline-info rounded-pill"><%= link_to 'バー', bars_getposition_path(free_drink: 0,genre: "G012", wifi: 0, non_smoking: 0, budget: @budget, area_name: @area_name, category: "バー一覧", explain: "【予算3000円】の店舗", latitude: @lat, longitude: @lng) %></button><li>
-              </ul>
-            </nav>
-        </div>
-      </div>
-    </header>
-    <div class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <span><%=@area_name%></span>
-            <h1><%=@category%></h1>
-            <h2><%=@explain%></h2>
-            <p>ヒット数：<%=@sum_items%>件</p>
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <% set_meta_tags title: "「どこ行く？」 近くの居酒屋、バル、バーを探す", description: "「どこ行くか迷ってない？」徒歩5分でお店を探します。一件目の居酒屋や朝まで過ごすバーなど...", keywords: '居酒屋, バー, 近く' %>
+
     <div class="site-section bg-white">
       <div class="container">
-        <div class="row">
+      <div class="row align-items-stretch retro-layout-2">
         <%items = @response["results"]["shop"]%>
           <%@items.each do |item|%>
-            <div class="col-lg-4 mb-4">
-              <div class="entry2">
-                <img src="<%= item["photo"]["pc"]["l"] %>" alt="Image" class="img-fluid rounded">
-                <div class="excerpt">
-                <%if @genre == "G001,G002,G012"%>
-                <span class="post-category text-white bg-danger mb-3"><%=  item["genre"]["name"] %></span>
-                <%end%>
-                <span class="post-category text-white bg-info mb-3"><%=  item["budget"]["name"] %></span>
-                <%if (@genre == "G001" || @genre == "G002")&& item["free_drink"].slice(0,2) == "あり"%>
-                <span class="post-category text-white bg-primary mb-3">飲み放題<%=  item["free_drink"].slice(0,2) %></span>
-                <%end%>
-                <%if item["non_smoking"] == "一部禁煙" || item["non_smoking"] == "全面禁煙"%>
-                <span class="post-category text-white bg-secondary mb-3"><%=  item["non_smoking"] %></span>
-                <%end%>
-                <%if @genre == "G012" && item["midnight"] == "営業している"%>
-                <span class="post-category text-white bg-primary mb-3">23時以降<%= item["midnight"] %></span>
-                <%end%>
-                <span class="post-category text-white bg-success mb-3"><%=  item["mobile_access"] %></span>
-                <h2><a ><%=  item["name"] %></a></h2>
-                <p>・飲み放題<%=  item["free_drink"] %>
-                <br/>・<%=  item["budget_memo"] %>
-                <br/>・wifi<%=  item["wifi"] %>
-                <br/>・<%=  item["open"] %></p>
-                <%= link_to '詳細をみる！',  item["urls"]["pc"] %>
-                </div>
+          <div class="col-md-4">
+          <div class="card text-center" style="width: w-100">
+            <img src="<%= item["photo"]["pc"]["l"] %>" alt="Image" class="img-fluid rounded">
+              <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><label for="name1">店名</label><br/><%=  item["name"] %></li>
+                    <li class="list-group-item"><label for="name1">ジャンル</label><br/><%=  item["genre"]["name"] %></li>
+                    <li class="list-group-item"><label for="name1">場所</label><br/><%=  item["mobile_access"] %></li>
+                    <li class="list-group-item"><label for="name1">予算<%=  item["budget"]["name"] %></li>
+                    <li class="list-group-item"><label for="name1">飲み放題</label><br/><%=  item["free_drink"].slice(0,2) %></li>
+                    <li class="list-group-item"><label for="name1">23時以降</label><br/><%= item["midnight"] %></li>
+                    <li class="list-group-item"><label for="name1">タバコ</label><br/><%=  item["non_smoking"] %></li>
+                    <li class="list-group-item"><label for="name1">営業日</label><br/><%=  item["open"] %></li>
+                  </ul>
               </div>
-            </div>
-          <%end%>
+              <div class="card-footer text-center ">
+              <%= link_to '詳細をみる！',  item["urls"]["pc"] %>
+          </div>
+          </div>
         </div>
+        <%end%>
         <div class="row text-center pt-5 border-top">
-          <div class="col-md-12">
+          <div class="col-md-12 pagination li a">
               <%= paginate @items if @items.present?%>
           </div>
         </div>
+        </div>
     </div>
   </div>
-    <div class="site-footer">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-4">
-            <h3 class="footer-heading mb-4">Contact</h3>
-            <p>サービスへの要望がある場合はこちら</p>
-            <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
-            <p><%= mail_to "aftercampus0617@gmail.com"%></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy; <script>(function(){document.write(new Date().getFullYear())});</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <%=link_to "https://colorlib.com", "https://colorlib.com", target: "_blank"%>Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
-              <p>Powered by <%= link_to "http://webservice.recruit.co.jp/", "http://webservice.recruit.co.jp/" %>ホットペッパー Webサービス</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</html> 

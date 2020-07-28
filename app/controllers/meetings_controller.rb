@@ -1,29 +1,25 @@
 class MeetingsController < ApplicationController
 
-  before_action :authenticate, except: [:index]
+  include AjaxHelper 
+
+  layout 'meeting'
+
+  before_action :authenticate, except: [:index, :new]
 
   def index
     if params[:latitude].present? && params[:longitude].present?
       current_lat = params[:latitude]
       current_lng = params[:longitude]
-      @meetings = Meeting.all.within(6, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
+      @meetings = Meeting.all.within(3, origin: [current_lat, current_lng]).order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
       @area_name = "近くの募集一覧"
-    elsif params[:area]
-      area_num = params[:area]
-      
-      if area_num == "11" 
-          @area_name = "埼玉の募集一覧"
-        elsif area_num == "13"
-          @area_name = "東京の募集一覧"
-        elsif area_num == "27"
-          @area_name = "大阪の募集一覧"
-        elsif area_num == "40"
-          @area_name = "福岡の募集一覧"
-        else
-      end
-      @meetings = Meeting.where(area: area_num).order(updated_at: :desc).page(params[:page]).per(12)
+      return
+    elsif params[:user_id] && user_signed_in?
+      user_id = params[:user_id]
+      @meetings = Meeting.where(user_id: user_id).order(updated_at: :desc).page(params[:page]).per(12)
+      @area_name = "My募集一覧"
       @sum_meetings = @meetings.length
+      return
     else
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @area_name = "全募集一覧"
@@ -32,7 +28,11 @@ class MeetingsController < ApplicationController
   end
 
   def show
-      @meeting = Meeting.find(params[:id])
+    @meeting = Meeting.find(params[:id])
+    if params.has_key?(:detail)
+      render "detail"
+      return
+    end
     unless params.has_key?(:user)
       render "join"
       return
@@ -74,6 +74,10 @@ class MeetingsController < ApplicationController
     if @meeting.update(creat_params)
       @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
       @sum_meetings = @meetings.length
+      respond_to do |format|
+        # format.jsとして、flashメッセージはブロック内に記述します 
+        format.js { flash.now[:success] = "投稿を更新しました。" } 
+      end
     else
       render action: :edit
     end
@@ -81,23 +85,37 @@ class MeetingsController < ApplicationController
 
   def destroy
     @meeting = Meeting.find(params[:id])
-    if @meeting.destroy
-      @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
-      @sum_meetings = @meetings.length
-      flash.now[:success] = "削除に成功しました"
+    unless params.has_key?(:status)
+      render "destroyconfirm"
+      return
     else
-      render action: :index
+      if @meeting.destroy
+        @meetings = Meeting.all.order(updated_at: :desc).page(params[:page]).per(12)
+        @sum_meetings = @meetings.length
+
+        respond_to do |format|
+          # format.jsとして、flashメッセージはブロック内に記述します 
+          format.js { flash.now[:success] = "投稿を削除しました。" } 
+        end
+
+      else
+        render action: :index
+      end
     end
   end
 
   private
+
     def creat_params
       params.require(:meeting).permit(:area, :date, :time, :bar, :url, :explain, :image).merge(user_id: current_user.id)
     end
 
     def authenticate
-      redirect_to new_user_session_path unless user_signed_in?
-      flash[:danger] = "ログインをしてください"
+      unless user_signed_in?
+        respond_to do |format|
+          flash[:error] = "ログインが必要です。"
+          format.js { render ajax_redirect_to(new_user_session_path) }
+        end 
+      end
     end
-
 end

@@ -1,3 +1,4 @@
 $("#bookmark_btn_<%= @meeting.id %>").remove();
-$("#user-modal").html("<%= escape_javascript(render 'index') %>")
+$("#carouselExampleControls").html("<%= escape_javascript(render(partial:'meetings/index')) %>")
+
 $("#user-modal").modal("hide")

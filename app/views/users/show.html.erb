@@ -1,30 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-  <% set_meta_tags noindex: true %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <%= canonical_tag %>
-    <link rel="icon" href="logo.png" sizes="16x16" type="image/png" />
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900", :media => "all" %>
-  </head>
-  <div class="site-wrap">
-    <header class="site-navbar" >
-      <div class="container-fluid">
-        <div class="row align-items-center">
-            <nav class="site-navigation" >
-            <div class="site-logo">
-              <%= link_to image_tag('aftercampus_wide.png'), root_path %>
-            </div>
-              <ul class="site-menu js-clone-nav mr-auto d-lg-block ">
-                <li><button onclick="getmeetingPosition();" type="button" class="btn-outline-success rounded-pill"><div class="fas fa-wine-glass-alt">徒歩5分で着く募集を探す</div></button></li>
-                <li><button onclick="getPosition();" type="button" class="btn-outline-danger rounded-pill"><div class="fas fa-beer">徒歩5分で着く居酒屋を探す</div></button></li>
-                <li><button type="button" class="btn-outline-info rounded-pill" ><%= link_to "募集する/参加する", meetings_path, class: "fas fa-glass-cheers" %></button></li>
-              </ul>
-            </nav>
-        </div>
-      </div>
-    </header>
+<%set_meta_tags noindex: true, nofollow: true%>
+
     <div class="site-section bg-light">
       <div class="container">
         <div class="card text-left" style="width: w-100">
@@ -37,7 +12,7 @@
                   <h5 class="card-title">
                     <div class="post-meta align-items-center text-left clearfix">
                     <div class="post-meta align-items-center text-center clearfix">
-                    <figure class="author-figure mb-0 mr-3 float-left">
+                    <figure class="author-figure mb-0 mr-auto float-left">
                         <% if @user.image.attached? %>
                           <%= image_tag @user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                         <% else %>
@@ -49,8 +24,8 @@
                     <li class="list-group-item"><label for="name1">ユーザーネーム</label><br/><%=@user.name%></li>
                     <li class="list-group-item"><label for="name1">性別</label><br/><%=@user.gender%></li>
                     <li class="list-group-item"><label for="name1">大学</label><br/><%=@user.university%></li>
-                    <li class="list-group-item"><label for="name1">Twitter</label><br/><%= link_to "https://twitter.com/#{@user.username}", "https://twitter.com/#{@user.username}" %></li>
-                    <li class="list-group-item"><label for="name1">Instagram</label><br/><%=link_to "#{@user.twitter}", @user.twitter %></li>
+                    <li class="list-group-item"><label for="name1">Twitter</label><br/><%= link_to "https://twitter.com/#{@user.username}", "https://twitter.com/#{@user.username}", class: "fab fa-twitter", style: "color:#1da1f2;" %></li>
+                    <li class="list-group-item"><label for="name1">Instagram</label><br/><%=link_to "#{@user.twitter}", @user.twitter, class: "fab fa-instagram", style: "color:#1da1f2;" %></li>
                     <li class="list-group-item"><label for="name1">その他のURL</label><br/><%=link_to "#{@user.other_link}", @user.other_link %></li>
                   </ul>
               </div>
@@ -58,34 +33,9 @@
               <% if @user == current_user%>
                 <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user), class: "fas fa-user-edit" %></button>
                 <button type="button" class="btn-outline-danger rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "fas fa-sign-out-alt"%></button>
+                <br><br>
               <%end%>
-                <button type="button" class="btn-outline-warning rounded-pill"><%= link_to "トップに戻る", root_path, class: "fas fa-home"%></button>
               </div>
         </div>
       </div>
     </div>
-    
-    <div class="site-footer">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-4">
-            <h3 class="footer-heading mb-4">Contact</h3>
-            <p>サービスへの要望がある場合はこちら</p>
-            <p><%= link_to "after-campusのTwitter", "https://twitter.com/campus_after" %></p>
-            <p><%= mail_to "aftercampus0617@gmail.com"%></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy; <script>(function(){document.write(new Date().getFullYear())});</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <%=link_to "https://colorlib.com", "https://colorlib.com", target: "_blank"%>Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
-              <p>Powered by <%= link_to "http://webservice.recruit.co.jp/", "http://webservice.recruit.co.jp/" %>ホットペッパー Webサービス</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</html>

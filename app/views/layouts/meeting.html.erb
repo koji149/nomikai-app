@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= display_meta_tags(default_meta_tags) %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <%= canonical_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script>
+                  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+<%= flash_message(flash[:success], :success) if flash[:success] %>
+<%= flash_message(flash[:error], :danger) if flash[:error] %>
+<%= flash_message(flash[:alert], :warning) if flash[:alert] %>
+<%= flash_message(flash[:notice], :info) if flash[:notice] %>
+
+<div class="wra">
+    <header>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%=image_tag 'aftercampus.png', alt: "アフターキャンパスのロゴ画像" %>
+        <%end%>
+        <button class="navbar-toggler bg-transparent border-0" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="fa-arrow-alt-circle-down" style="color:#4169E1;"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo01">
+              <%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail font-weight-bold text-white"%>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+            <li class="nav-item ">
+              <%= link_to "募集一覧", meetings_path, class: "fas fa-glass-cheers font-weight-bold text-light" %>
+            </li>
+          <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+            <li class="nav-item ">
+              <%= link_to "自分の募集", meetings_path(user_id: current_user.id), class: "fa-cocktail font-weight-bold text-light" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "マイページ", user_path(current_user), class: "fas fa-user font-weight-bold text-light" %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <%= yield %>
+    </div>
+    
+  </body>
+    <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="toast" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+</html>
