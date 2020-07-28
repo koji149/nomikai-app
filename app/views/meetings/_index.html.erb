@@ -5,11 +5,11 @@
       <div class="carousel-item active" id="bookmark_btn_<%= meeting.id %>">
         <div style="width: 100vw; height: auto; min-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
           <% if meeting.image.attached? %>
-            <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block", style:"width: 100vw; height: auto; min-height: 100vh;"%>
+            <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block" %>
           <% else %>
-            <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top", style:"width: 100vw; height: auto; min-height: 100vh;" %>
+            <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
-            <footer class="fixed-bottom ">
+            <footer class="sticky-bottom " style="">
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
@@ -34,11 +34,11 @@
       <div class="carousel-item " id="bookmark_btn_<%= meeting.id %>">
         <div style="width: 100vw; height: auto; min-height: 100vh; max-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
           <% if meeting.image.attached? %>
-            <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block", style:"width: 100vw; height: auto; min-height: 100vh;" %>
+            <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block" %>
           <% else %>
-            <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top", style:"width: 100vw; height: auto; min-height: 100vh;" %>
+            <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
-            <footer class="fixed-bottom ">
+            <footer class="sticky-bottom " style="">
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
