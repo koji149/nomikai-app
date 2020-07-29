@@ -3,7 +3,7 @@
   <%@meetings.each do |meeting|%>
     <%if i == 0%>
       <div class="carousel-item active" id="bookmark_btn_<%= meeting.id %>" style="width: 100vw; height: auto; min-height: 100vh; max-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
-        <div style="width: 100vw; height: auto; min-height: 100vh; max-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
+        <div >
           <% if meeting.image.attached? %>
             <%= image_tag meeting.image, alt: "募集画像", class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100 h-100" %>
           <% else %>
