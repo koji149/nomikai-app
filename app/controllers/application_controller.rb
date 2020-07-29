@@ -6,10 +6,11 @@ class ApplicationController < ActionController::Base
 
   FQDN = 'www.after-campus.com'
 
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) # 新規登録時(sign_up時)にnameというキーのパラメーターを追加で許可する
   end
-  
+
 
   #def routing_error
     #raise ActionController::RoutingError, params[:path]
