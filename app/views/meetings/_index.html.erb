@@ -9,9 +9,9 @@
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
-            
         </div>
-        <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
+      </div>
+      <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
@@ -30,7 +30,6 @@
               <% end %>
               </nav>
             </footer>
-      </div>
     <%else%>
       <div class="carousel-item " id="bookmark_btn_<%= meeting.id %>" >
         <div style="width: 100vw; height: auto; min-height: 100vh; max-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
@@ -39,9 +38,9 @@
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
-            
         </div>
-        <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
+      </div>
+      <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
@@ -60,7 +59,6 @@
               <% end %>
               </nav>
             </footer>
-      </div>
     <%end%>
     <%i += 1%>
   <%end%>
