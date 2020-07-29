@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   add_flash_types :success, :info, :warning, :danger
 
+  FQDN = 'www.after-campus.com'
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) # 新規登録時(sign_up時)にnameというキーのパラメーターを追加で許可する
@@ -39,7 +40,6 @@ class ApplicationController < ActionController::Base
   def ensure_domain
     return unless /\.herokuapp.com/ =~ request.host
 
-    FQDN = 'www.after-campus.com'
     port = ":#{request.port}" unless [80, 443].include?(request.port)
     redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
   end
