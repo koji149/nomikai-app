@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :redirect_root_domain
   before_action :ensure_domain
   before_action :configure_permitted_parameters, if: :devise_controller?
   add_flash_types :success, :info, :warning, :danger
@@ -32,10 +31,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def redirect_root_domain
-    return unless request.host === 'after-campus.com'
-    redirect_to("#{request.protocol}www.after-campus.com#{request.fullpath}", status: 301)
-  end
+  
 
   def ensure_domain
     return unless /\.herokuapp.com/ =~ request.host
