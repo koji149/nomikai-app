@@ -12,6 +12,7 @@
                     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+  <div class="wrapper">
 <%= flash_message(flash[:success], :success) if flash[:success] %>
 <%= flash_message(flash[:error], :danger) if flash[:error] %>
 <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
@@ -136,7 +137,7 @@
       </div>
       </nav>
     </footer>
-    
+    </div>
   </body>
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div id="toast" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

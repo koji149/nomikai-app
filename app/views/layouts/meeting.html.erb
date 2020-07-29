@@ -13,12 +13,13 @@
                   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+
 <%= flash_message(flash[:success], :success) if flash[:success] %>
 <%= flash_message(flash[:error], :danger) if flash[:error] %>
 <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
 <%= flash_message(flash[:notice], :info) if flash[:notice] %>
 
-<div class="wra">
+<div class="wrapper">
     <header>
       <nav class="navbar fixed-top navbar-expand-lg navbar-light">
         <%= link_to root_path, class: "navbar-brand" do %>

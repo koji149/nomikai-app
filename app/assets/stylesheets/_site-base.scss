@@ -1,16 +1,14 @@
-.wrapper {
-	min-height: 100vh;
-	position: relative;
-	padding-top: 76px;
-	padding-bottom: 71.2px;
-	box-sizing: border-box;
+.wrapper{
+	height: 100vh;
+	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
 }
-.wra {
-	width: 100%;
-    position: relative;
-		min-height: 100%;
-		max-height: 100%;
-}
+//.wra {
+	//width: 100%;
+    //position: relative;
+		//min-height: 100%;
+		//max-height: 100%;
+//}
 body {
 	line-height: 1.7;
 	color: lighten($black, 50%);
