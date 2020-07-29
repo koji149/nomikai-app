@@ -9,7 +9,7 @@
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
-            <footer class="fixed-bottom " style="">
+            <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
@@ -38,7 +38,7 @@
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
-            <footer class="fixed-bottom " style="">
+            <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
