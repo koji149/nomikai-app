@@ -34,7 +34,9 @@ class ApplicationController < ActionController::Base
   
 
   def ensure_domain
-    return unless /\.herokuapp.com/ =~ request.host
+    unless /\.herokuapp.com/ =~ request.host || /\.after-campus.com/ =~ request.host
+      return
+    end
 
     port = ":#{request.port}" unless [80, 443].include?(request.port)
     redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
