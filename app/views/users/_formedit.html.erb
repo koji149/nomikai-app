@@ -22,7 +22,7 @@
 
               <div class="form-group field">
                   <%= f.label :"ユーザーネーム", :class => "text-black"  %><br />
-                  <%= f.text_field :name, autofocus: true, autocomplete: "name", :class => "form-control" %>
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name", maxlength: "100", :class => "form-control" %>
                   <% if @user.errors.include?(:name) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:name).first %>
                   <% end %>
@@ -35,7 +35,7 @@
 
               <div class="form-group field">
                   <%= f.label :"大学", :class => "text-black" %><br />
-                  <%= f.text_field :university, autocomplete: "university", :class => "form-control" %>
+                  <%= f.text_field :university, autocomplete: "university", maxlength: "100", :class => "form-control" %>
                   <% if @user.errors.include?(:university) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:university).first %>
                   <% end %>
@@ -48,7 +48,7 @@
               
               <div class="form-group field">
                   <%= f.label :"紹介文（最大250字）", :class => "text-black" %><br />
-                  <%=  f.text_area :comment, autocomplete: "comment", :class => "form-control" %>
+                  <%=  f.text_area :comment, autocomplete: "comment", maxlength: "250", :class => "form-control" %>
                   <% if @user.errors.include?(:comment) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:comment).first %>
                   <% end %>
@@ -61,7 +61,7 @@
 
               <div class="form-group field">
                   <%= f.label :"instagram（最大150字）", :class => "text-black" %><br />
-                  <%= f.url_field :instagram, autocomplete: "instagram", :class => "form-control" %>
+                  <%= f.url_field :instagram, autocomplete: "instagram", maxlength: "150", :class => "form-control" %>
                   <% if @user.errors.include?(:instagram) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:instagram).first %>
                   <% end %>
@@ -69,7 +69,7 @@
 
               <div class="form-group field">
                   <%= f.label :"その他（facebook TikTok等）（最大150字）", :class => "text-black" %><br />
-                  <%= f.url_field :other_link, autocomplete: "other_link", :class => "form-control" %>
+                  <%= f.url_field :other_link, autocomplete: "other_link", maxlength: "150", :class => "form-control" %>
                   <% if @user.errors.include?(:other_link) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:other_link).first %>
                   <% end %>
