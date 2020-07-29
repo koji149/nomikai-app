@@ -1,106 +1,88 @@
 <%set_meta_tags noindex: true, nofollow: true%>
 
-    <div class="site-section bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <%= form_with model: @user, local: true, html: { class: "p-5 bg-white" } do |f| %>
-              <h2>マイページ編集</h2><br/>
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+          <%= form_with(model: @user), local: true do |f| %>
 
-              <br/><div class="row form-group">
-                <div class="col-md-12">
+            <div class="modal-header">
+              <h5 class="modal-title">マイページ編集</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-group field">
                   <%= f.label :"トップ画像", :class => "text-black" %><br/>
                   <%= f.file_field :image, autocomplete: "image", :class => "form-control" %>
                   <% if @user.errors.include?(:image) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:image).first %>
                   <% end %>
-                </div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-md-12">
+              <div class="form-group field">
                   <%= f.label :"ユーザーネーム", :class => "text-black"  %><br />
                   <%= f.text_field :name, autofocus: true, autocomplete: "name", :class => "form-control" %>
                   <% if @user.errors.include?(:name) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:name).first %>
                   <% end %>
-                </div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-md-12">
+              <div class="form-group field">
                   <%= f.label :"性別", :class => "text-black"  %><br />
                   <%= f.radio_button :gender, "男" %>男性 <%= f.radio_button :gender, "女" %>女性
-                </div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-md-12">
+              <div class="form-group field">
                   <%= f.label :"大学", :class => "text-black" %><br />
                   <%= f.text_field :university, autocomplete: "university", :class => "form-control" %>
                   <% if @user.errors.include?(:university) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:university).first %>
                   <% end %>
-                </div>
               </div>
 
-              <%#<div class="row form-group">
-                <div class="col-md-12">
+              <%#<div class="form-group field">
                   <%= f.label :"動画（自己紹介等、任意）", :class => "text-black" %><%#<br />#%>
                   <%#<%= f.file_field :video, autocomplete: "video", :class => "form-control" %>
-                <%#</div>#%>
               <%#</div>#%>
               
-              <div class="row form-group">
-                <div class="col-md-12">
+              <div class="form-group field">
                   <%= f.label :"紹介文（最大250字）", :class => "text-black" %><br />
                   <%=  f.text_area :comment, autocomplete: "comment", :class => "form-control" %>
                   <% if @user.errors.include?(:comment) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:comment).first %>
                   <% end %>
-                </div>
               </div>
 
-              <%#<div class="row form-group">
-                <div class="col-md-12">
+              <%#<div class="form-group field">
                   <%= f.label :"twitter（最大300字）", :class => "text-black" %><%#<br />
                   <%= f.url_field :twitter, autocomplete: "twitter", maxlength: "300", :class => "form-control" %>
-                <%#</div>
-              </div>#%>
+              <%#</div>#%>
 
-              <div class="row form-group">
-                <div class="col-md-12">
+              <div class="form-group field">
                   <%= f.label :"instagram（最大150字）", :class => "text-black" %><br />
                   <%= f.url_field :instagram, autocomplete: "instagram", :class => "form-control" %>
                   <% if @user.errors.include?(:instagram) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:instagram).first %>
                   <% end %>
-                </div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-md-12">
+              <div class="form-group field">
                   <%= f.label :"その他（facebook TikTok等）（最大150字）", :class => "text-black" %><br />
                   <%= f.url_field :other_link, autocomplete: "other_link", :class => "form-control" %>
                   <% if @user.errors.include?(:other_link) %>
                     <p style="color: red;"><%= @user.errors.full_messages_for(:other_link).first %>
                   <% end %>
-                </div>
               </div>
 
-
-              <div class="row form-group">
-              <% if @user.errors.any? %>
-              <div id="error_explanation">
-                <p style="background: #FF82B2;"><%= pluralize(@user.errors.count, "error") %> ユーザー情報の更新に失敗しました</p>
-              </div>
-              <% end %>
-                <div class="col-md-12">
-                    <%= f.submit "保存", :class => "btn btn-outline-primary"  %>
-                </div>
+              <div class="modal-footer actions">
+                <% if @user.errors.any? %>
+                  <div id="error_explanation">
+                    <p style="background: #FF82B2;"><%= pluralize(@user.errors.count, "error") %> ユーザー情報の更新に失敗しました</p>
+                  </div>
+                <% end %>
+                  <%= f.submit "保存", :class => "btn btn-outline-primary"  %>
               </div>
             <% end %>
-          </div>
         </div>
       </div>
-    </div>
