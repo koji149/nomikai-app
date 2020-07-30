@@ -7,9 +7,9 @@
     </div>
     <div class="modal-body">
       <h5 class="modar-title">
-                <div class="post-meta align-items-center clearfix">
+                <div class="post-meta align-items-center clearfix text-center">
                 <%= link_to "users/#{@meeting.user_id}" do%>
-                <div class=" text-center">
+                <div>
                     <% if @meeting.user.image.attached? %>
                       <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                     <% else %>
