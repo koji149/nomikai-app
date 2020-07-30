@@ -11,9 +11,9 @@
                 <%= link_to "users/#{@meeting.user_id}" do%>
                 <figure class="author-figure mb-0 mr-auto float-left text-center">
                     <% if @meeting.user.image.attached? %>
-                      <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid" %>
+                      <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                     <% else %>
-                      <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid" %>
+                      <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                     <% end %>
                 </figure>
                 <%end%>
