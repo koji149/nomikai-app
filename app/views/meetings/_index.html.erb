@@ -9,29 +9,8 @@
           <% else %>
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
-           
         </div>
-        <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
-              <nav class="nav nav-pills nav-justified ">
-              <% if user_signed_in? && meeting.user_id == current_user.id %>
-                <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn btn-info rounded-pill btn-lg"><%= link_to "修正", edit_meeting_path(meeting), remote: true, class: "fa-pencil text-white"%></button>
-                </div>
-                <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn btn-danger rounded-pill btn-lg"><%=link_to "削除", meeting_path(meeting), method: :delete, remote: true, class: "fas fa-trash-alt text-white"%></button>
-                </div>
-              <% else %>
-                <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                    <button type="button" class="btn btn-primary rounded-pill btn-lg"><%= link_to "参加", meeting_path(meeting), remote: true, class: "fas fa-glass-cheers text-white"%></button>
-                </div>
-                <div class= "nav-item nav-link active rounded-0 bg-transparent">
-                  <button type="button" class="btn btn-success rounded-pill btn-lg"><%= link_to "詳細", meeting_path(id: meeting.id, detail: "detail"), remote: true, class: "fas fa-user-friends text-white"%></button>
-                </div>
-              <% end %>
-              </nav>
-            </footer>
       </div>
-     
     <%else%>
       <div class="carousel-item " id="bookmark_btn_<%= meeting.id %>" >
         <div style="width: 100vw; height: auto; min-height: 100vh; max-height: 100vh;display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;;">
@@ -41,7 +20,9 @@
             <%= image_tag ("bar.png"), alt: "募集画像", class: "bd-placeholder-img card-img-top" %>
           <% end %>
         </div>
-        <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
+      </div>
+    <%end%>
+      <footer class="fixed-bottom " style="padding-bottom: env(safe-area-inset-bottom);">
               <nav class="nav nav-pills nav-justified ">
               <% if user_signed_in? && meeting.user_id == current_user.id %>
                 <div class= "nav-item nav-link active rounded-0 bg-transparent">
@@ -60,17 +41,18 @@
               <% end %>
               </nav>
             </footer>
-      </div>
-      
-    <%end%>
     <%i += 1%>
   <%end%>
   </div>
 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <%if @meetings.present?%>
     <span class="sr-only">Previous</span>
+    <%end%>
   </a>
   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <%if @meetings.present?%>
     <span class="sr-only">Next</span>
+    <%end%>
   </a>
