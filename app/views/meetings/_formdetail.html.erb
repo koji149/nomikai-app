@@ -9,13 +9,13 @@
       <h5 class="modar-title">
                 <div class="post-meta align-items-center clearfix">
                 <%= link_to "users/#{@meeting.user_id}" do%>
-                <figure class="author-figure mb-0 mr-auto float-left text-center">
+                <div class=" text-center">
                     <% if @meeting.user.image.attached? %>
                       <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                     <% else %>
                       <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                     <% end %>
-                </figure>
+                </div>
                 <%end%>
                 <span class="d-inline-block mt-1 text-center">By<%=link_to "#{@meeting.user.name}", "users/#{@meeting.user_id}"%></span>
                 </div>
