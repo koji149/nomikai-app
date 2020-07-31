@@ -36,7 +36,7 @@
             </li>
           <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
             <li class="nav-item ">
-              <%= link_to "自分の募集", meetings_path(user_id: current_user.id), class: "fa-cocktail font-weight-bold text-light" %>
+              <%= link_to "自分の募集", meetings_path(user_id: current_user.id), class: "fa-wine-bottle font-weight-bold text-light" %>
             </li>
             <li class="nav-item">
               <%= link_to "マイページ", user_path(current_user), class: "fas fa-user font-weight-bold text-light" %>
