@@ -19,7 +19,7 @@
 <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
 <%= flash_message(flash[:notice], :info) if flash[:notice] %>
 
-<div class="wrapper">
+<div class="wrapper" style="max-width:650px">
     <header>
       <nav class="navbar fixed-top navbar-expand-lg navbar-light">
         <%= link_to root_path, class: "navbar-brand" do %>
