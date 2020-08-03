@@ -29,10 +29,12 @@
           <span class="fa-arrow-alt-circle-down" style="color:#4169E1;"></span>
         </button>
         <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo01">
-              <%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail font-weight-bold text-white"%>
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
             <li class="nav-item ">
               <%= link_to "募集一覧", meetings_path, class: "fas fa-glass-cheers font-weight-bold text-light" %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "募集する", new_meeting_path, remote: true, class: "fas fa-cocktail font-weight-bold text-white"%>
             </li>
           <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
             <li class="nav-item ">
