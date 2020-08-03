@@ -47,6 +47,8 @@ class BarsController < ApplicationController
   end
 
   def privacy
+    @host = request.host
+
   end
 
   private

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       flash[:notice] = "更新に成功しました。"
       redirect_to @user
     else
-      render action: :edit
+      render "edit"
     end
   end
 

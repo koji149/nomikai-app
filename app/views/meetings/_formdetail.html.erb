@@ -7,20 +7,20 @@
     </div>
     <div class="modal-body">
       <h5 class="modar-title">
-                <div class="post-meta align-items-center text-left clearfix">
+                <div class="post-meta align-items-center clearfix text-center">
                 <%= link_to "users/#{@meeting.user_id}" do%>
-                <figure class="author-figure mb-0 mr-auto float-left">
+                <div>
                     <% if @meeting.user.image.attached? %>
-                      <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid" %>
+                      <%= image_tag @meeting.user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                     <% else %>
-                      <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid" %>
+                      <%= image_tag ("human.png"), alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                     <% end %>
-                </figure>
+                </div>
                 <%end%>
-                <span class="d-inline-block mt-1">By<%=link_to "#{@meeting.user.name}", "users/#{@meeting.user_id}"%></span>
+                <span class="d-inline-block mt-1 text-center">By<%=link_to "#{@meeting.user.name}", "users/#{@meeting.user_id}"%></span>
                 </div>
               </h5>
-              <ul class="list-group list-group-flush">
+              <ul class="list-group list-group-flush text-left">
                 <%#<li class="list-group-item"><label for="name1">場所</label><br/><%=%><%#</li>#%>
                 <li class="list-group-item"><label for="name1">説明</label><br/><%=@meeting.explain%></li>
                 <li class="list-group-item"><label for="name1">募集日時</label><br/><%=@meeting.date.strftime("%Y-%m-%d")%> <%=@meeting.time.strftime("%H:%M")%></li>

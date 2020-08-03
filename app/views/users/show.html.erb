@@ -12,7 +12,7 @@
                   <h5 class="card-title">
                     <div class="post-meta align-items-center text-left clearfix">
                     <div class="post-meta align-items-center text-center clearfix">
-                    <figure class="author-figure mb-0 mr-auto float-left">
+                    <figure class="text-center">
                         <% if @user.image.attached? %>
                           <%= image_tag @user.image, alt: "プロフィール画像", class: "img-fluid w-50 rounded-circle mb-4" %>
                         <% else %>
@@ -31,7 +31,7 @@
               </div>
               <div class="card-footer text-center ">
               <% if @user == current_user%>
-                <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user), class: "fas fa-user-edit" %></button>
+                <button type="button" class="btn-outline-info rounded-pill"><%= link_to "編集", edit_user_path(current_user), remote: true, class: "fas fa-user-edit" %></button>
                 <button type="button" class="btn-outline-danger rounded-pill"><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "fas fa-sign-out-alt"%></button>
                 <br><br>
               <%end%>

@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= display_meta_tags(default_meta_tags) %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,12 +13,13 @@
                   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+
 <%= flash_message(flash[:success], :success) if flash[:success] %>
 <%= flash_message(flash[:error], :danger) if flash[:error] %>
 <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
 <%= flash_message(flash[:notice], :info) if flash[:notice] %>
 
-<div class="wra">
+<div class="wrapper">
     <header>
       <nav class="navbar fixed-top navbar-expand-lg navbar-light">
         <%= link_to root_path, class: "navbar-brand" do %>
@@ -35,7 +36,7 @@
             </li>
           <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
             <li class="nav-item ">
-              <%= link_to "自分の募集", meetings_path(user_id: current_user.id), class: "fa-cocktail font-weight-bold text-light" %>
+              <%= link_to "自分の募集", meetings_path(user_id: current_user.id), class: "fa-wine-bottle font-weight-bold text-light" %>
             </li>
             <li class="nav-item">
               <%= link_to "マイページ", user_path(current_user), class: "fas fa-user font-weight-bold text-light" %>

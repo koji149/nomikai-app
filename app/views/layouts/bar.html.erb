@@ -4,7 +4,7 @@
   <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= display_meta_tags(default_meta_tags) %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= canonical_tag %>
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,6 +12,7 @@
                     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+  <div class="wrapper">
 <%= flash_message(flash[:success], :success) if flash[:success] %>
 <%= flash_message(flash[:error], :danger) if flash[:error] %>
 <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
@@ -136,7 +137,7 @@
       </div>
       </nav>
     </footer>
-    
+    </div>
   </body>
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div id="toast" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
