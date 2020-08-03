@@ -2,6 +2,7 @@
 	height: 100vh;
 	overflow: scroll;
 	-webkit-overflow-scrolling: touch;
+	max-width: 650px;
 }
 
 //.wra {
@@ -22,6 +23,7 @@ body {
 	width: 100%;
 	background: image-url("tonight.jpg");
 	background-size: cover;
+	max-width: 650px;
 }
 a {
 	transition: .3s all ease;
